@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "606547622557",
+    "firebase_url": "https://leftoverchef-test1-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "leftoverchef-test1",
+    "storage_bucket": "leftoverchef-test1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:606547622557:android:e973e12da0b4f434cbf274",
+        "android_client_info": {
+          "package_name": "com.example.aninterface"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDbrOusjueLtlTNgSHOJcachiTW606mXsg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:606547622557:android:a2b4c82fb96874cecbf274",
+        "android_client_info": {
+          "package_name": "com.example.leftoverchef"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDbrOusjueLtlTNgSHOJcachiTW606mXsg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
