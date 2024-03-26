@@ -33,7 +33,7 @@ public class HomePage extends AppCompatActivity {
         OkHttpClient client = new OkHttpClient();
         MediaType mediaType = MediaType.parse("application/json");
 
-        String requestBody = "{\"model\":\"gpt-3.5-turbo-instruct\", \"prompt\":\"" + prompt + "\", \"max_tokens\":400}";
+        String requestBody = "{\"model\":\"gpt-3.5-turbo-instruct\", \"prompt\":\"" + prompt + "\", \"max_tokens\":300}";
         Request request = new Request.Builder()
                 .url("https://api.openai.com/v1/completions")
                 .post(RequestBody.create(mediaType, requestBody))
