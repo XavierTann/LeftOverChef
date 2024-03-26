@@ -8,16 +8,14 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.aninterface.R;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.regex.Pattern;
 
-public class CreateAccountActivity extends AppCompatActivity {
+public class CreateAccount extends AppCompatActivity {
     EditText registerfullname, registerphonenumber, registeremail, registerpassword, registerconpassword;
     TextView loginRedirectText;
     Button registerButton;
@@ -52,8 +50,8 @@ public class CreateAccountActivity extends AppCompatActivity {
                     HelperClass helperClass = new HelperClass(fullname, phonenumber, email, password);
                     reference.child(phonenumber).setValue(helperClass);
 
-                    Toast.makeText(CreateAccountActivity.this, "Registered successfully!", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(CreateAccountActivity.this, LoginActivity.class);
+                    Toast.makeText(CreateAccount.this, "Registered successfully!", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(CreateAccount.this, Login.class);
                     startActivity(intent);
                 }
             }
@@ -62,7 +60,7 @@ public class CreateAccountActivity extends AppCompatActivity {
         loginRedirectText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(CreateAccountActivity.this, LoginActivity.class);
+                Intent intent = new Intent(CreateAccount.this, Login.class);
                 startActivity(intent);
             }
         });

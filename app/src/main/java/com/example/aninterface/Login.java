@@ -21,7 +21,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
-public class LoginActivity extends AppCompatActivity {
+public class Login extends AppCompatActivity {
     EditText loginphonenumber, loginpassword;
     Button loginButton;
     TextView registerRedirectText;
@@ -65,7 +65,7 @@ public class LoginActivity extends AppCompatActivity {
         registerRedirectText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LoginActivity.this, CreateAccountActivity.class);
+                Intent intent = new Intent(Login.this, CreateAccount.class);
                 startActivity(intent);
             }
         });
@@ -109,7 +109,7 @@ public class LoginActivity extends AppCompatActivity {
 
                     if (passwordFromDB.equals(userPassword)) {
                         loginphonenumber.setError(null);
-                        Intent intent = new Intent(LoginActivity.this, HomePage.class);
+                        Intent intent = new Intent(Login.this, HomePage.class);
                         startActivity(intent);
                     } else {
                         loginphonenumber.setError("Invalid Phone Number/Password");

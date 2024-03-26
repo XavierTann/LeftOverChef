@@ -46,6 +46,8 @@ dependencies {
     implementation ("com.squareup.okhttp3:okhttp:4.10.0")
     implementation ("com.fasterxml.jackson.core:jackson-databind:2.16.1")
 
-
+    //Google API
+    implementation ("com.android.volley:volley:1.2.0") //making html requests
+    implementation ("com.squareup.picasso:picasso:2.71828") //extracting images
 
 }

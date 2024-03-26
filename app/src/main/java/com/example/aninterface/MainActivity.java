@@ -2,14 +2,10 @@ package com.example.aninterface;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -22,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
         // Get Started Button redirects to Login Page
         Button button = findViewById(R.id.btn_activity_main_getStarted);
         button.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+            Intent intent = new Intent(MainActivity.this, Login.class);
             startActivity(intent);
         }
         );
