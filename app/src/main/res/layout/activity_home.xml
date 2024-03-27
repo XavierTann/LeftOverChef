@@ -12,33 +12,25 @@
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/topAppBar"/>
-
-    <com.google.android.material.bottomappbar.BottomAppBar
-        android:id="@+id/topAppBar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-    </com.google.android.material.bottomappbar.BottomAppBar>
-
+        android:layout_above="@id/bottomAppBar"/>
 
     <com.google.android.material.bottomappbar.BottomAppBar
         android:id="@+id/bottomAppBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:backgroundTint="@color/white"
         app:fabCradleMargin="10dp"
         app:fabCradleRoundedCornerRadius="60dp"
         android:layout_gravity="bottom"
+        android:background="@android:color/white"
+
         >
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottomNavigationView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
+            android:layout_marginEnd="15dp"
             android:background="@android:color/transparent"
-            android:elevation="8dp"
             app:itemIconTint="@drawable/selector"
             app:itemTextColor="@drawable/selector"
             app:labelVisibilityMode="labeled"
@@ -51,11 +43,10 @@
         android:backgroundTint="@color/white"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:contentDescription="fab"
         android:src="@drawable/baseline_camera_alt_24"
-        android:tint="@color/white"
         app:layout_anchor="@+id/bottomAppBar"
         app:maxImageSize="35dp"
-        app:shapeAppearanceOverlay="@style/fab_2_rounded" />
+        app:shapeAppearanceOverlay="@style/fab_2_rounded"
+        />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
