@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="difficulty_levels">
+        <item>Easy</item>
+        <item>Medium</item>
+        <item>Hard</item>
+    </array>
+
+    <array name="duration">
+        <item>0 to 1 hour</item>
+        <item>1 to 2 hours</item>
+        <item>2 to 3 hours</item>
+        <item>More than 3 hours</item>
+    </array>
+</resources>

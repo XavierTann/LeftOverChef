@@ -33,6 +33,11 @@
         <activity
             android:name=".RecipePage"
             android:exported="false" />
+
+        <activity
+            android:name=".IngredientPage"
+            android:exported="false" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true">

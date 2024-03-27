@@ -1,5 +1,6 @@
 package com.example.aninterface;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.widget.ImageView;
@@ -30,6 +31,7 @@ public class RecipePage extends AppCompatActivity {
 
     private ImageView imageView;
     private String generatedString;
+    private String foodName;
 
     // FUNCTION TO SEARCH IMAGE FROM INTERNET USING GOOGLE CUSTOM SEARCH API //
     private void searchImage(String query, String apiKey) {
@@ -111,9 +113,13 @@ public class RecipePage extends AppCompatActivity {
         @Override
         protected void onPostExecute(String response) {
             try {
+                String apiKey = "AIzaSyDbrOusjueLtlTNgSHOJcachiTW606mXsg";
                 generatedString = extractGeneratedText(response);
+                foodName = getFirstWords(generatedString,5);
+                System.out.println(foodName);
                 TextView textView = findViewById(R.id.text_recipePage_generatedText);
                 textView.setText(generatedString);
+                searchImage(foodName, apiKey); // Use foodName for the query
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -127,21 +133,32 @@ public class RecipePage extends AppCompatActivity {
 
         StringBuilder sb = new StringBuilder();
         int wordCount = 0;
+        boolean withinQuotes = false; // Track if within quotes
 
         for (char c : input.toCharArray()) {
-            if (c != ' ') {
-                sb.append(c); // Append characters until a space is encountered
-            } else {
+            if (c == '"') {
+                withinQuotes = !withinQuotes; // Toggle withinQuotes flag
+                if (wordCount == 0) {
+                    continue; // Skip first quotation mark
+                }
+            }
+
+            if (!withinQuotes && c != ' ') {
+                sb.append(c); // Append characters until a space is encountered outside quotes
+            } else if (!withinQuotes) {
                 wordCount++;
                 if (wordCount == numberOfWords) {
-                    break; // Exit loop when the specified number of words is reached
+                    break; // Exit loop when the specified number of words is reached outside quotes
                 }
-                sb.append(c); // Append the space character
+                sb.append(c); // Append the space character outside quotes
+            } else {
+                sb.append(c); // Append characters within quotes
             }
         }
 
         return sb.toString().trim(); // Trim any leading/trailing spaces and return the result
     }
+
 
 
     @Override
@@ -151,18 +168,23 @@ public class RecipePage extends AppCompatActivity {
 
         imageView = findViewById(R.id.image_recipePage_searchedImage);
 
-        // Make an image search request
-        String query = getFirstWords(generatedString, 2); // Replace with your desired search query
+        // Retrieve filter criteria passed from IngredientPage
+        Intent intent = getIntent();
+        String selectedDifficulty = intent.getStringExtra("difficulty");
+        String ingredients = intent.getStringExtra("ingredients");
 
-        System.out.println(query);
-        String apiKey = "AIzaSyDbrOusjueLtlTNgSHOJcachiTW606mXsg"; // Replace with your Google API key
-        searchImage(query, apiKey);
-
-        //
-        String prompt = "I have leftover ingredients. The ingredients consist of 2 apples, 2 onions and garlics, and the basic cooking ingredients.Limit to 50 words" +
-                "First few words must be the name of the dish ";
-
+        // Generate text for recipe, and generate images for recipe
+        String prompt =  "I have leftover ingredients. " +
+                "These are the ingredients:" + ingredients +
+                "Give me a recipe for these ingredients" +
+                "I want the recipe's difficulty level to be" + selectedDifficulty +
+                "You may assume I have basic cooking ingredients like salt." +
+                "Limit to 50 words. Include the name of the dish in the first few words. Give step by step clear instructions.";
         new NetworkTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, prompt);
+
+
+
+
     }
 
 
