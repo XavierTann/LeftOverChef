@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,6 +20,7 @@ public class CreateAccount extends AppCompatActivity {
     EditText registerfullname, registerphonenumber, registeremail, registerpassword, registerconpassword;
     TextView loginRedirectText;
     Button registerButton;
+    ImageButton btn_backButton;
     FirebaseDatabase database;
     DatabaseReference reference;
     @Override
@@ -33,6 +35,7 @@ public class CreateAccount extends AppCompatActivity {
         registerconpassword = findViewById(R.id.edit_createAnAccount_confirmPassword);
         registerButton = findViewById(R.id.btn_createAccount_signUp);
         loginRedirectText = findViewById(R.id.text_createAnAccount_login);
+        btn_backButton = findViewById(R.id.btn_backButton);
 
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,6 +61,14 @@ public class CreateAccount extends AppCompatActivity {
         });
 
         loginRedirectText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CreateAccount.this, Login.class);
+                startActivity(intent);
+            }
+        });
+
+        btn_backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(CreateAccount.this, Login.class);

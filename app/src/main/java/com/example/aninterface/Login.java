@@ -25,6 +25,7 @@ public class Login extends AppCompatActivity {
     EditText loginphonenumber, loginpassword;
     Button loginButton;
     TextView registerRedirectText;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +51,7 @@ public class Login extends AppCompatActivity {
         loginpassword = findViewById(R.id.edit_login_password);
         registerRedirectText = findViewById(R.id.text_login_signUp);
         loginButton = findViewById(R.id.btn_login_login);
+
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
