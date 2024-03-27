@@ -6,8 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/orange"
-    tools:context=".Home">
-
+    tools:context=".pantry">
 
     <com.google.android.material.bottomappbar.BottomAppBar
         android:id="@+id/bottomAppBar"
@@ -26,8 +25,6 @@
             android:layout_marginEnd="16dp"
             android:background="@android:color/transparent"
             android:elevation="8dp"
-            app:itemIconTint="@drawable/selector"
-            app:itemTextColor="@drawable/selector"
             app:labelVisibilityMode="labeled"
             app:menu="@menu/bottom_nav_menu" />
 

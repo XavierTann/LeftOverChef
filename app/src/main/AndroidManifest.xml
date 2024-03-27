@@ -15,6 +15,9 @@
         android:theme="@style/Theme.Interface"
         tools:targetApi="31">
         <activity
+            android:name=".pantry"
+            android:exported="false" />
+        <activity
             android:name=".Home"
             android:exported="false"
             android:theme="@style/Theme.Interface" />
