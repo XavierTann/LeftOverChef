@@ -15,6 +15,7 @@
         />
 
     <item
+        android:id="@+id/menu_camera"
         android:title="" />
 
     <item
