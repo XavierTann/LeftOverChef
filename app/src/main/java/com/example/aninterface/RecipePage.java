@@ -152,9 +152,9 @@ public class RecipePage extends AppCompatActivity {
         imageView = findViewById(R.id.image_recipePage_searchedImage);
 
         // Make an image search request
-        String query = getFirstWords(generatedString, 5); // Replace with your desired search query
+        String query = getFirstWords(generatedString, 2); // Replace with your desired search query
 
-        System.out.println(generatedString);
+        System.out.println(query);
         String apiKey = "AIzaSyDbrOusjueLtlTNgSHOJcachiTW606mXsg"; // Replace with your Google API key
         searchImage(query, apiKey);
 
