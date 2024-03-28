@@ -110,5 +110,23 @@
         app:layout_constraintStart_toEndOf="@+id/textView20"
         app:layout_constraintTop_toBottomOf="@+id/spinner_ingredientPage_cuisine" />
 
+    <TextView
+        android:id="@+id/textView23"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="92dp"
+        android:layout_marginTop="16dp"
+        android:text="Special Requirements"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner_ingredientPage_dietaryRequirements" />
+
+    <EditText
+        android:id="@+id/edit_ingredientPage_specialRequirements"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/textView23"
+        app:layout_constraintLeft_toRightOf="parent"
+        android:hint="No spice, allergens, etc." />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

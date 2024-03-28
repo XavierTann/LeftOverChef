@@ -22,14 +22,17 @@ public class IngredientPage extends AppCompatActivity {
         Spinner spinnerCookingTime = findViewById(R.id.spinner_duration);
         Spinner spinnerCuisine = findViewById(R.id.spinner_ingredientPage_cuisine);
         Spinner spinnerDietaryRequirements = findViewById(R.id.spinner_ingredientPage_dietaryRequirements);
+        EditText editSpecialRequirements =  findViewById(R.id.edit_ingredientPage_specialRequirements);
 
-        // Redirect to Recipes page //
+
         generateRecipes.setOnClickListener(v -> {
-                    String ingredients = searchIngredient.getText().toString(); // Get the current text
+                    // Getting ingredients and filters
+                    String ingredients = searchIngredient.getText().toString();
                     String selectedDifficulty = spinnerDifficulty.getSelectedItem().toString();
                     String cookingTime = spinnerCookingTime.getSelectedItem().toString();
                     String cuisine = spinnerCuisine.getSelectedItem().toString();
                     String dietaryRequirements = spinnerDietaryRequirements.getSelectedItem().toString();
+                    String specialRequirements = editSpecialRequirements.getText().toString();
 
                     Intent intent = getIntent();
                     String phoneNumber = intent.getStringExtra("phoneNumber");
@@ -40,6 +43,7 @@ public class IngredientPage extends AppCompatActivity {
                     intent.putExtra("cookingTime", cookingTime);
                     intent.putExtra("cuisine", cuisine);
                     intent.putExtra("dietaryRequirements", dietaryRequirements);
+                    intent.putExtra("specialRequirements", specialRequirements);
                     startActivity(intent);
                 }
         );

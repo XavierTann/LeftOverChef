@@ -42,6 +42,7 @@ public class RecipePage extends AppCompatActivity {
     private static String ingredients;
     private static String cuisine;
     private static String dietaryRequirements;
+    private static String specialRequirements;
 
     // FUNCTION TO SEARCH IMAGE FROM INTERNET USING GOOGLE CUSTOM SEARCH API //
     private void searchImage(String query, String apiKey) {
@@ -201,6 +202,7 @@ public class RecipePage extends AppCompatActivity {
         RecipePage.ingredients = intent.getStringExtra("ingredients");
         RecipePage.cuisine = intent.getStringExtra("cuisine");
         RecipePage.dietaryRequirements = intent.getStringExtra("dietaryRequirements");
+        RecipePage.specialRequirements = intent.getStringExtra("specialRequirements");
 
         RecipePage.phoneNumber = intent.getStringExtra("phoneNumber");
 
@@ -212,7 +214,7 @@ public class RecipePage extends AppCompatActivity {
                 "I want the recipe's cooking time to be " + cookingTime +
                 "I want the cuisine of the dish to be " + cuisine +
                 "My dietary requirement is " + dietaryRequirements +
-                "My special request is " +
+                "My special request is " + specialRequirements +
                 "You may assume I have basic cooking ingredients like salt." +
                 "Limit to 50 words. " +
                 "Include the name of the dish in the first few words." +
