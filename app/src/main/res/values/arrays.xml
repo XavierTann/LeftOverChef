@@ -12,4 +12,24 @@
         <item>2 to 3 hours</item>
         <item>More than 3 hours</item>
     </array>
+
+    <!-- Cuisine Types -->
+    <string-array name="cuisine_types">
+        <item>Italian</item>
+        <item>Mexican</item>
+        <item>Indian</item>
+        <item>Chinese</item>
+        <item>Japanese</item>
+        <!-- Add more cuisine types as needed -->
+    </string-array>
+
+    <!-- Dietary Requirements -->
+    <string-array name="dietary_requirements">
+        <item>Vegetarian</item>
+        <item>Vegan</item>
+        <item>Gluten-Free</item>
+        <item>Dairy-Free</item>
+        <item>Nut-Free</item>
+        <!-- Add more dietary requirements as needed -->
+    </string-array>
 </resources>

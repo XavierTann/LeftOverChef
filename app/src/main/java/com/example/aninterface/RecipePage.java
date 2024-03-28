@@ -5,6 +5,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,8 +14,11 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.aninterface.HelperClass.Recipe;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
@@ -32,6 +36,12 @@ public class RecipePage extends AppCompatActivity {
     private ImageView imageView;
     private String generatedString;
     private String foodName;
+    private static String phoneNumber;
+    private static String difficulty;
+    private static String cookingTime;
+    private static String ingredients;
+    private static String cuisine;
+    private static String dietaryRequirements;
 
     // FUNCTION TO SEARCH IMAGE FROM INTERNET USING GOOGLE CUSTOM SEARCH API //
     private void searchImage(String query, String apiKey) {
@@ -115,48 +125,64 @@ public class RecipePage extends AppCompatActivity {
             try {
                 String apiKey = "AIzaSyDbrOusjueLtlTNgSHOJcachiTW606mXsg";
                 generatedString = extractGeneratedText(response);
-                foodName = getFirstWords(generatedString,5);
+                foodName = getFirstWords(generatedString);
                 System.out.println(foodName);
                 TextView textView = findViewById(R.id.text_recipePage_generatedText);
                 textView.setText(generatedString);
                 searchImage(foodName, apiKey); // Use foodName for the query
+                recipeDatabase(foodName, generatedString);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
         }
     }
 
-    public static String getFirstWords(String input, int numberOfWords) {
-        if (input == null || numberOfWords <= 0) {
-            return ""; // Return an empty string if input is null or numberOfWords is non-positive
+    public static String getFirstWords(String input) {
+        if (input == null) {
+            return ""; // Return an empty string if input is null
         }
 
         StringBuilder sb = new StringBuilder();
-        int wordCount = 0;
-        boolean withinQuotes = false; // Track if within quotes
+        boolean nonWhiteSpaceEncountered = false;
 
         for (char c : input.toCharArray()) {
-            if (c == '"') {
-                withinQuotes = !withinQuotes; // Toggle withinQuotes flag
-                if (wordCount == 0) {
-                    continue; // Skip first quotation mark
-                }
+            if (!nonWhiteSpaceEncountered && Character.isWhitespace(c)) {
+                continue; // Skip leading whitespace characters until a non-whitespace character is encountered
             }
-
-            if (!withinQuotes && c != ' ') {
-                sb.append(c); // Append characters until a space is encountered outside quotes
-            } else if (!withinQuotes) {
-                wordCount++;
-                if (wordCount == numberOfWords) {
-                    break; // Exit loop when the specified number of words is reached outside quotes
-                }
-                sb.append(c); // Append the space character outside quotes
-            } else {
-                sb.append(c); // Append characters within quotes
+            nonWhiteSpaceEncountered = true; // Mark that a non-whitespace character has been encountered
+            if (c == '\n') {
+                break; // Exit loop when a newline character is encountered
             }
+            sb.append(c); // Append characters until a newline character is encountered
         }
 
         return sb.toString().trim(); // Trim any leading/trailing spaces and return the result
+    }
+
+
+
+
+
+
+
+    public static void recipeDatabase(String foodName, String generatedString) {
+        FirebaseDatabase database;
+        DatabaseReference reference;
+        String phoneNumber = RecipePage.phoneNumber;
+
+        database = FirebaseDatabase.getInstance();
+        reference = database.getReference("users").child(phoneNumber);
+
+        // Create a reference to the "recipe" node under the phone number node
+        DatabaseReference recipeRef = reference.child("recipe");
+
+        // Create a reference to the new recipe node using the generated key
+        DatabaseReference newRecipeRef = recipeRef.child(foodName);
+
+        // Now you can set the value of the new recipe node
+        // For example, you can set recipe details including name, instructions, ingredients, cooking time, and difficulty
+        Recipe recipe = new Recipe(foodName, generatedString, RecipePage.ingredients, RecipePage.cookingTime, RecipePage.difficulty);
+        newRecipeRef.setValue(recipe);
     }
 
 
@@ -170,16 +196,29 @@ public class RecipePage extends AppCompatActivity {
 
         // Retrieve filter criteria passed from IngredientPage
         Intent intent = getIntent();
-        String selectedDifficulty = intent.getStringExtra("difficulty");
-        String ingredients = intent.getStringExtra("ingredients");
+        RecipePage.cookingTime = intent.getStringExtra("cookingTime");
+        RecipePage.difficulty = intent.getStringExtra("difficulty");
+        RecipePage.ingredients = intent.getStringExtra("ingredients");
+        RecipePage.cuisine = intent.getStringExtra("cuisine");
+        RecipePage.dietaryRequirements = intent.getStringExtra("dietaryRequirements");
+
+        RecipePage.phoneNumber = intent.getStringExtra("phoneNumber");
 
         // Generate text for recipe, and generate images for recipe
         String prompt =  "I have leftover ingredients. " +
                 "These are the ingredients:" + ingredients +
                 "Give me a recipe for these ingredients" +
-                "I want the recipe's difficulty level to be" + selectedDifficulty +
+                "I want the recipe's difficulty level to be" + difficulty +
+                "I want the recipe's cooking time to be " + cookingTime +
+                "I want the cuisine of the dish to be " + cuisine +
+                "My dietary requirement is " + dietaryRequirements +
+                "My special request is " +
                 "You may assume I have basic cooking ingredients like salt." +
-                "Limit to 50 words. Include the name of the dish in the first few words. Give step by step clear instructions.";
+                "Limit to 50 words. " +
+                "Include the name of the dish in the first few words." +
+                "The first line should only contain the name of the dish. Everything after should come in the next few lines. Do not have any special characters in the first line" +
+                "Ingredients, difficulty, and cooking time should be included below the recipe name." +
+                "Give step by step clear instructions. Try to give add ingredients that are not specified into the recipe.";
         new NetworkTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, prompt);
 
 

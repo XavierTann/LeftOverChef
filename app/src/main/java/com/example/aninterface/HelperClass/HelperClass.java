@@ -1,4 +1,4 @@
-package com.example.aninterface;
+package com.example.aninterface.HelperClass;
 // THIS HELPER CLASS IS FOR CREATE ACCOUNT
 public class HelperClass {
     String fullname, phonenumber, email, password;
