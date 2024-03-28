@@ -3,6 +3,8 @@ package com.example.aninterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -32,10 +34,9 @@ import okhttp3.OkHttpClient;
 import okhttp3.RequestBody;
 
 public class RecipePage extends AppCompatActivity {
-
-    private ImageView imageView;
     private String generatedString;
     private String foodName;
+    private static String imageUrl;
     private static String phoneNumber;
     private static String difficulty;
     private static String cookingTime;
@@ -48,6 +49,7 @@ public class RecipePage extends AppCompatActivity {
     private void searchImage(String query, String apiKey) {
         String cx = "d6406233621ac4b28"; // Replace with your Custom Search Engine ID
         String url = "https://www.googleapis.com/customsearch/v1?q=" + query + "&searchType=image&key=" + apiKey + "&cx=" + cx;
+        ImageView imageView = findViewById(R.id.image_recipePage_searchedImage);
 
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
@@ -57,7 +59,7 @@ public class RecipePage extends AppCompatActivity {
                             JSONArray items = response.getJSONArray("items");
                             if (items.length() > 0) {
                                 JSONObject item = items.getJSONObject(0);
-                                String imageUrl = item.getString("link");
+                                RecipePage.imageUrl = item.getString("link");
                                 Picasso.get().load(imageUrl).into(imageView);
                             }
                         } catch (JSONException e) {
@@ -128,10 +130,11 @@ public class RecipePage extends AppCompatActivity {
                 generatedString = extractGeneratedText(response);
                 foodName = getFirstWords(generatedString);
                 System.out.println(foodName);
-                TextView textView = findViewById(R.id.text_recipePage_generatedText);
+                TextView textView = findViewById(R.id.text_recipePage_generatedRecipe1);
                 textView.setText(generatedString);
                 searchImage(foodName, apiKey); // Use foodName for the query
                 recipeDatabase(foodName, generatedString);
+                seeMoreButton();
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -162,6 +165,20 @@ public class RecipePage extends AppCompatActivity {
 
 
 
+    public void seeMoreButton() {
+        TextView textView = findViewById(R.id.text_recipePage_generatedRecipe1);
+        Button seeMoreButton = findViewById(R.id.btn_recipePage_seeMore1);
+
+        seeMoreButton.setOnClickListener(v -> {
+            // Start a new activity to show full details of the recipe
+            Intent intent = new Intent(RecipePage.this, IndividualRecipe.class);
+            // Pass any necessary data to the new activity
+            intent.putExtra("recipeDescription", generatedString);
+            intent.putExtra("recipeImage", imageUrl);
+            startActivity(intent);
+        });
+
+    }
 
 
 
@@ -192,8 +209,6 @@ public class RecipePage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.recipe_page);
-
-        imageView = findViewById(R.id.image_recipePage_searchedImage);
 
         // Retrieve filter criteria passed from IngredientPage
         Intent intent = getIntent();

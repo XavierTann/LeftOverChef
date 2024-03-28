@@ -17,13 +17,27 @@
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
-        android:id="@+id/text_recipePage_generatedText"
+        android:id="@+id/text_recipePage_generatedRecipe1"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="76dp"
-        android:text="TextView"
+        android:maxLines="8"
+        android:ellipsize="end"
+        android:text="Recipe"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btn_recipePage_seeMore1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="48dp"
+        android:text="See more"
+        android:textSize="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_recipePage_generatedRecipe1" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
