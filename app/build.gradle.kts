@@ -40,7 +40,8 @@ dependencies {
     implementation(libs.constraintlayout)
     implementation(libs.firebase.database)
     implementation(libs.navigation.fragment)
-    implementation(libs.navigation.ui) //Firebase
+    implementation(libs.navigation.ui)
+    implementation(libs.drawerlayout) //Firebase
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)

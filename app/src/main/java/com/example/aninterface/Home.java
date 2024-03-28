@@ -2,7 +2,9 @@ package com.example.aninterface;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -31,15 +33,25 @@ public class Home extends AppCompatActivity {
     PantryFragment pantryFragment = new PantryFragment();
     FavouritesFragment favouritesFragment = new FavouritesFragment();
     FeaturedFragment featuredFragment = new FeaturedFragment();
-    private DrawerLayout drawerLayout;
+    DrawerLayout drawerLayout;
+    Button buttonProfileMenu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_drawer);
+
+        drawerLayout = findViewById(R.id.drawer_profile_menu);
+        buttonProfileMenu = findViewById(R.id.button_profile_menu);
+        buttonProfileMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                drawerLayout.open();
+            }
+        });
+
 
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
-
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, pantryFragment).commit();
 
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {

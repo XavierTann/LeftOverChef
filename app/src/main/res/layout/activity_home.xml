@@ -29,7 +29,7 @@
         app:cardCornerRadius="50dp"
         android:layout_marginStart="5dp"
         app:layout_anchor="@+id/view"
-        app:layout_anchorGravity="start|center"
+        app:layout_anchorGravity="end|center"
         >
 
         <ImageView
@@ -48,7 +48,7 @@
     </TextView>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/button_profile_menu"
         android:layout_width="45dp"
         android:layout_height="45dp"
         android:layout_gravity="center"
@@ -56,7 +56,7 @@
         android:background="@drawable/icons8_male_user_30"
         android:backgroundTint="@color/white"
         app:layout_anchor="@+id/view"
-        app:layout_anchorGravity="end|center">
+        app:layout_anchorGravity="start|center">
 
     </Button>
 
