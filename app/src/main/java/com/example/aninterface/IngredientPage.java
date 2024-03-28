@@ -19,14 +19,31 @@ public class IngredientPage extends AppCompatActivity {
         EditText searchIngredient = findViewById(R.id.edit_ingredientPage_searchIngredient);
         Button generateRecipes = findViewById(R.id.btn_ingredientPage_generateRecipes);
         Spinner spinnerDifficulty = findViewById(R.id.spinner_difficulty);
+        Spinner spinnerCookingTime = findViewById(R.id.spinner_duration);
+        Spinner spinnerCuisine = findViewById(R.id.spinner_ingredientPage_cuisine);
+        Spinner spinnerDietaryRequirements = findViewById(R.id.spinner_ingredientPage_dietaryRequirements);
+        EditText editSpecialRequirements =  findViewById(R.id.edit_ingredientPage_specialRequirements);
 
-        // Redirect to Recipes page //
+
         generateRecipes.setOnClickListener(v -> {
-                    String ingredients = searchIngredient.getText().toString(); // Get the current text
+                    // Getting ingredients and filters
+                    String ingredients = searchIngredient.getText().toString();
                     String selectedDifficulty = spinnerDifficulty.getSelectedItem().toString();
-                    Intent intent = new Intent(IngredientPage.this, RecipePage.class);
+                    String cookingTime = spinnerCookingTime.getSelectedItem().toString();
+                    String cuisine = spinnerCuisine.getSelectedItem().toString();
+                    String dietaryRequirements = spinnerDietaryRequirements.getSelectedItem().toString();
+                    String specialRequirements = editSpecialRequirements.getText().toString();
+
+                    Intent intent = getIntent();
+                    String phoneNumber = intent.getStringExtra("phoneNumber");
+                    intent = new Intent(IngredientPage.this, RecipePage.class);
+                    intent.putExtra("phoneNumber", phoneNumber);
                     intent.putExtra("ingredients", ingredients);
                     intent.putExtra("difficulty", selectedDifficulty);
+                    intent.putExtra("cookingTime", cookingTime);
+                    intent.putExtra("cuisine", cuisine);
+                    intent.putExtra("dietaryRequirements", dietaryRequirements);
+                    intent.putExtra("specialRequirements", specialRequirements);
                     startActivity(intent);
                 }
         );

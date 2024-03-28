@@ -111,7 +111,8 @@ public class Login extends AppCompatActivity {
 
                     if (passwordFromDB.equals(userPassword)) {
                         loginphonenumber.setError(null);
-                        Intent intent = new Intent(Login.this, HomePage.class);
+                        Intent intent = new Intent(Login.this, IngredientPage.class);
+                        intent.putExtra("phoneNumber", userPhonenumber);
                         startActivity(intent);
                     } else {
                         loginphonenumber.setError("Invalid Phone Number/Password");
