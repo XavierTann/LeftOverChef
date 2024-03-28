@@ -5,18 +5,16 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.TextView;
 
-import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.example.aninterface.Fragments.FavouritesFragment;
 import com.example.aninterface.Fragments.FeaturedFragment;
 import com.example.aninterface.Fragments.HomeFragment;
 import com.example.aninterface.Fragments.PantryFragment;
+import com.example.aninterface.HelperClass.SharedPreferencesUtil;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 import com.example.aninterface.R;
@@ -24,19 +22,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import com.google.android.material.navigation.NavigationView;
 import androidx.appcompat.widget.Toolbar;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
 public class Home extends AppCompatActivity {
-    // creating a variable for
-    // our Firebase Database.
-    FirebaseDatabase firebaseDatabase;
-    // creating a variable for our
-    // Database Reference for Firebase.
-    DatabaseReference databaseReference;
     BottomNavigationView bottomNavigationView;
     HomeFragment homeFragment = new HomeFragment();
     PantryFragment pantryFragment = new PantryFragment();
@@ -50,13 +36,9 @@ public class Home extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_drawer);
 
-        // below line is used to get the instance
-        // of our Firebase database.
-        firebaseDatabase = FirebaseDatabase.getInstance();
-
-        // below line is used to get
-        // reference for our database.
-        databaseReference = firebaseDatabase.getReference("users");
+        String phoneNumber = SharedPreferencesUtil.getPhoneNumber(this);
+        TextView textViewPhoneNumber = findViewById(R.id.profile_phonenumber);
+        textViewPhoneNumber.setText(phoneNumber);
 
         drawerLayout = findViewById(R.id.drawer_profile_menu);
         buttonProfileMenu = findViewById(R.id.button_profile_menu);

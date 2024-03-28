@@ -14,6 +14,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.aninterface.HelperClass.SharedPreferencesUtil;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -111,8 +112,9 @@ public class Login extends AppCompatActivity {
 
                     if (passwordFromDB.equals(userPassword)) {
                         loginphonenumber.setError(null);
-                        Intent intent = new Intent(Login.this, IngredientPage.class);
+                        Intent intent = new Intent(Login.this, Home.class);
                         intent.putExtra("phoneNumber", userPhonenumber);
+                        SharedPreferencesUtil.savePhoneNumber(Login.this, userPhonenumber);
                         startActivity(intent);
                     } else {
                         loginphonenumber.setError("Invalid Phone Number/Password");
