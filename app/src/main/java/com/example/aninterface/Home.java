@@ -18,6 +18,9 @@ import com.example.aninterface.Fragments.PantryFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 import com.example.aninterface.R;
+import androidx.drawerlayout.widget.DrawerLayout;
+import com.google.android.material.navigation.NavigationView;
+import androidx.appcompat.widget.Toolbar;
 
 
 public class Home extends AppCompatActivity {
@@ -28,6 +31,7 @@ public class Home extends AppCompatActivity {
     PantryFragment pantryFragment = new PantryFragment();
     FavouritesFragment favouritesFragment = new FavouritesFragment();
     FeaturedFragment featuredFragment = new FeaturedFragment();
+    private DrawerLayout drawerLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
