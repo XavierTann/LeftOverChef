@@ -14,6 +14,7 @@
         android:layout_height="match_parent"
         android:layout_above="@id/bottomAppBar"/>
 
+
     <com.google.android.material.bottomappbar.BottomAppBar
         android:id="@+id/bottomAppBar"
         android:layout_width="match_parent"
@@ -21,9 +22,7 @@
         app:fabCradleMargin="10dp"
         app:fabCradleRoundedCornerRadius="60dp"
         android:layout_gravity="bottom"
-        android:background="@android:color/white"
-
-        >
+        android:background="@android:color/white">
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottomNavigationView"
@@ -46,7 +45,6 @@
         android:src="@drawable/baseline_camera_alt_24"
         app:layout_anchor="@+id/bottomAppBar"
         app:maxImageSize="35dp"
-        app:shapeAppearanceOverlay="@style/fab_2_rounded"
-        />
+        app:shapeAppearanceOverlay="@style/fab_2_rounded"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
