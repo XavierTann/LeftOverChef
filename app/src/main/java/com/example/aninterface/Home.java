@@ -1,6 +1,7 @@
 package com.example.aninterface;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -36,9 +37,17 @@ public class Home extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_drawer);
 
+        NavigationView navigationView = findViewById(R.id.NavigationMenu_Drawer);
+        View headerView = navigationView.getHeaderView(0);
         String phoneNumber = SharedPreferencesUtil.getPhoneNumber(this);
-        TextView textViewPhoneNumber = findViewById(R.id.profile_phonenumber);
-        textViewPhoneNumber.setText(phoneNumber);
+        TextView textViewPhoneNumber = headerView.findViewById(R.id.profile_phonenumber);
+        TextView textViewUsername = headerView.findViewById(R.id.profile_username);
+
+        if (textViewPhoneNumber != null) {
+            textViewPhoneNumber.setText(phoneNumber);
+        } else {
+            ;
+        }
 
         drawerLayout = findViewById(R.id.drawer_profile_menu);
         buttonProfileMenu = findViewById(R.id.button_profile_menu);

@@ -12,6 +12,7 @@
         layout="@layout/activity_home"/>
 
     <com.google.android.material.navigation.NavigationView
+        android:id="@+id/NavigationMenu_Drawer"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         app:menu="@menu/profile_menu"

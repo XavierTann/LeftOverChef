@@ -2,6 +2,7 @@ package com.example.aninterface;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -113,7 +114,7 @@ public class Login extends AppCompatActivity {
                     if (passwordFromDB.equals(userPassword)) {
                         loginphonenumber.setError(null);
                         Intent intent = new Intent(Login.this, Home.class);
-                        intent.putExtra("phoneNumber", userPhonenumber);
+//                        intent.putExtra("phoneNumber", userPhonenumber);
                         SharedPreferencesUtil.savePhoneNumber(Login.this, userPhonenumber);
                         startActivity(intent);
                     } else {
