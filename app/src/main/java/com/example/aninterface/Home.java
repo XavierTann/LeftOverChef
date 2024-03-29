@@ -6,6 +6,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -30,23 +31,31 @@ public class Home extends AppCompatActivity {
     FavouritesFragment favouritesFragment = new FavouritesFragment();
     FeaturedFragment featuredFragment = new FeaturedFragment();
     DrawerLayout drawerLayout;
-    Button buttonProfileMenu;
+    ImageButton buttonProfileMenu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_drawer);
 
+        String phoneNumber = SharedPreferencesUtil.getPhoneNumber(this);
+        String userName = SharedPreferencesUtil.getUserName(this);
+//        String password = SharedPreferencesUtil.getPassword(this);
+
         NavigationView navigationView = findViewById(R.id.NavigationMenu_Drawer);
         View headerView = navigationView.getHeaderView(0);
-        String phoneNumber = SharedPreferencesUtil.getPhoneNumber(this);
-        TextView textViewPhoneNumber = headerView.findViewById(R.id.profile_phonenumber);
-        TextView textViewUsername = headerView.findViewById(R.id.profile_username);
+        TextView textViewPhoneNumber_Drawer = headerView.findViewById(R.id.profile_phonenumber);
+        TextView textViewUserName_Drawer = headerView.findViewById(R.id.profile_username);
 
-        if (textViewPhoneNumber != null) {
-            textViewPhoneNumber.setText(phoneNumber);
-        } else {
-            ;
+        if (textViewPhoneNumber_Drawer != null) {
+            textViewPhoneNumber_Drawer.setText(phoneNumber);
+        }
+        if (textViewUserName_Drawer != null) {
+            textViewUserName_Drawer.setText(userName);
+        }
+        TextView textViewUserName_Home = findViewById(R.id.textView_home_username);
+        if (textViewUserName_Home != null) {
+            textViewUserName_Home.setText(userName);
         }
 
         drawerLayout = findViewById(R.id.drawer_profile_menu);
