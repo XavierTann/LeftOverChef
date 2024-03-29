@@ -7,7 +7,9 @@
     android:layout_margin="4dp"
     android:elevation="3dp"
     android:orientation="vertical"
-    android:background="@drawable/bg_pastelorange_rounded">
+    android:background="@drawable/bg_pastelred_rounded">
+
+
     <com.google.android.material.imageview.ShapeableImageView
         android:layout_width="170dp"
         android:layout_height="170dp"
@@ -15,21 +17,39 @@
         android:id="@+id/recipeThumbnail"
         android:src="@drawable/leftoverchef"
         app:shapeAppearanceOverlay="@style/roundedImageView"
-        android:scaleType="centerCrop"/>
-    <TextView
+        android:scaleType="centerCrop">
+    </com.google.android.material.imageview.ShapeableImageView>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/recipeName"
-        android:textStyle="bold"
+        android:layout_height="25dp"
+        android:orientation="horizontal"
         android:layout_marginTop="5dp"
-        android:text="Recipe Name"
-        android:textColor="@color/black"
-        android:textSize="16sp"/>
+
+        >
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginEnd="5dp"
+            android:src="@drawable/selectorfavourites"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/recipeName"
+            android:textStyle="bold"
+            android:text="Recipe Name"
+            android:textColor="@color/black"
+            android:textSize="16sp"/>
+
+    </LinearLayout>
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/recipeDescription"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="5dp"
         android:text="Recipe Description"
         android:textColor="@color/grey"
         android:textSize="14sp"/>

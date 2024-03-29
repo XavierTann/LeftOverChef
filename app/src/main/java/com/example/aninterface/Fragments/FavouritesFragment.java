@@ -55,9 +55,9 @@ public class FavouritesFragment extends Fragment {
         favouritesRecipeItems.add(new favouritesRecipeItem(R.drawable.leftoverchef, "Apple Pie", "Made from apples etc..."));
         favouritesRecipeItems.add(new favouritesRecipeItem(R.drawable.leftoverchef, "Blueberry Pie", "Made From Blueberry etc..."));
         favouritesRecipeItems.add(new favouritesRecipeItem(R.drawable.leftoverchef, "Raspberry Pie", "Made From Raspberry etc..."));
-//        favouritesRecipeItems.add(new favouritesRecipeItem(R.drawable.leftoverchef, "Strawberry Pie", "Made From Strawberry etc..."));
-//        favouritesRecipeItems.add(new favouritesRecipeItem(R.drawable.leftoverchef, "Test Pie 1", "Made From Test1 etc..."));
-//        favouritesRecipeItems.add(new favouritesRecipeItem(R.drawable.leftoverchef, "Test Pie 2", "Made From Test2 etc..."));
+        favouritesRecipeItems.add(new favouritesRecipeItem(R.drawable.leftoverchef, "Strawberry Pie", "Made From Strawberry etc..."));
+        favouritesRecipeItems.add(new favouritesRecipeItem(R.drawable.leftoverchef, "Test Pie 1", "Made From Test1 etc..."));
+        favouritesRecipeItems.add(new favouritesRecipeItem(R.drawable.leftoverchef, "Test Pie 2", "Made From Test2 etc..."));
 //        favouritesRecipeItems.add(new favouritesRecipeItem(R.drawable.leftoverchef, "Test Pie 3", "Made From Test3 etc..."));
 
         return favouritesRecipeItems;
