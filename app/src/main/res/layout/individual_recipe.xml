@@ -7,21 +7,22 @@
 
     <TextView
         android:id="@+id/text_individualRecipe_recipeDescription"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="140dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="296dp"
         android:text="TEST"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/image_individualRecipe_recipeImage"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_marginStart="240dp"
-        android:layout_marginTop="68dp"
+        android:layout_width="300dp"
+        android:layout_height="247dp"
+        android:layout_marginTop="36dp"
         android:scaleType="fitXY"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/avatars" />

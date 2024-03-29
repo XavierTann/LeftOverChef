@@ -28,6 +28,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
@@ -44,6 +46,8 @@ public class RecipePage extends AppCompatActivity {
     private static String cuisine;
     private static String dietaryRequirements;
     private static String specialRequirements;
+
+    private List<Recipe> generatedRecipes = new ArrayList<>();
 
     // FUNCTION TO SEARCH IMAGE FROM INTERNET USING GOOGLE CUSTOM SEARCH API //
     private void searchImage(String query, String apiKey) {
@@ -182,7 +186,7 @@ public class RecipePage extends AppCompatActivity {
 
 
 
-
+    // FUNCTION TO SEND RECIPES TO DATABASE //
     public static void recipeDatabase(String foodName, String generatedString) {
         FirebaseDatabase database;
         DatabaseReference reference;
@@ -199,10 +203,27 @@ public class RecipePage extends AppCompatActivity {
 
         // Now you can set the value of the new recipe node
         // For example, you can set recipe details including name, instructions, ingredients, cooking time, and difficulty
-        Recipe recipe = new Recipe(foodName, generatedString, RecipePage.ingredients, RecipePage.cookingTime, RecipePage.difficulty);
+        Recipe recipe = new Recipe(foodName, generatedString, RecipePage.ingredients, RecipePage.cookingTime, RecipePage.difficulty, RecipePage.imageUrl);
         newRecipeRef.setValue(recipe);
     }
 
+    // Function to generate and display recipes
+    private void generateRecipes(String prompt) {
+        // Generate multiple recipes based on the prompt
+        for (int i = 0; i < 3; i++) {
+            // Generate recipe asynchronously
+            new NetworkTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, prompt);
+        }
+    }
+
+    // Function to display generated recipes
+    private void displayRecipes() {
+        // Iterate through the list of generated recipes and display them in your user interface
+        for (Recipe recipe : generatedRecipes) {
+            // Display each recipe in your UI (e.g., in a RecyclerView, ListView, etc.)
+            // You can create a new activity or fragment to display detailed recipe information
+        }
+    }
 
 
     @Override
