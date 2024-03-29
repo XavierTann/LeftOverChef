@@ -14,10 +14,10 @@ import com.google.android.material.imageview.ShapeableImageView;
 
 import java.util.List;
 
-public class recipeAdapter extends RecyclerView.Adapter<recipeAdapter.RecipeViewHolder> {
+public class recipeAdapterFeatured extends RecyclerView.Adapter<recipeAdapterFeatured.RecipeViewHolder> {
 
     private List<featuredRecipeItem> featuredRecipeItemList;
-    public recipeAdapter(List<featuredRecipeItem> featuredRecipeItemList) {
+    public recipeAdapterFeatured(List<featuredRecipeItem> featuredRecipeItemList) {
         this.featuredRecipeItemList = featuredRecipeItemList;
     }
 

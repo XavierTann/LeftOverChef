@@ -23,7 +23,7 @@ public class FeaturedFragment extends Fragment {
 
     private List<featuredRecipeItem> featuredRecipeItemList;
     private RecyclerView featuredRecyclerView;
-    private recipeAdapter recipeAdapter;
+    private recipeAdapterFeatured recipeAdapterFeatured;
 
     private FlexboxLayoutManager layoutManager;
 
@@ -45,8 +45,8 @@ public class FeaturedFragment extends Fragment {
         layoutManager.setFlexDirection(FlexDirection.ROW);
         layoutManager.setAlignItems(AlignItems.STRETCH);
         featuredRecyclerView.setLayoutManager(layoutManager);
-        recipeAdapter = new recipeAdapter(featuredRecipeItemList);
-        featuredRecyclerView.setAdapter(recipeAdapter);
+        recipeAdapterFeatured = new recipeAdapterFeatured(featuredRecipeItemList);
+        featuredRecyclerView.setAdapter(recipeAdapterFeatured);
 
 //        featuredRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 //        recipeAdapter = new recipeAdapter(featuredRecipeItemList);
