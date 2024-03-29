@@ -63,6 +63,9 @@ public class FeaturedFragment extends Fragment {
         featuredRecipeItems.add(new featuredRecipeItem(R.drawable.leftoverchef, "Blueberry Pie", "Made From Blueberry etc..."));
         featuredRecipeItems.add(new featuredRecipeItem(R.drawable.leftoverchef, "Raspberry Pie", "Made From Raspberry etc..."));
         featuredRecipeItems.add(new featuredRecipeItem(R.drawable.leftoverchef, "Strawberry Pie", "Made From Strawberry etc..."));
+        featuredRecipeItems.add(new featuredRecipeItem(R.drawable.leftoverchef, "Test Pie 1", "Made From Test1 etc..."));
+        featuredRecipeItems.add(new featuredRecipeItem(R.drawable.leftoverchef, "Test Pie 2", "Made From Test2 etc..."));
+        featuredRecipeItems.add(new featuredRecipeItem(R.drawable.leftoverchef, "Test Pie 3", "Made From Test3 etc..."));
 
         return featuredRecipeItems;
     }
