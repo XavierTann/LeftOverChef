@@ -7,17 +7,44 @@
     android:id="@+id/login_page"
     >
 
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginBottom="4dp"
+        app:cardCornerRadius="50dp"
+        app:layout_constraintBottom_toTopOf="@+id/textWelcome_to_LeftoverChef"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/leftoverchef"
+            app:layout_constraintBottom_toTopOf="@id/cardView"
+            app:layout_constraintEnd_toEndOf="@id/cardView"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="@id/cardView"
+            app:layout_constraintTop_toTopOf="@id/cardView"
+            app:layout_constraintVertical_bias="1.0" />
+    </androidx.cardview.widget.CardView>
+
+
     <TextView
         android:id="@+id/textWelcome_to_LeftoverChef"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="600dp"
+        android:fontFamily="@font/dm_serif_text"
         android:text="Welcome to LeftoverChef!"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.401" />
+        app:layout_constraintVertical_bias="0.918" />
 
     <TextView
         android:id="@+id/textView12"
@@ -29,7 +56,8 @@
         android:textSize="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.691" />
 
     <TextView
         android:id="@+id/textView14"
@@ -60,7 +88,7 @@
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="161dp"
-        android:layout_marginTop="264dp"
+        android:layout_marginTop="252dp"
         android:layout_marginEnd="160dp"
         android:backgroundTint="@color/orange"
         android:text="Login"

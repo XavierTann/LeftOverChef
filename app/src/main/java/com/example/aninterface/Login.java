@@ -34,15 +34,6 @@ public class Login extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.login_page);
 
-//        // Sign up Button redirects to Create Account Page
-//        TextView button = findViewById(R.id.text_login_page_signUp);
-//        button.setOnClickListener(v -> {
-//                    Intent intent = new Intent(LoginActivity.this, CreateAccountActivity.class);
-//                    startActivity(intent);
-//                }
-//        );
-
-
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.login_page), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -54,7 +45,6 @@ public class Login extends AppCompatActivity {
         registerRedirectText = findViewById(R.id.text_login_signUp);
         loginButton = findViewById(R.id.btn_login_login);
 
-
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -62,6 +52,7 @@ public class Login extends AppCompatActivity {
                 }
                 else{
                     checkUser();
+
                 }
             }
         });
@@ -113,9 +104,17 @@ public class Login extends AppCompatActivity {
 
                     if (passwordFromDB.equals(userPassword)) {
                         loginphonenumber.setError(null);
-                        Intent intent = new Intent(Login.this, Home.class);
-//                        intent.putExtra("phoneNumber", userPhonenumber);
                         SharedPreferencesUtil.savePhoneNumber(Login.this, userPhonenumber);
+
+                        String nameFromDB = snapshot.child(userPhonenumber).child("fullname").getValue(String.class);
+                        String emailFromDB = snapshot.child(userPhonenumber).child("email").getValue(String.class);
+
+                        SharedPreferencesUtil.saveUserName(Login.this, nameFromDB);
+                        SharedPreferencesUtil.saveEmail(Login.this, emailFromDB);
+                        SharedPreferencesUtil.savePassword(Login.this, passwordFromDB);
+
+//                        intent.putExtra("phoneNumber", userPhonenumber);
+                        Intent intent = new Intent(Login.this, Home.class);
                         startActivity(intent);
                     } else {
                         loginphonenumber.setError("Invalid Phone Number/Password");
