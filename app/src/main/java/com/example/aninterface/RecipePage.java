@@ -38,7 +38,6 @@ import okhttp3.RequestBody;
 public class RecipePage extends AppCompatActivity {
     private String generatedString;
     private String foodName;
-    private static String imageUrl;
     private static String phoneNumber;
     private static String difficulty;
     private static String cookingTime;
@@ -47,28 +46,26 @@ public class RecipePage extends AppCompatActivity {
     private static String dietaryRequirements;
     private static String specialRequirements;
 
-    private List<Recipe> generatedRecipes = new ArrayList<>();
 
     // FUNCTION TO SEARCH IMAGE FROM INTERNET USING GOOGLE CUSTOM SEARCH API //
-    private void searchImage(String query, String apiKey) {
+    private void searchImage(String query, String apiKey, ImageView imageViewToUpdate, Button buttonViewToUpdate) {
         String cx = "d6406233621ac4b28"; // Replace with your Custom Search Engine ID
         String url = "https://www.googleapis.com/customsearch/v1?q=" + query + "&searchType=image&key=" + apiKey + "&cx=" + cx;
-        ImageView imageView = findViewById(R.id.image_recipePage_searchedImage);
 
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        try {
-                            JSONArray items = response.getJSONArray("items");
-                            if (items.length() > 0) {
-                                JSONObject item = items.getJSONObject(0);
-                                RecipePage.imageUrl = item.getString("link");
-                                Picasso.get().load(imageUrl).into(imageView);
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
+                response -> {
+                    try {
+                        JSONArray items = response.getJSONArray("items");
+                        if (items.length() > 0) {
+                            JSONObject item = items.getJSONObject(0);
+                            String imageUrl = item.getString("link");
+                            Picasso.get().load(imageUrl).into(imageViewToUpdate);
+                            recipeDatabase(foodName, generatedString, imageUrl);
+                            seeMoreButton(buttonViewToUpdate, generatedString,imageUrl);
+
                         }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
                     }
                 },
                 new Response.ErrorListener() {
@@ -102,6 +99,7 @@ public class RecipePage extends AppCompatActivity {
         return response.body().string();
     }
 
+
     public static String extractGeneratedText(String jsonResponse) throws IOException {
         // Use Jackson ObjectMapper to parse JSON
         ObjectMapper objectMapper = new ObjectMapper();
@@ -116,34 +114,9 @@ public class RecipePage extends AppCompatActivity {
         return generatedText;
     }
 
-    // HTTP Requests should be done asynchronously, which means it should be done on a separate thread, not the main thread.
-    private class NetworkTask extends AsyncTask<String, Void, String> {
-        @Override
-        protected String doInBackground(String... params) {
-            String prompt = params[0];
-            try {
-                return generateResponse(prompt);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        }
-        @Override
-        protected void onPostExecute(String response) {
-            try {
-                String apiKey = "AIzaSyDbrOusjueLtlTNgSHOJcachiTW606mXsg";
-                generatedString = extractGeneratedText(response);
-                foodName = getFirstWords(generatedString);
-                System.out.println(foodName);
-                TextView textView = findViewById(R.id.text_recipePage_generatedRecipe1);
-                textView.setText(generatedString);
-                searchImage(foodName, apiKey); // Use foodName for the query
-                recipeDatabase(foodName, generatedString);
-                seeMoreButton();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        }
-    }
+
+
+
 
     public static String getFirstWords(String input) {
         if (input == null) {
@@ -168,10 +141,7 @@ public class RecipePage extends AppCompatActivity {
     }
 
 
-
-    public void seeMoreButton() {
-        TextView textView = findViewById(R.id.text_recipePage_generatedRecipe1);
-        Button seeMoreButton = findViewById(R.id.btn_recipePage_seeMore1);
+    public void seeMoreButton(Button seeMoreButton, String generatedString, String imageUrl) {
 
         seeMoreButton.setOnClickListener(v -> {
             // Start a new activity to show full details of the recipe
@@ -187,7 +157,7 @@ public class RecipePage extends AppCompatActivity {
 
 
     // FUNCTION TO SEND RECIPES TO DATABASE //
-    public static void recipeDatabase(String foodName, String generatedString) {
+    public static void recipeDatabase(String foodName, String generatedString, String imageUrl) {
         FirebaseDatabase database;
         DatabaseReference reference;
         String phoneNumber = RecipePage.phoneNumber;
@@ -199,33 +169,54 @@ public class RecipePage extends AppCompatActivity {
         DatabaseReference recipeRef = reference.child("recipe");
 
         // Create a reference to the new recipe node using the generated key
-        DatabaseReference newRecipeRef = recipeRef.child(foodName);
+        String sanitizedFoodName = foodName.replaceAll("[^a-zA-Z0-9]", "_");
+        DatabaseReference newRecipeRef = recipeRef.child(sanitizedFoodName);
 
         // Now you can set the value of the new recipe node
         // For example, you can set recipe details including name, instructions, ingredients, cooking time, and difficulty
-        Recipe recipe = new Recipe(foodName, generatedString, RecipePage.ingredients, RecipePage.cookingTime, RecipePage.difficulty, RecipePage.imageUrl);
+        Recipe recipe = new Recipe(foodName, generatedString, RecipePage.ingredients, RecipePage.cookingTime, RecipePage.difficulty, imageUrl);
         newRecipeRef.setValue(recipe);
     }
 
-    // Function to generate and display recipes
-    private void generateRecipes(String prompt) {
-        // Generate multiple recipes based on the prompt
-        for (int i = 0; i < 3; i++) {
-            // Generate recipe asynchronously
-            new NetworkTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, prompt);
+
+    private class NetworkTask extends AsyncTask<String, Void, String> {
+        private TextView textViewToUpdate;
+        private ImageView imageViewToUpdate;
+        private Button buttonViewToUpdate;
+
+        // Constructor to accept TextView and ImageView references
+        public NetworkTask(TextView textViewToUpdate, ImageView imageViewToUpdate, Button buttonViewToUpdate) {
+            this.textViewToUpdate = textViewToUpdate;
+            this.imageViewToUpdate = imageViewToUpdate;
+            this.buttonViewToUpdate = buttonViewToUpdate;
+        }
+
+
+        @Override
+        protected String doInBackground(String... params) {
+            String prompt = params[0];
+            try {
+                return generateResponse(prompt);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        @Override
+        protected void onPostExecute(String response) {
+            try {
+                String apiKey = "AIzaSyDbrOusjueLtlTNgSHOJcachiTW606mXsg";
+                generatedString = extractGeneratedText(response);
+                foodName = getFirstWords(generatedString);
+                System.out.println(foodName);
+                textViewToUpdate.setText(generatedString);
+                searchImage(foodName, apiKey, imageViewToUpdate, buttonViewToUpdate); // Use foodName for the query
+//                recipeDatabase(foodName, generatedString, imageUrl);
+//                seeMoreButton(buttonViewToUpdate, generatedString,imageUrl);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
-
-    // Function to display generated recipes
-    private void displayRecipes() {
-        // Iterate through the list of generated recipes and display them in your user interface
-        for (Recipe recipe : generatedRecipes) {
-            // Display each recipe in your UI (e.g., in a RecyclerView, ListView, etc.)
-            // You can create a new activity or fragment to display detailed recipe information
-        }
-    }
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -254,10 +245,32 @@ public class RecipePage extends AppCompatActivity {
                 "You may assume I have basic cooking ingredients like salt." +
                 "Limit to 50 words. " +
                 "Include the name of the dish in the first few words." +
-                "The first line should only contain the name of the dish. Everything after should come in the next few lines. Do not have any special characters in the first line" +
+                "The first line should strictly only contain the name of the dish. DO NOT include any labels in the first line like 'Name:' " +
+                "Everything after should come in the next few lines. Do not have any special characters in the first line" +
                 "Ingredients, difficulty, and cooking time should be included below the recipe name." +
                 "Give step by step clear instructions. Try to give add ingredients that are not specified into the recipe.";
-        new NetworkTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, prompt);
+
+        // Find the TextViews and ImageView to update
+        TextView textView1 = findViewById(R.id.text_recipePage_generatedRecipe1);
+        ImageView imageView1 = findViewById(R.id.image_recipePage_searchedImage1);
+        Button seeMore1 = findViewById(R.id.btn_recipePage_seeMore1);
+        TextView textView2 = findViewById(R.id.text_recipePage_generatedRecipe2);
+        ImageView imageView2 = findViewById(R.id.image_recipePage_searchedImage2);
+        Button seeMore2 = findViewById(R.id.btn_recipePage_seeMore2);
+        TextView textView3 = findViewById(R.id.text_recipePage_generatedRecipe3);
+        ImageView imageView3 = findViewById(R.id.image_recipePage_searchedImage3);
+        Button seeMore3 = findViewById(R.id.btn_recipePage_seeMore3);
+
+        // Create and execute NetworkTask instances with references to different TextViews and ImageViews
+        NetworkTask task1 = new NetworkTask(textView1, imageView1, seeMore1);
+        task1.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, prompt);
+
+        NetworkTask task2 = new NetworkTask(textView2, imageView2, seeMore2);
+        task2.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, prompt);
+
+        NetworkTask task3 = new NetworkTask(textView3, imageView3, seeMore3);
+        task3.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, prompt);
+    }
 
 
 
@@ -265,5 +278,5 @@ public class RecipePage extends AppCompatActivity {
     }
 
 
-}
+
 
