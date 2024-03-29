@@ -8,18 +8,20 @@ public class Recipe {
     private String ingredients;
     private String cookingTime; // Represented as a string
     private String cookingDifficulty;
+    private String imageUrl; // URL of the recipe image
 
     // Default constructor (required for Firebase)
     public Recipe() {
     }
 
     // Constructor with parameters
-    public Recipe(String recipeName, String cookingInstructions, String ingredients, String cookingTime, String cookingDifficulty) {
+    public Recipe(String recipeName, String cookingInstructions, String ingredients, String cookingTime, String cookingDifficulty, String imageUrl) {
         this.recipeName = recipeName;
         this.cookingInstructions = cookingInstructions;
         this.ingredients = ingredients;
         this.cookingTime = cookingTime;
         this.cookingDifficulty = cookingDifficulty;
+        this.imageUrl = imageUrl;
     }
 
     // Getters and setters
@@ -62,10 +64,12 @@ public class Recipe {
     public void setCookingDifficulty(String cookingDifficulty) {
         this.cookingDifficulty = cookingDifficulty;
     }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
 }
-
-
-
-
-
-

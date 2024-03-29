@@ -9,6 +9,8 @@ import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.aninterface.HelperClass.SharedPreferencesUtil;
+
 public class IngredientPage extends AppCompatActivity {
 
     @Override
@@ -35,7 +37,7 @@ public class IngredientPage extends AppCompatActivity {
                     String specialRequirements = editSpecialRequirements.getText().toString();
 
                     Intent intent = getIntent();
-                    String phoneNumber = intent.getStringExtra("phoneNumber");
+                    String phoneNumber = SharedPreferencesUtil.getPhoneNumber(this);
                     intent = new Intent(IngredientPage.this, RecipePage.class);
                     intent.putExtra("phoneNumber", phoneNumber);
                     intent.putExtra("ingredients", ingredients);
