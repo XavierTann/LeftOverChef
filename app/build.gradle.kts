@@ -46,6 +46,7 @@ dependencies {
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
 
+
     // For GenAI
     implementation ("com.squareup.okhttp3:okhttp:4.10.0")
     implementation ("com.fasterxml.jackson.core:jackson-databind:2.16.1")
@@ -53,5 +54,7 @@ dependencies {
     //Google API
     implementation ("com.android.volley:volley:1.2.0") //making html requests
     implementation ("com.squareup.picasso:picasso:2.71828") //extracting images
+
+    implementation ("com.google.android.flexbox:flexbox:3.0.0")
 
 }
