@@ -1,6 +1,7 @@
 package com.example.aninterface;
 
 import android.content.Intent;
+import android.media.Image;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -48,7 +49,7 @@ public class RecipePage extends AppCompatActivity {
 
 
     // FUNCTION TO SEARCH IMAGE FROM INTERNET USING GOOGLE CUSTOM SEARCH API //
-    private void searchImage(String query, String apiKey, ImageView imageViewToUpdate, Button buttonViewToUpdate) {
+    private void searchImage(String query, String apiKey, ImageView imageViewToUpdate, Button buttonViewToUpdate, ImageView favouriteButton) {
         String cx = "d6406233621ac4b28"; // Replace with your Custom Search Engine ID
         String url = "https://www.googleapis.com/customsearch/v1?q=" + query + "&searchType=image&key=" + apiKey + "&cx=" + cx;
 
@@ -62,6 +63,7 @@ public class RecipePage extends AppCompatActivity {
                             Picasso.get().load(imageUrl).into(imageViewToUpdate);
                             recipeDatabase(foodName, generatedString, imageUrl);
                             seeMoreButton(buttonViewToUpdate, generatedString,imageUrl);
+                            addToFavorites(favouriteButton, foodName, generatedString, imageUrl);
 
                         }
                     } catch (JSONException e) {
@@ -178,27 +180,41 @@ public class RecipePage extends AppCompatActivity {
         newRecipeRef.setValue(recipe);
     }
 
-    private void addToFavorites(Recipe recipe) {
-        // Generate a unique key for the recipe in favorites node
-//        String recipeKey = favoritesRef.push().getKey();
+    private void addToFavorites(ImageView favouriteButton, final String foodName, final String generatedString, String imageUrl) {
+        favouriteButton.setOnClickListener(v -> {
+            FirebaseDatabase database;
+            DatabaseReference reference;
+            String phoneNumber = RecipePage.phoneNumber;
 
-        // Store the recipe under its generated key in the favorites node
-//        favoritesRef.child(recipeKey).setValue(recipe);
+            database = FirebaseDatabase.getInstance();
+            reference = database.getReference("users").child(phoneNumber);
 
-        // Show a message indicating that the recipe is added to favorites
-        Toast.makeText(this, "Recipe added to favorites", Toast.LENGTH_SHORT).show();
+            // Create a reference to the "favourites" node under the phone number node
+            DatabaseReference recipeRef = reference.child("favourites");
+
+            // Create a reference to the new recipe node using the generated key
+            String sanitizedFoodName = foodName.replaceAll("[^a-zA-Z0-9]", "_");
+            DatabaseReference newRecipeRef = recipeRef.child(sanitizedFoodName);
+
+            // Now you can set the value of the new recipe node
+            // For example, you can set recipe details including name, instructions, ingredients, cooking time, and difficulty
+            Recipe recipe = new Recipe(foodName, generatedString, RecipePage.ingredients, RecipePage.cookingTime, RecipePage.difficulty, imageUrl);
+            newRecipeRef.setValue(recipe);
+        });
     }
 
     private class NetworkTask extends AsyncTask<String, Void, String> {
         private TextView textViewToUpdate;
         private ImageView imageViewToUpdate;
         private Button buttonViewToUpdate;
+        private ImageView favouriteButton;
 
         // Constructor to accept TextView and ImageView references
-        public NetworkTask(TextView textViewToUpdate, ImageView imageViewToUpdate, Button buttonViewToUpdate) {
+        public NetworkTask(TextView textViewToUpdate, ImageView imageViewToUpdate, Button buttonViewToUpdate, ImageView favouriteButton) {
             this.textViewToUpdate = textViewToUpdate;
             this.imageViewToUpdate = imageViewToUpdate;
             this.buttonViewToUpdate = buttonViewToUpdate;
+            this.favouriteButton = favouriteButton;
         }
 
 
@@ -219,7 +235,7 @@ public class RecipePage extends AppCompatActivity {
                 foodName = getFirstWords(generatedString);
                 System.out.println(foodName);
                 textViewToUpdate.setText(generatedString);
-                searchImage(foodName, apiKey, imageViewToUpdate, buttonViewToUpdate); // Use foodName for the query
+                searchImage(foodName, apiKey, imageViewToUpdate, buttonViewToUpdate, favouriteButton); // Use foodName for the query
 //                recipeDatabase(foodName, generatedString, imageUrl);
 //                seeMoreButton(buttonViewToUpdate, generatedString,imageUrl);
             } catch (IOException e) {
@@ -264,21 +280,24 @@ public class RecipePage extends AppCompatActivity {
         TextView textView1 = findViewById(R.id.text_recipePage_generatedRecipe1);
         ImageView imageView1 = findViewById(R.id.image_recipePage_searchedImage1);
         Button seeMore1 = findViewById(R.id.btn_recipePage_seeMore1);
+        ImageView favourite1 = findViewById(R.id.image_recipePage_favourite1);
         TextView textView2 = findViewById(R.id.text_recipePage_generatedRecipe2);
         ImageView imageView2 = findViewById(R.id.image_recipePage_searchedImage2);
         Button seeMore2 = findViewById(R.id.btn_recipePage_seeMore2);
+        ImageView favourite2 = findViewById(R.id.image_recipePage_favourite2);
         TextView textView3 = findViewById(R.id.text_recipePage_generatedRecipe3);
         ImageView imageView3 = findViewById(R.id.image_recipePage_searchedImage3);
         Button seeMore3 = findViewById(R.id.btn_recipePage_seeMore3);
+        ImageView favourite3 = findViewById(R.id.image_recipePage_favourite3);
 
         // Create and execute NetworkTask instances with references to different TextViews and ImageViews
-        NetworkTask task1 = new NetworkTask(textView1, imageView1, seeMore1);
+        NetworkTask task1 = new NetworkTask(textView1, imageView1, seeMore1, favourite1);
         task1.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, prompt);
 
-        NetworkTask task2 = new NetworkTask(textView2, imageView2, seeMore2);
+        NetworkTask task2 = new NetworkTask(textView2, imageView2, seeMore2, favourite2);
         task2.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, prompt);
 
-        NetworkTask task3 = new NetworkTask(textView3, imageView3, seeMore3);
+        NetworkTask task3 = new NetworkTask(textView3, imageView3, seeMore3, favourite3);
         task3.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, prompt);
     }
 
