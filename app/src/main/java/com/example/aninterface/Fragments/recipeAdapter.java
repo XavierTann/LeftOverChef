@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.aninterface.R;
+import com.google.android.material.imageview.ShapeableImageView;
 
 import java.util.List;
 
@@ -32,7 +33,7 @@ public class recipeAdapter extends RecyclerView.Adapter<recipeAdapter.RecipeView
         holder.recipeThumbnail.setImageResource(featuredRecipeItem.getRecipeThumbnail());
         holder.recipeName.setText(featuredRecipeItem.getRecipeName());
         holder.recipeDescription.setText(featuredRecipeItem.getRecipeDescription());
-        holder.recipeImage.setImageResource(featuredRecipeItem.getRecipeImage());
+//        holder.recipeImage.setImageResource(featuredRecipeItem.getRecipeImage());
     }
     @Override
     public int getItemCount() {
@@ -41,17 +42,17 @@ public class recipeAdapter extends RecyclerView.Adapter<recipeAdapter.RecipeView
 
 
     public static class RecipeViewHolder extends RecyclerView.ViewHolder{
-        ImageView recipeThumbnail;
+        ShapeableImageView recipeThumbnail;
         TextView recipeName;
         TextView recipeDescription;
-        ImageView recipeImage;
+//        ImageView recipeImage;
 
         public RecipeViewHolder(@NonNull View itemView) {
             super(itemView);
             recipeThumbnail = itemView.findViewById(R.id.recipeThumbnail);
             recipeName = itemView.findViewById(R.id.recipeName);
             recipeDescription = itemView.findViewById(R.id.recipeDescription);
-            recipeImage = itemView.findViewById(R.id.recipeImage);
+//            recipeImage = itemView.findViewById(R.id.recipeImage);
 
         }
     }

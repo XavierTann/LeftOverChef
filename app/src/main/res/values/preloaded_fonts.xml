@@ -3,4 +3,7 @@
     <array name="preloaded_fonts" translatable="false">
         <item>@font/dm_serif_text</item>
     </array>
+    
+    <array name="preloaded_fpmnt"
+    
 </resources>

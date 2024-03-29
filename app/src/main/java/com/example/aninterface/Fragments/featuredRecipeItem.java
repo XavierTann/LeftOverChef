@@ -5,7 +5,7 @@ public class featuredRecipeItem {
     private int recipeThumbnail;
     private String recipeName;
     private String recipeDescription;
-    private int recipeImage;
+//    private int recipeImage;
 
     public int getRecipeThumbnail() {
         return recipeThumbnail;
@@ -19,15 +19,15 @@ public class featuredRecipeItem {
         return recipeDescription;
     }
 
-    public int getRecipeImage() {
-        return recipeImage;
-    }
+//    public int getRecipeImage() {
+//        return recipeImage;
+//    }
 
-    public featuredRecipeItem(int recipeThumbnail, String recipeName, String recipeDescription, int recipeImage) {
+    public featuredRecipeItem(int recipeThumbnail, String recipeName, String recipeDescription) {
         this.recipeThumbnail = recipeThumbnail;
         this.recipeName = recipeName;
         this.recipeDescription = recipeDescription;
-        this.recipeImage = recipeImage;
+//        this.recipeImage = recipeImage;
     }
 
 
