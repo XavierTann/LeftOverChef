@@ -178,6 +178,16 @@ public class RecipePage extends AppCompatActivity {
         newRecipeRef.setValue(recipe);
     }
 
+    private void addToFavorites(Recipe recipe) {
+        // Generate a unique key for the recipe in favorites node
+//        String recipeKey = favoritesRef.push().getKey();
+
+        // Store the recipe under its generated key in the favorites node
+//        favoritesRef.child(recipeKey).setValue(recipe);
+
+        // Show a message indicating that the recipe is added to favorites
+        Toast.makeText(this, "Recipe added to favorites", Toast.LENGTH_SHORT).show();
+    }
 
     private class NetworkTask extends AsyncTask<String, Void, String> {
         private TextView textViewToUpdate;
