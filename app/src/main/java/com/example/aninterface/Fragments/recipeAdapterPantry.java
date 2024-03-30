@@ -4,6 +4,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -50,6 +51,7 @@ public class recipeAdapterPantry extends RecyclerView.Adapter<recipeAdapterPantr
         TextView ingredientAmount;
         TextView ingredientUnit;
         CheckBox checkBox;
+        ImageButton ingredient_deleteButton;
         LinearLayout linearLayout;
         public RecipeViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -58,6 +60,7 @@ public class recipeAdapterPantry extends RecyclerView.Adapter<recipeAdapterPantr
             ingredientUnit = itemView.findViewById(R.id.ingredientUnit);
             checkBox = itemView.findViewById(R.id.myCheckBox);
             linearLayout =itemView.findViewById(R.id.linearLayoutIngredientItem);
+            ingredient_deleteButton = itemView.findViewById(R.id.ImageButton_DeleteIngredient);
 
             checkBox.setOnClickListener(new View.OnClickListener() {
                 @Override

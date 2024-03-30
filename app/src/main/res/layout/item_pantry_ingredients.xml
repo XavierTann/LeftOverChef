@@ -2,55 +2,74 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="40dp"
+    android:layout_height="50dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     android:layout_margin="3dp"
     app:cardElevation="3dp"
     android:id="@+id/linearLayoutIngredientItem"
     >
 
     <LinearLayout
-        android:layout_width="300dp"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:orientation="horizontal"
+
+        >
+
         <TextView
             android:id="@+id/ingredientName"
-            android:layout_width="wrap_content"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
             android:text="Ingredient Name"
-            android:textSize="15sp"
+            android:textSize="17sp"
             android:textStyle="bold" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/ingredientAmount"
+            android:layout_width= "50dp"
             android:layout_height="wrap_content"
-            >
-            <TextView
-                android:id="@+id/ingredientAmount"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="ingredient Amount"
-                android:layout_marginEnd="10dp"
-                android:textSize="11sp" />
-            <TextView
-                android:id="@+id/ingredientUnit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="ingredient Units"
-                android:textSize="11sp" />
+            android:layout_gravity="center_vertical"
+            android:gravity="center"
+            android:text="Amount"
+            android:layout_marginStart="8dp"
+            android:textSize="13sp" />
+        <TextView
+            android:id="@+id/ingredientUnit"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:gravity="center"
+            android:layout_marginStart="12dp"
+            android:text="Units"
+            android:textSize="13sp" />
 
-        </LinearLayout>
+        <CheckBox
+            android:id="@+id/myCheckBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
 
+        <ImageButton
+            android:id="@+id/ImageButton_DeleteIngredient"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/baseline_delete_outline_24"
+            android:background="@android:color/transparent"
+
+            />
 
     </LinearLayout>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginEnd="1dp"
+        android:background="@color/lighter_black" />
 
-    <CheckBox
-        android:id="@+id/myCheckBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end"
-        />
+
 
 </LinearLayout>

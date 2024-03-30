@@ -23,16 +23,16 @@ public class HomeFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
 
 
-        Button generateRecipeButton = rootView.findViewById(R.id.btn_homePage_generateRecipe);
-
-
-        generateRecipeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), IngredientPage.class);
-                startActivity(intent);
-            }
-        });
+//        Button generateRecipeButton = rootView.findViewById(R.id.btn_homePage_generateRecipe);
+//
+//
+//        generateRecipeButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(getActivity(), IngredientPage.class);
+//                startActivity(intent);
+//            }
+//        });
 
         return rootView;
 

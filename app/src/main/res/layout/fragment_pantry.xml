@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Fragments.PantryFragment">
     <LinearLayout
         android:layout_width="match_parent"
@@ -28,23 +29,116 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="560dp"
+        android:layout_height="85dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="90dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/bg_white_rounded"
+        android:elevation="8dp"
+        android:orientation="vertical"
+        android:padding="1dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:gravity="center"
+            android:text="Use your camera"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="11sp"
+            android:gravity="center"
+            android:text="Scan multiple ingredients at once"
+            android:textColor="@color/lighter_black"
+            />
+
+
+        <ImageButton
+            android:id="@+id/pantry_camera"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="2dp"
+            android:background="@drawable/bg_orange_circle"
+            android:src="@drawable/baseline_camera_alt_24"
+            app:tint="@color/white"
+            android:onClick="onButtonClick" />
+    </LinearLayout>
+
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:layout_width="wrap_content"
+        android:layout_height="500dp"
+        android:layout_marginTop="180dp"
         android:layout_marginStart="5dp"
         android:layout_marginEnd="5dp"
-        android:orientation="vertical"
-        android:layout_marginTop="90dp"
-        android:padding="5dp"
-        android:background="@drawable/bg_pastelorange_rounded"
+        android:src="@drawable/notebook4"
+        app:shapeAppearanceOverlay="@style/RoundedCornersMore"
+        android:scaleType="fitXY"
         >
+    </com.google.android.material.imageview.ShapeableImageView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="180dp"
+        android:layout_marginEnd="5dp"
+        android:orientation="vertical"
+        android:padding="2dp">
+
         <SearchView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp">
         </SearchView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="75dp"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:text="Item"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="85dp"
+                android:gravity="center"
+                android:padding="8dp"
+                android:text="Amount"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="55dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="0dp"
+                android:gravity="center"
+                android:padding="8dp"
+                android:text="Units"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/black" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/pantryRecyclerView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="280dp"
             android:layout_marginTop="5dp"
             android:padding="8dp" />
 
@@ -52,19 +146,23 @@
             android:id="@+id/btn_pantryPage_addIngredient"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="0dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:backgroundTint="@color/lighter_black"
             android:text="+" />
 
         <Button
             android:id="@+id/btn_pantryPage_generateRecipe"
-            android:layout_gravity="bottom"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="0dp"
-            android:backgroundTint="@color/black"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:backgroundTint="@color/orange"
             android:text="Generate Recipe" />
 
     </LinearLayout>
+
+
 
 
 

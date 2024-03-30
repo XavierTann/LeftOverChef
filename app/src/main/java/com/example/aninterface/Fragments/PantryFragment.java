@@ -53,6 +53,8 @@ public class PantryFragment extends Fragment {
         pantryIngredientItems.add(new pantryIngredientItem("Onion", "1", "Unit", false));
         pantryIngredientItems.add(new pantryIngredientItem("Cabbage", "2", "Unit", false));
         pantryIngredientItems.add(new pantryIngredientItem("Soya Sauce", "50", "ML", false));
+        pantryIngredientItems.add(new pantryIngredientItem("Milk", "200", "ML", false));
+        pantryIngredientItems.add(new pantryIngredientItem("Cucumber", "50", "Unit", false));
 //        pantryIngredientItems.add(new pantryIngredientItem(R.drawable.leftoverchef, "Test Pie 1", "Made From Test1 etc..."));
 //        pantryIngredientItems.add(new pantryIngredientItem(R.drawable.leftoverchef, "Test Pie 2", "Made From Test2 etc..."));
 //        pantryIngredientItems.add(new pantryIngredientItem(R.drawable.leftoverchef, "Test Pie 3", "Made From Test3 etc..."));
