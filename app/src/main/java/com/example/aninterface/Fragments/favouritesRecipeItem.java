@@ -3,7 +3,7 @@ package com.example.aninterface.Fragments;
 public class favouritesRecipeItem {
 
     private String recipeThumbnail;
-    private static String recipeName;
+    private String recipeName;
     private String recipeDescription;
 
 //    private int recipeImage;
