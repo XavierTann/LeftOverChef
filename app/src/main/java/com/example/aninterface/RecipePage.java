@@ -233,7 +233,6 @@ public class RecipePage extends AppCompatActivity {
                 String apiKey = "AIzaSyDbrOusjueLtlTNgSHOJcachiTW606mXsg";
                 generatedString = extractGeneratedText(response);
                 foodName = getFirstWords(generatedString);
-                System.out.println(foodName);
                 textViewToUpdate.setText(generatedString);
                 searchImage(foodName, apiKey, imageViewToUpdate, buttonViewToUpdate, favouriteButton); // Use foodName for the query
 //                recipeDatabase(foodName, generatedString, imageUrl);

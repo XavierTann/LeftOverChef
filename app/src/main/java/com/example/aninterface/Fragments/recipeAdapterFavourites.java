@@ -9,8 +9,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.aninterface.R;
 import com.google.android.material.imageview.ShapeableImageView;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -30,7 +33,13 @@ public class recipeAdapterFavourites extends RecyclerView.Adapter<recipeAdapterF
     @Override
     public void onBindViewHolder(@NonNull RecipeViewHolder holder, int position) {
         favouritesRecipeItem favouritesRecipeItem = favouritesRecipeItemList.get(position);
-        holder.recipeThumbnail.setImageResource(favouritesRecipeItem.getRecipeThumbnail());
+        //original code is the code commented out below, this glide is supp to process the images
+        // similar to picasso
+        Glide.with(holder.itemView.getContext())
+                .load(favouritesRecipeItem.getRecipeThumbnail())
+                .apply(new RequestOptions().placeholder(R.drawable.leftoverchef)) // Placeholder image while loading
+                .into(holder.recipeThumbnail);
+//        holder.recipeThumbnail.setImageResource(featuredRecipeItem.getRecipeThumbnail());
         holder.recipeName.setText(favouritesRecipeItem.getRecipeName());
         holder.recipeDescription.setText(favouritesRecipeItem.getRecipeDescription());
     }

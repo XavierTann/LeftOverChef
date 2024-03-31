@@ -6,15 +6,22 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.aninterface.HelperClass.SharedPreferencesUtil;
 import com.example.aninterface.R;
 import com.google.android.flexbox.AlignItems;
 import com.google.android.flexbox.FlexDirection;
 import com.google.android.flexbox.FlexWrap;
 import com.google.android.flexbox.FlexboxLayoutManager;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,17 +59,47 @@ public class FavouritesFragment extends Fragment {
     private List<favouritesRecipeItem> generateRecipeItems() {
         List<favouritesRecipeItem> favouritesRecipeItems = new ArrayList<>();
         //ADD YOUR ITEMS TO THE RECYCLER VIEW HERE!!!
-        favouritesRecipeItems.add(new favouritesRecipeItem(R.drawable.leftoverchef, "Apple Pie", "Made from apples etc..."));
-        favouritesRecipeItems.add(new favouritesRecipeItem(R.drawable.leftoverchef, "Blueberry Pie", "Made From Blueberry etc..."));
-        favouritesRecipeItems.add(new favouritesRecipeItem(R.drawable.leftoverchef, "Raspberry Pie", "Made From Raspberry etc..."));
-        favouritesRecipeItems.add(new favouritesRecipeItem(R.drawable.leftoverchef, "Strawberry Pie", "Made From Strawberry etc..."));
-        favouritesRecipeItems.add(new favouritesRecipeItem(R.drawable.leftoverchef, "Test Pie 1", "Made From Test1 etc..."));
-        favouritesRecipeItems.add(new favouritesRecipeItem(R.drawable.leftoverchef, "Test Pie 2", "Made From Test2 etc..."));
-//        favouritesRecipeItems.add(new favouritesRecipeItem(R.drawable.leftoverchef, "Test Pie 3", "Made From Test3 etc..."));
-
+        generateRecipeItemsFromFirebase(favouritesRecipeItems);
+        System.out.println(favouritesRecipeItems);
         return favouritesRecipeItems;
 
     }
+
+
+/// XAVIER's CODEEEEEEEEEEEEEEEEE
+    private void generateRecipeItemsFromFirebase(List<favouritesRecipeItem> favouritesRecipeItems) {
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+        String phoneNumber = SharedPreferencesUtil.getPhoneNumber(getActivity().getApplicationContext());
+        // Assuming phoneNumber is the variable containing the specific phone number
+        databaseReference.child("users").child(phoneNumber).child("favourites").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                int recipeCount = 0; // Counter to limit to three recipes
+
+                for (DataSnapshot recipeSnapshot : dataSnapshot.getChildren()) {
+                    if (recipeCount >= 5) {
+                        break; // Break out of the loop after adding three items
+                    }
+
+                    String recipeName = recipeSnapshot.child("recipeName").getValue(String.class);
+                    String cookingInstructions = recipeSnapshot.child("cookingInstructions").getValue(String.class);
+                    String imageURL = recipeSnapshot.child("imageUrl").getValue(String.class);
+
+                    // Create a new favouritesRecipeItem and add it to the list
+                    favouritesRecipeItems.add(new favouritesRecipeItem(imageURL, recipeName, cookingInstructions));
+                    recipeCount++;
+                }
+                // Notify adapter that data set has changed
+                recipeAdapterFavourites.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                // Handle any errors that may occur
+            }
+        });
+    }
+
 
 }
 
