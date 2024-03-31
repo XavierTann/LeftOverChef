@@ -16,23 +16,38 @@
             android:src="@drawable/leftoverchef"
             app:shapeAppearanceOverlay="@style/roundedImageView"
             android:scaleType="centerCrop"/>
-        <TextView
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/recipeName"
-            android:textStyle="bold"
-            android:layout_marginTop="5dp"
-            android:text="Recipe Name"
-            android:textColor="@color/black"
-            android:textSize="16sp"/>
+            android:layout_height="30dp"
+            android:orientation="horizontal"
+            android:layout_marginTop="5dp">
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginEnd="5dp"
+                    android:src="@drawable/selectorfavourites"
+                    />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/recipeName"
+                    android:textStyle="bold"
+                    android:text="Recipe Name Test Test"
+                    android:textColor="@color/black"
+                    android:textSize="13sp"/>
+
+        </LinearLayout>
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/recipeDescription"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="5dp"
             android:text="Recipe Description"
             android:textColor="@color/grey"
-            android:textSize="14sp"/>
+            android:textSize="11sp"/>
 <!--        <ImageView-->
 <!--            android:layout_width="40dp"-->
 <!--            android:layout_height="40dp"-->

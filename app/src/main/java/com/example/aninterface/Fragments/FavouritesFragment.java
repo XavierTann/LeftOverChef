@@ -10,6 +10,7 @@ import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.example.aninterface.HelperClass.SharedPreferencesUtil;
 import com.example.aninterface.R;
@@ -29,7 +30,6 @@ public class FavouritesFragment extends Fragment {
     private List<favouritesRecipeItem> favouritesRecipeItemsList;
     private RecyclerView favouritesRecyclerView;
     private recipeAdapterFavourites recipeAdapterFavourites;
-
     private FlexboxLayoutManager layoutManager;
 
     public FavouritesFragment() {
@@ -78,7 +78,7 @@ public class FavouritesFragment extends Fragment {
 
                 for (DataSnapshot recipeSnapshot : dataSnapshot.getChildren()) {
                     if (recipeCount >= 5) {
-                        break; // Break out of the loop after adding three items
+                        break; // Break out of the loop after adding (How Many?) items
                     }
 
                     String recipeName = recipeSnapshot.child("recipeName").getValue(String.class);

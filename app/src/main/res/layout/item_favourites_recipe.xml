@@ -22,16 +22,17 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="25dp"
+        android:layout_height="30dp"
         android:orientation="horizontal"
         android:layout_marginTop="5dp"
 
         >
         <ImageView
+            android:id="@+id/Favourites_FavouritesButton"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_marginEnd="5dp"
-            android:src="@drawable/selectorfavourites"
+            android:src="@drawable/baseline_favorite_border_24"
             />
 
         <TextView
@@ -39,7 +40,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/recipeName"
             android:textStyle="bold"
-            android:text="Recipe Name"
+            android:text="Recipe Name Test Test"
             android:textColor="@color/black"
             android:textSize="13sp"/>
 
