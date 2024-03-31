@@ -41,10 +41,12 @@ dependencies {
     implementation(libs.firebase.database)
     implementation(libs.navigation.fragment)
     implementation(libs.navigation.ui)
-    implementation(libs.drawerlayout) //Firebase
+    implementation(libs.drawerlayout)
+    implementation(libs.firebase.auth)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+
 
     // For GenAI
     implementation ("com.squareup.okhttp3:okhttp:4.10.0")
@@ -53,8 +55,5 @@ dependencies {
     //Google API
     implementation ("com.android.volley:volley:1.2.0") //making html requests
     implementation ("com.squareup.picasso:picasso:2.71828") //extracting images
-    implementation ("org.tensorflow:tensorflow-lite:2.14.0")
-    implementation ("org.tensorflow:tensorflow-lite-gpu:2.14.0")
-    implementation ("org.tensorflow:tensorflow-lite-support:0.4.4")
-    implementation ("org.tensorflow:tensorflow-lite-metadata:0.4.4")
+
 }

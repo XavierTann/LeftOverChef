@@ -13,7 +13,9 @@
     <ImageView
         android:layout_width="45dp"
         android:layout_height="45dp"
-        android:src="@drawable/icons8_male_user_30" />
+        android:background="@drawable/icons8_male_user_30"
+        android:backgroundTint="@color/white"
+        />
 
     <TextView
         android:id="@+id/profile_username"

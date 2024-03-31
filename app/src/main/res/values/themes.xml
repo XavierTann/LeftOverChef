@@ -3,6 +3,7 @@
     <style name="Base.Theme.Interface" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="android:navigationBarColor">@color/orange</item>
     </style>
 
     <style name="Theme.Interface" parent="Base.Theme.Interface" />

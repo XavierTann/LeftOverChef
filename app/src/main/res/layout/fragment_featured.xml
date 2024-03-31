@@ -1,13 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Fragments.FeaturedFragment">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="Featured Fragment" />
-</RelativeLayout>
+        android:orientation="vertical"
+        >
+        <TextView
+            android:id="@+id/textviewFeaturedRecipes"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginTop="55dp"
+            android:text="Featured Recipes"
+            android:textColor="@color/orange"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:fontFamily="@font/dm_serif_text"
+            android:gravity="center"
+            >
+        </TextView>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/grey"
+            />
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/featuredRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="82dp"
+        android:layout_marginBottom="55dp"
+        android:padding="8dp" />
+
+
+</FrameLayout>
