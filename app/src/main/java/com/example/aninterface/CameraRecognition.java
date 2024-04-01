@@ -99,9 +99,10 @@ public class CameraRecognition extends AppCompatActivity {
         });
 
 
+
     }
 
-    public void selectImage(View view) {
+    public void selectImage(View view){
         Intent intent = new Intent();
         intent.setAction(Intent.ACTION_PICK);
         intent.setType("image/*");
@@ -131,7 +132,7 @@ public class CameraRecognition extends AppCompatActivity {
     }
 
 
-    public void predict(View view) {
+    public void predict(View view){
         HashMap<String, Integer> map = new HashMap<>();
         ArrayList<Recognition> recognitions = yolov5TFLiteDetector.detect(bitmap);
         Bitmap mutableBitmap = bitmap.copy(Bitmap.Config.ARGB_8888, true);
@@ -142,8 +143,8 @@ public class CameraRecognition extends AppCompatActivity {
             textview.setText("No objects detected.");
         } else {
             // Proceed with drawing bounding boxes and labels for detected objects
-            for (Recognition recognition : recognitions) {
-                if (recognition.getConfidence() > 0.02) {
+            for(Recognition recognition: recognitions){
+                if(recognition.getConfidence() > 0.02){
                     RectF location = recognition.getLocation();
                     canvas.drawRect(location, boxPaint);
                     canvas.drawText(recognition.getLabelName() + ":" + recognition.getConfidence(), location.left, location.top, textPain);
@@ -202,6 +203,7 @@ public class CameraRecognition extends AppCompatActivity {
     }
 
 
+
     private Uri photoURI;
 
     private Uri createImageFile() throws IOException {
@@ -219,7 +221,6 @@ public class CameraRecognition extends AppCompatActivity {
         photoURI = FileProvider.getUriForFile(this, getApplicationContext().getPackageName() + ".provider", image);
         return photoURI;
     }
-
     public static Bitmap decodeSampledBitmapFromUri(ContentResolver resolver, Uri uri, int reqWidth, int reqHeight) throws IOException {
         // First decode with inJustDecodeBounds=true to check dimensions
         final BitmapFactory.Options options = new BitmapFactory.Options();
@@ -259,7 +260,6 @@ public class CameraRecognition extends AppCompatActivity {
 
         return inSampleSize;
     }
-
     public static Bitmap rotateImageIfRequired(Context context, Bitmap img, Uri selectedImage) throws IOException {
 
         InputStream input = context.getContentResolver().openInputStream(selectedImage);
@@ -290,4 +290,7 @@ public class CameraRecognition extends AppCompatActivity {
         img.recycle();
         return rotatedImg;
     }
+
+
+
 }
