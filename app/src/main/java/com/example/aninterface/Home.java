@@ -52,7 +52,6 @@ public class Home extends AppCompatActivity {
 //        String password = SharedPreferencesUtil.getPassword(this);
 
         navigationView = findViewById(R.id.NavigationMenu_Drawer);
-
         View headerView = navigationView.getHeaderView(0);
         TextView textViewPhoneNumber_Drawer = headerView.findViewById(R.id.profile_phonenumber);
         TextView textViewUserName_Drawer = headerView.findViewById(R.id.profile_username);
@@ -63,17 +62,14 @@ public class Home extends AppCompatActivity {
         TextView textViewUserName_Home = findViewById(R.id.textView_home_username);
         if (textViewUserName_Home != null) {
             textViewUserName_Home.setText(userName);}
-
         drawerLayout = findViewById(R.id.drawer_profile_menu);
         buttonProfileMenu = findViewById(R.id.button_profile_menu);
-
         buttonProfileMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 drawerLayout.open();
             }
         });
-
         navigationView.setNavigationItemSelectedListener(item -> {
             if(item.getItemId()== R.id.profile_settings){
                 // Open the User Settings Activity
@@ -86,13 +82,14 @@ public class Home extends AppCompatActivity {
             return false;
         });
 
-//        home_cameraButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(Home.this, CameraRecognition.class);
-//                startActivity(intent);
-//            }
-//        });
+        home_cameraButton = findViewById(R.id.fab);
+        home_cameraButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Home.this, CameraRecognition.class);
+                startActivity(intent);
+            }
+        });
 
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, pantryFragment).commit();
