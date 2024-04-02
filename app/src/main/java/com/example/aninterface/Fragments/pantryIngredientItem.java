@@ -14,6 +14,7 @@ public class pantryIngredientItem {
         this.isSelected = isSelected;
     }
 
+
     public String getIngredientName() {
         return ingredientName;
     }

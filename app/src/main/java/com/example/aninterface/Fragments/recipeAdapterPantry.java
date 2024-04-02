@@ -1,5 +1,6 @@
 package com.example.aninterface.Fragments;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,12 +19,9 @@ import com.google.android.material.imageview.ShapeableImageView;
 import java.util.List;
 
 public class recipeAdapterPantry extends RecyclerView.Adapter<recipeAdapterPantry.RecipeViewHolder> {
-    private static List<pantryIngredientItem> pantryIngredientItemList;
-
+    private List<pantryIngredientItem> pantryIngredientItemList;
     public recipeAdapterPantry(List<pantryIngredientItem> pantryIngredientItemList) {
-        this.pantryIngredientItemList = pantryIngredientItemList;
-    }
-
+        this.pantryIngredientItemList = pantryIngredientItemList;}
 
     @NonNull
     @Override
@@ -45,7 +43,10 @@ public class recipeAdapterPantry extends RecyclerView.Adapter<recipeAdapterPantr
     public int getItemCount() {
         return pantryIngredientItemList.size();
     }
-
+    public void addItem(pantryIngredientItem item) {
+        pantryIngredientItemList.add(item); // Add the item to your data list
+        notifyItemInserted(pantryIngredientItemList.size() - 1); // Notify the adapter of the item insertion
+    }
     public class RecipeViewHolder extends RecyclerView.ViewHolder {
         TextView ingredientName;
         TextView ingredientAmount;
@@ -53,6 +54,8 @@ public class recipeAdapterPantry extends RecyclerView.Adapter<recipeAdapterPantr
         CheckBox checkBox;
         ImageButton ingredient_deleteButton;
         LinearLayout linearLayout;
+        private Context context;
+
         public RecipeViewHolder(@NonNull View itemView) {
             super(itemView);
             ingredientName = itemView.findViewById(R.id.ingredientName);
@@ -75,8 +78,6 @@ public class recipeAdapterPantry extends RecyclerView.Adapter<recipeAdapterPantr
                     notifyDataSetChanged();
                 }
             });
-
-
         }
 
     }

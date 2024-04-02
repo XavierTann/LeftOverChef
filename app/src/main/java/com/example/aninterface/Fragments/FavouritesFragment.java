@@ -63,7 +63,6 @@ public class FavouritesFragment extends Fragment {
         //ADD YOUR ITEMS TO THE RECYCLER VIEW HERE!!!
         generateRecipeItemsFromFirebase(favouritesRecipeItems);
         return favouritesRecipeItems;
-
     }
 
 
