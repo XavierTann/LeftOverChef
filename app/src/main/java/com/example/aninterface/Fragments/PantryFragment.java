@@ -1,5 +1,6 @@
 package com.example.aninterface.Fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -9,7 +10,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 
+import com.example.aninterface.CameraRecognition;
 import com.example.aninterface.R;
 import com.google.android.flexbox.AlignItems;
 import com.google.android.flexbox.FlexDirection;
@@ -35,6 +38,16 @@ public class PantryFragment extends Fragment {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_pantry, container, false);
         pantryIngredientItemList = generateRecipeItems();
+
+        // Find the button by its ID
+        ImageButton pantryCameraButton = rootView.findViewById(R.id.pantry_camera);
+        // Set OnClickListener to the button
+        pantryCameraButton.setOnClickListener(v -> {
+            // Start the CameraRecognition activity
+            Intent intent = new Intent(getActivity(), CameraRecognition.class);
+            startActivity(intent);
+        });
+
 
         pantryRecyclerView = rootView.findViewById(R.id.pantryRecyclerView);
         layoutManager = new LinearLayoutManager(getActivity());
