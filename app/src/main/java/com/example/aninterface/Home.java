@@ -22,6 +22,7 @@ import com.example.aninterface.Fragments.HomeFragment;
 import com.example.aninterface.Fragments.PantryFragment;
 import com.example.aninterface.HelperClass.SharedPreferencesUtil;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationBarView;
 import com.example.aninterface.R;
 
@@ -39,6 +40,7 @@ public class Home extends AppCompatActivity {
     DrawerLayout drawerLayout;
     ImageButton buttonProfileMenu;
     NavigationView navigationView;
+    FloatingActionButton home_cameraButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +66,7 @@ public class Home extends AppCompatActivity {
 
         drawerLayout = findViewById(R.id.drawer_profile_menu);
         buttonProfileMenu = findViewById(R.id.button_profile_menu);
+
         buttonProfileMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -83,11 +86,13 @@ public class Home extends AppCompatActivity {
             return false;
         });
 
-
-
-
-
-
+        home_cameraButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Home.this, CameraRecognition.class);
+                startActivity(intent);
+            }
+        });
 
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, pantryFragment).commit();
