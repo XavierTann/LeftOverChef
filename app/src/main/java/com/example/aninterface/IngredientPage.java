@@ -6,10 +6,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.aninterface.HelperClass.SharedPreferencesUtil;
+
+import org.w3c.dom.Text;
 
 public class IngredientPage extends AppCompatActivity {
 
@@ -17,6 +20,10 @@ public class IngredientPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ingredient_page);
+
+        String ingredientString = getIntent().getStringExtra("ingredientString");
+        TextView txt_predictedIngredients = findViewById(R.id.txt_ingredientPage_predictedIngredients);
+        txt_predictedIngredients.setText("The camera has scanned: " + ingredientString + "Enter the other ingredients it is missing, as well as select your preferences below.");
 
         EditText searchIngredient = findViewById(R.id.edit_ingredientPage_searchIngredient);
         Button generateRecipes = findViewById(R.id.btn_ingredientPage_generateRecipes);
@@ -36,9 +43,8 @@ public class IngredientPage extends AppCompatActivity {
                     String dietaryRequirements = spinnerDietaryRequirements.getSelectedItem().toString();
                     String specialRequirements = editSpecialRequirements.getText().toString();
 
-                    Intent intent = getIntent();
-                    String phoneNumber = SharedPreferencesUtil.getPhoneNumber(this);
-                    intent = new Intent(IngredientPage.this, RecipePage.class);
+            String phoneNumber = SharedPreferencesUtil.getPhoneNumber(this);
+                    Intent intent = new Intent(IngredientPage.this, RecipePage.class);
                     intent.putExtra("phoneNumber", phoneNumber);
                     intent.putExtra("ingredients", ingredients);
                     intent.putExtra("difficulty", selectedDifficulty);
@@ -46,7 +52,10 @@ public class IngredientPage extends AppCompatActivity {
                     intent.putExtra("cuisine", cuisine);
                     intent.putExtra("dietaryRequirements", dietaryRequirements);
                     intent.putExtra("specialRequirements", specialRequirements);
+                    intent.putExtra("predictedIngredients", ingredientString);
                     startActivity(intent);
+
+
                 }
         );
 

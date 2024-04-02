@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.media.Image;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Debug;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -46,6 +47,7 @@ public class RecipePage extends AppCompatActivity {
     private static String cuisine;
     private static String dietaryRequirements;
     private static String specialRequirements;
+    private static String predictedIngredients;
 
 
     // FUNCTION TO SEARCH IMAGE FROM INTERNET USING GOOGLE CUSTOM SEARCH API //
@@ -62,6 +64,7 @@ public class RecipePage extends AppCompatActivity {
                             String imageUrl = item.getString("link");
                             Picasso.get().load(imageUrl).into(imageViewToUpdate);
                             recipeDatabase(foodName, generatedString, imageUrl);
+                            allRecipesDatabase(foodName, generatedString, imageUrl);
                             seeMoreButton(buttonViewToUpdate, generatedString,imageUrl);
                             addToFavorites(favouriteButton, foodName, generatedString, imageUrl);
 
@@ -178,7 +181,27 @@ public class RecipePage extends AppCompatActivity {
         // For example, you can set recipe details including name, instructions, ingredients, cooking time, and difficulty
         Recipe recipe = new Recipe(foodName, generatedString, RecipePage.ingredients, RecipePage.cookingTime, RecipePage.difficulty, imageUrl);
         newRecipeRef.setValue(recipe);
+
+
     }
+
+    public static void allRecipesDatabase(String foodName, String generatedString, String imageUrl) {
+        FirebaseDatabase database;
+
+        database = FirebaseDatabase.getInstance();
+        DatabaseReference recipeRef = database.getReference("all_recipes");
+
+        // Create a reference to the new recipe node using the generated key
+        String sanitizedFoodName = foodName.replaceAll("[^a-zA-Z0-9]", "_");
+        DatabaseReference newRecipeRef = recipeRef.child(sanitizedFoodName);
+
+        // Now you can set the value of the new recipe node
+        // For example, you can set recipe details including name, instructions, ingredients, cooking time, and difficulty
+        Recipe recipe = new Recipe(foodName, generatedString, RecipePage.ingredients, RecipePage.cookingTime, RecipePage.difficulty, imageUrl);
+        newRecipeRef.setValue(recipe);
+    }
+
+
 
     private void addToFavorites(ImageView favouriteButton, final String foodName, final String generatedString, String imageUrl) {
         favouriteButton.setOnClickListener(v -> {
@@ -235,8 +258,7 @@ public class RecipePage extends AppCompatActivity {
                 foodName = getFirstWords(generatedString);
                 textViewToUpdate.setText(generatedString);
                 searchImage(foodName, apiKey, imageViewToUpdate, buttonViewToUpdate, favouriteButton); // Use foodName for the query
-//                recipeDatabase(foodName, generatedString, imageUrl);
-//                seeMoreButton(buttonViewToUpdate, generatedString,imageUrl);
+
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -255,12 +277,13 @@ public class RecipePage extends AppCompatActivity {
         RecipePage.cuisine = intent.getStringExtra("cuisine");
         RecipePage.dietaryRequirements = intent.getStringExtra("dietaryRequirements");
         RecipePage.specialRequirements = intent.getStringExtra("specialRequirements");
-
+        String uncleanedPredictedIngredients = intent.getStringExtra("predictedIngredients");
+        RecipePage.predictedIngredients = uncleanedPredictedIngredients.replaceAll("[^a-zA-Z0-9]", " ");
         RecipePage.phoneNumber = intent.getStringExtra("phoneNumber");
 
         // Generate text for recipe, and generate images for recipe
-        String prompt =  "I have leftover ingredients. " +
-                "These are the ingredients:" + ingredients +
+        String defaultprompt =  "I have leftover ingredients. " +
+                "These are the ingredients:" + ingredients + predictedIngredients +
                 "Give me a recipe for these ingredients" +
                 "I want the recipe's difficulty level to be" + difficulty +
                 "I want the recipe's cooking time to be " + cookingTime +
@@ -273,7 +296,13 @@ public class RecipePage extends AppCompatActivity {
                 "The first line should strictly only contain the name of the dish. DO NOT include any labels in the first line like 'Name:' " +
                 "Everything after should come in the next few lines. Do not have any special characters in the first line" +
                 "Ingredients, difficulty, and cooking time should be included below the recipe name." +
-                "Give step by step clear instructions. Try to give add ingredients that are not specified into the recipe.";
+                "Give step by step clear instructions. Try to give add ingredients that are not specified into the recipe." +
+                "Stick strictly to the ingredients provided above.";
+
+        String prompt1 = defaultprompt + "Stick strictly to the ingredients provided above.";
+        String prompt2 = defaultprompt + "You may use other ingredients other than the ingredients provided above, but let the main ingredients be the ones above";
+        String prompt3 = defaultprompt + "Make this dish more creative!";
+
 
         // Find the TextViews and ImageView to update
         TextView textView1 = findViewById(R.id.text_recipePage_generatedRecipe1);
@@ -291,13 +320,13 @@ public class RecipePage extends AppCompatActivity {
 
         // Create and execute NetworkTask instances with references to different TextViews and ImageViews
         NetworkTask task1 = new NetworkTask(textView1, imageView1, seeMore1, favourite1);
-        task1.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, prompt);
+        task1.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, prompt1);
 
         NetworkTask task2 = new NetworkTask(textView2, imageView2, seeMore2, favourite2);
-        task2.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, prompt);
+        task2.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, prompt2);
 
         NetworkTask task3 = new NetworkTask(textView3, imageView3, seeMore3, favourite3);
-        task3.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, prompt);
+        task3.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, prompt3);
     }
 
 

@@ -48,6 +48,8 @@ public class CameraRecognition extends AppCompatActivity {
     Button camera;
     Button gallery;
 
+    StringBuilder ingredientString;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,6 +59,7 @@ public class CameraRecognition extends AppCompatActivity {
         textview = findViewById(R.id.textViewforcamera);
         camera = findViewById(R.id.Cameraforcamera);
         gallery = findViewById(R.id.Storageforcamera);
+        Button btnNext = findViewById(R.id.btn_camera_next);
         yolov5TFLiteDetector = new Yolov5TFLiteDetector();
         yolov5TFLiteDetector.setModelFile("yolov5s-fp16.tflite");
         yolov5TFLiteDetector.initialModel(this);
@@ -68,6 +71,17 @@ public class CameraRecognition extends AppCompatActivity {
         textPain.setTextSize(50);
         textPain.setColor(Color.GREEN);
         textPain.setStyle(Paint.Style.FILL);
+
+        btnNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Start the IngredientPage activity
+                Intent intent = new Intent(CameraRecognition.this, IngredientPage.class);
+                intent.putExtra("ingredientString", (CharSequence) ingredientString); // Pass the bitmap image
+                startActivity(intent);
+            }
+        });
+
         camera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -168,6 +182,7 @@ public class CameraRecognition extends AppCompatActivity {
             }
 
             // Set the processed image and the summary of detected objects
+            this.ingredientString = s;
             imageView.setImageBitmap(mutableBitmap);
             textview.setText(s.toString());
         }
