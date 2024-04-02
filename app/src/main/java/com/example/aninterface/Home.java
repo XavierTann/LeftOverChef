@@ -86,13 +86,13 @@ public class Home extends AppCompatActivity {
             return false;
         });
 
-        home_cameraButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Home.this, CameraRecognition.class);
-                startActivity(intent);
-            }
-        });
+//        home_cameraButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(Home.this, CameraRecognition.class);
+//                startActivity(intent);
+//            }
+//        });
 
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, pantryFragment).commit();
