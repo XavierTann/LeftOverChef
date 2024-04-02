@@ -2,13 +2,21 @@ package com.example.aninterface.Fragments;
 
 public class featuredRecipeItem {
 
-    private int recipeThumbnail;
+    private String recipeThumbnail;
     private String recipeName;
     private String recipeDescription;
-//    private int recipeImage;
 
-    public int getRecipeThumbnail() {
-        return recipeThumbnail;
+    private boolean liked;
+
+    public boolean isLiked() {
+        return liked;
+    }
+
+    public void setLiked(boolean liked) {
+        this.liked = liked;
+    }
+
+    public String getRecipeThumbnail() {return recipeThumbnail;
     }
 
     public String getRecipeName() {
@@ -19,18 +27,9 @@ public class featuredRecipeItem {
         return recipeDescription;
     }
 
-//    public int getRecipeImage() {
-//        return recipeImage;
-//    }
-
-    public featuredRecipeItem(int recipeThumbnail, String recipeName, String recipeDescription) {
+    public featuredRecipeItem(String recipeThumbnail, String recipeName, String recipeDescription) {
         this.recipeThumbnail = recipeThumbnail;
         this.recipeName = recipeName;
         this.recipeDescription = recipeDescription;
-//        this.recipeImage = recipeImage;
     }
-
-
-
-
 }
