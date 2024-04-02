@@ -98,7 +98,7 @@ public class Drawer_UserSettings extends AppCompatActivity {
         });
 
         applyChangesButton.setOnClickListener(new View.OnClickListener() {
-            @Override
+                @Override
             public void onClick(View v) {
                 String fullname = editText_FullName.getText().toString();
                 String email = editText_Email.getText().toString();
