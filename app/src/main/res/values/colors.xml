@@ -19,6 +19,10 @@
     <color name="Fern">#5DBB63</color>
     <color name="Red">#FF0000</color>
     <color name="Cardboard">#d7c7a6</color>
+    <color name="colorPrimary">#9E9E9E</color>
+    <color name="colorPrimaryDark">#616161</color>
+    <color name="colorAccent">#03DAC5</color>
+
 
 
 

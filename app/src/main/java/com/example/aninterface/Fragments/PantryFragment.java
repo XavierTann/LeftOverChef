@@ -187,7 +187,7 @@ public class PantryFragment extends Fragment implements SuggestionsAdapter.OnIte
         pantryRecyclerView = rootView.findViewById(R.id.pantryRecyclerView);
         layoutManager = new LinearLayoutManager(getActivity());
         pantryRecyclerView.setLayoutManager(layoutManager);
-        recipeAdapterPantry = new recipeAdapterPantry(pantryIngredientItemList);
+        recipeAdapterPantry = new recipeAdapterPantry(getContext(),pantryIngredientItemList);
         pantryRecyclerView.setAdapter(recipeAdapterPantry);
         return rootView;
     }

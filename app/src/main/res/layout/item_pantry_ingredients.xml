@@ -35,18 +35,18 @@
             android:gravity="center"
             android:text="Amount"
             android:fontFamily="@font/caveatbrush"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="10dp"
             android:textStyle="bold"
             android:textSize="13sp" />
         <TextView
             android:id="@+id/ingredientUnit"
-            android:layout_width="70dp"
+            android:layout_width="81dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:gravity="center"
             android:fontFamily="@font/caveatbrush"
             android:textStyle="bold"
-            android:layout_marginStart="12dp"
+            android:layout_marginStart="10dp"
             android:text="Units"
             android:textSize="13sp" />
 
@@ -62,10 +62,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:src="@drawable/baseline_delete_outline_24"
-            android:background="@android:color/transparent"
-
+            android:background="@drawable/selector_buttoneffect"
             />
-
     </LinearLayout>
 
     <View
@@ -74,7 +72,5 @@
         android:layout_marginStart="1dp"
         android:layout_marginEnd="1dp"
         android:background="@color/lighter_black" />
-
-
 
 </LinearLayout>

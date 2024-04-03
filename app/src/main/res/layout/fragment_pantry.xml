@@ -78,7 +78,7 @@
 
     <com.google.android.material.imageview.ShapeableImageView
         android:layout_width="wrap_content"
-        android:layout_height="480dp"
+        android:layout_height="510dp"
         android:layout_marginTop="175dp"
         android:layout_marginStart="5dp"
         android:layout_marginEnd="5dp"
@@ -90,7 +90,7 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="480dp"
+        android:layout_height="510dp"
         android:layout_marginStart="5dp"
         android:layout_marginTop="175dp"
         android:layout_marginEnd="5dp"
@@ -172,7 +172,7 @@
             android:layout_marginTop="2dp"
             android:orientation="horizontal"
             android:layout_gravity="bottom"
-            android:layout_marginBottom="362dp"
+            android:layout_marginBottom="397dp"
             >
 
             <TextView
@@ -208,15 +208,15 @@
             android:layout_height="1dp"
             android:background="@color/black"
             android:layout_gravity="bottom"
-            android:layout_marginBottom="361dp"
+            android:layout_marginBottom="396dp"
             />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/pantryRecyclerView"
             android:layout_width="match_parent"
-            android:layout_height="310dp"
+            android:layout_height="345dp"
             android:layout_marginBottom="50dp"
-            android:padding="8dp"
+            android:padding="3dp"
             android:layout_gravity="bottom"/>
 
         <Button
@@ -226,6 +226,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
+            android:layout_marginBottom="10dp"
             android:backgroundTint="@color/orange"
             android:text="Generate Recipe"
             android:layout_gravity="bottom"/>
