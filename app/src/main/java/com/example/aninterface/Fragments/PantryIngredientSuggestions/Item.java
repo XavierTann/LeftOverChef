@@ -1,4 +1,4 @@
-package com.example.aninterface.Fragments;
+package com.example.aninterface.Fragments.PantryIngredientSuggestions;
 
 import java.util.ArrayList;
 import java.util.List;

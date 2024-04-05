@@ -6,47 +6,38 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
-import androidx.appcompat.app.AppCompatActivity;
+
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.aninterface.CameraRecognition;
+import com.example.aninterface.Fragments.PantryIngredientSuggestions.Item;
+import com.example.aninterface.Fragments.PantryIngredientSuggestions.SuggestionsAdapter;
+import com.example.aninterface.Fragments.PantryIngredientSuggestions.UnitAdapter;
 import com.example.aninterface.HelperClass.FirebaseFunctions;
 import com.example.aninterface.HelperClass.SharedPreferencesUtil;
 import com.example.aninterface.R;
-import com.google.android.flexbox.AlignItems;
-import com.google.android.flexbox.FlexDirection;
-import com.google.android.flexbox.FlexWrap;
-import com.google.android.flexbox.FlexboxLayoutManager;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
-import java.util.List;
 public class PantryFragment extends Fragment implements SuggestionsAdapter.OnItemClickListener {
     private Button addIngredientButton;
     private ImageButton cancelButton, confirmButton;

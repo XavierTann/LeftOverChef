@@ -1,4 +1,4 @@
-package com.example.aninterface.Fragments;
+package com.example.aninterface.Fragments.PantryIngredientSuggestions;
 
 import android.view.LayoutInflater;
 import android.view.View;

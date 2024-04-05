@@ -14,7 +14,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-//import com.example.aninterface.Drawer.Drawer_UserSettings;
+import com.example.aninterface.Drawer.Drawer_AboutUs;
+import com.example.aninterface.Drawer.Drawer_DietarySettings;
 import com.example.aninterface.Drawer.Drawer_UserSettings;
 import com.example.aninterface.Fragments.FavouritesFragment;
 import com.example.aninterface.Fragments.FeaturedFragment;
@@ -49,10 +50,13 @@ public class Home extends AppCompatActivity {
 
         String phoneNumber = SharedPreferencesUtil.getPhoneNumber(this);
         String userName = SharedPreferencesUtil.getUserName(this);
-//        String password = SharedPreferencesUtil.getPassword(this);
+
 
         navigationView = findViewById(R.id.NavigationMenu_Drawer);
         View headerView = navigationView.getHeaderView(0);
+
+
+        //Setting PhoneNumber and Name in Drawer
         TextView textViewPhoneNumber_Drawer = headerView.findViewById(R.id.profile_phonenumber);
         TextView textViewUserName_Drawer = headerView.findViewById(R.id.profile_username);
         if (textViewPhoneNumber_Drawer != null) {
@@ -64,18 +68,40 @@ public class Home extends AppCompatActivity {
             textViewUserName_Home.setText(userName);}
         drawerLayout = findViewById(R.id.drawer_profile_menu);
         buttonProfileMenu = findViewById(R.id.button_profile_menu);
+
+        //Drawer Open/Close
         buttonProfileMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 drawerLayout.open();
             }
         });
+
+        //In Drawer, Open User Settings Page through a Button
         navigationView.setNavigationItemSelectedListener(item -> {
             if(item.getItemId()== R.id.profile_settings){
                 // Open the User Settings Activity
                 Intent intent = new Intent(Home.this, Drawer_UserSettings.class);
                 startActivity(intent);
                 // Close the drawer
+                drawerLayout.closeDrawer(GravityCompat.START);
+                return true;
+            }
+            else if(item.getItemId() == R.id.profile_dietary){
+                Intent intent = new Intent(Home.this, Drawer_DietarySettings.class);
+                startActivity(intent);
+                drawerLayout.closeDrawer(GravityCompat.START);
+                return true;
+            }
+            else if(item.getItemId() == R.id.profile_aboutus){
+                Intent intent = new Intent(Home.this, Drawer_AboutUs.class);
+                startActivity(intent);
+                drawerLayout.closeDrawer(GravityCompat.START);
+                return true;
+            }
+            else if(item.getItemId() == R.id.profile_logout){
+                Intent intent = new Intent(Home.this, Login.class);
+                startActivity(intent);
                 drawerLayout.closeDrawer(GravityCompat.START);
                 return true;
             }

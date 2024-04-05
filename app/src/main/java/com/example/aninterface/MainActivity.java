@@ -9,10 +9,8 @@ import androidx.appcompat.app.AppCompatActivity;
 public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         // Get Started Button redirects to Login Page
         Button button = findViewById(R.id.btn_activity_main_getStarted);
             button.setOnClickListener(v -> {

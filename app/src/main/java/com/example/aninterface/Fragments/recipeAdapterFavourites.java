@@ -89,69 +89,17 @@ public class recipeAdapterFavourites extends RecyclerView.Adapter<recipeAdapterF
     public int getItemCount() {
         return favouritesRecipeItemList.size();
     }
-
-
     public static class RecipeViewHolder extends RecyclerView.ViewHolder{
         ShapeableImageView recipeThumbnail;
         TextView recipeName;
         TextView recipeDescription;
         ImageView likeButton;
-
         public RecipeViewHolder(@NonNull View itemView) {
             super(itemView);
             recipeThumbnail = itemView.findViewById(R.id.recipeThumbnail);
             recipeName = itemView.findViewById(R.id.recipeName);
             recipeDescription = itemView.findViewById(R.id.recipeDescription);
-
             likeButton = itemView.findViewById(R.id.favourites_LikeButton);
-//
-//            favouriteButton.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    int position = getAdapterPosition();
-//                    if (position != RecyclerView.NO_POSITION) {
-//                        favouritesRecipeItem item = favouritesRecipeItemList.get(position);
-//                        toggleFavouriteState(item, position);
-//                    }
-//                }
-//                private void toggleFavouriteState(favouritesRecipeItem item, int position) {
-//                    // Example check to determine the current state
-//                    boolean isFavourite = item.isFavourite();
-//
-//                    if (isFavourite) {
-//                        // If currently a favorite, remove from Firebase and update icon
-//                        removeFromFavourites(item.getId(), position);
-//                    } else {
-//                        // If not a favorite, add to Firebase and update icon
-//                        addToFavourites(item.getId(), position);
-//                    }
-//                }
-//                private void addToFavourites(String itemId, int position) {
-//                    DatabaseReference ref = FirebaseDatabase.getInstance().getReference("favourites").child(itemId);
-//                    ref.setValue(true).addOnCompleteListener(task -> {
-//                        if (task.isSuccessful()) {
-//                            // Update the item's favorite state and icon
-//                            favouritesRecipeItemsList.get(position).setFavourite(true);
-//                            notifyItemChanged(position);
-//                        }
-//                    });
-//                }
-//
-//                private void removeFromFavourites(String itemId, int position) {
-//                    DatabaseReference ref = FirebaseDatabase.getInstance().getReference("favourites").child(itemId);
-//                    ref.removeValue().addOnCompleteListener(task -> {
-//                        if (task.isSuccessful()) {
-//                            // Update the item's favorite state and icon
-//                            favouritesRecipeItemsList.get(position).setFavourite(false);
-//                            notifyItemChanged(position);
-//                        }
-//                    });
-//                }
-
-
-//            });
-
-
         }
     }
 }

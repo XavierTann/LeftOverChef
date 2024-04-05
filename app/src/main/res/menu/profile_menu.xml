@@ -13,7 +13,7 @@
             android:title="Profile Settings"/>
 
         <item
-            android:id="@+id/profile_dietry"
+            android:id="@+id/profile_dietary"
             android:icon="@drawable/baseline_fastfood_24"
             android:title="Dietry Settings"/>
 
