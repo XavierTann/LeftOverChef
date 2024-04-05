@@ -32,6 +32,9 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.aninterface.CameraRecognition;
+import com.example.aninterface.Fragments.PantryIngredientSuggestions.Item;
+import com.example.aninterface.Fragments.PantryIngredientSuggestions.SuggestionsAdapter;
+import com.example.aninterface.Fragments.PantryIngredientSuggestions.UnitAdapter;
 import com.example.aninterface.HelperClass.FirebaseFunctions;
 import com.example.aninterface.HelperClass.SharedPreferencesUtil;
 import com.example.aninterface.R;
