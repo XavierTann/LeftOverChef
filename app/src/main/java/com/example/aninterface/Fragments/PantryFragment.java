@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import android.support.annotation.NonNull;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -37,6 +38,7 @@ import com.example.aninterface.Fragments.PantryIngredientSuggestions.Suggestions
 import com.example.aninterface.Fragments.PantryIngredientSuggestions.UnitAdapter;
 import com.example.aninterface.HelperClass.FirebaseFunctions;
 import com.example.aninterface.HelperClass.SharedPreferencesUtil;
+import com.example.aninterface.IngredientPage;
 import com.example.aninterface.R;
 import com.google.android.flexbox.AlignItems;
 import com.google.android.flexbox.FlexDirection;
@@ -63,22 +65,16 @@ public class PantryFragment extends Fragment implements SuggestionsAdapter.OnIte
     private UnitAdapter unitAdapter;
     private List<Item> allIngredients; // Your dataset
     private static final List<String> VALID_UNITS = Arrays.asList("Piece(pc)", "Cup", "Tablespoon(Tbsp)", "Teaspoon(tsp)", "Millilitre(ML)", "Litre(L)", "Grams(g)", "Kilograms(kg)", "Ounce(oz)", "Pounds(lb)");
-
-
-    @Override
-    public void onItemClick(Item item) {
-        if (ingredientNameEditText != null) {
-            ingredientNameEditText.setText(item.getName());
-        }
-    }
-
     public PantryFragment() {
     }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_pantry, container, false);
+
+        // Generate Button
+        Button generateButton = rootView.findViewById(R.id.btn_pantryPage_generateRecipe);
+        generateButton.setOnClickListener(v -> generateRecipe());
         addIngredientButton = rootView.findViewById(R.id.addIngredientButton);
         ingredientNameEditText = rootView.findViewById(R.id.ingredientNameEditText);
         ingredientAmtEditText = rootView.findViewById(R.id.ingredientAmtEditText);
@@ -244,4 +240,52 @@ public class PantryFragment extends Fragment implements SuggestionsAdapter.OnIte
             }
         });
     }
+    @Override
+    public void onItemClick(Item item) {
+        if (ingredientNameEditText != null) {
+            ingredientNameEditText.setText(item.getName());
+        }
+    }
+    private void generateRecipe() {
+        // Collect all ingredients and amounts from pantryIngredientItemList
+        ArrayList<String> ingredientInfoList = new ArrayList<>();
+
+        // Create a list to store the keys of ingredients to be removed from the database
+        List<String> ingredientsToRemoveKeys = new ArrayList<>();
+
+        for (pantryIngredientItem item : pantryIngredientItemList) {
+            if (item.isSelected()) {
+                // If checked, add the ingredient name and amount to the lists
+                String ingredientInfo = item.getIngredientName() + ", " + item.getIngredientAmount() + " " + item.getIngredientUnit();
+                ingredientInfoList.add(ingredientInfo);
+
+                // Add the key of the ingredient to the list of keys to be removed
+                String ingredientKey = FirebaseFunctions.recipeNameToFirebaseKey(item.getIngredientName());
+                ingredientsToRemoveKeys.add(ingredientKey);
+            }
+        }
+
+        // Remove selected ingredients from the database
+        removeIngredientsFromDatabase(ingredientsToRemoveKeys);
+
+        String recipeDetails = TextUtils.join("\n", ingredientInfoList);
+
+        // Pass the data to RecipePage fragment or activity
+        Intent intent = new Intent(getActivity(), IngredientPage.class);
+        intent.putExtra("ingredientsFromPantry", recipeDetails);
+        startActivity(intent);
+    }
+
+    private void removeIngredientsFromDatabase(List<String> ingredientKeys) {
+        String phoneNumber = SharedPreferencesUtil.getPhoneNumber(getActivity().getApplicationContext());
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("users").child(phoneNumber).child("pantry");
+
+        // Iterate through the list of keys and remove corresponding ingredients from the database
+        for (String key : ingredientKeys) {
+            databaseReference.child(key).removeValue();
+        }
+    }
+
 }
+
+
