@@ -53,6 +53,9 @@
             android:name=".IngredientPage"
             android:exported="false" />
         <activity
+            android:name=".pantry_ingredient_page"
+            android:exported="false" />
+        <activity
             android:name=".CameraRecognition"
             android:exported="false">
         </activity>

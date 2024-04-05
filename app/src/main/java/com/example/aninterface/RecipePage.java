@@ -47,7 +47,8 @@ public class RecipePage extends AppCompatActivity {
     private static String cuisine;
     private static String dietaryRequirements;
     private static String specialRequirements;
-    private static String predictedIngredients;
+    private static String ingredientsFromCamera;
+    private static String ingredientsFromPantry;
 
 
     // FUNCTION TO SEARCH IMAGE FROM INTERNET USING GOOGLE CUSTOM SEARCH API //
@@ -63,9 +64,7 @@ public class RecipePage extends AppCompatActivity {
                             JSONObject item = items.getJSONObject(0);
                             String imageUrl = item.getString("link");
                             Picasso.get().load(imageUrl).into(imageViewToUpdate);
-                            recipeDatabase(foodName, generatedString, imageUrl);
-                            allRecipesDatabase(foodName, generatedString, imageUrl);
-                            seeMoreButton(buttonViewToUpdate, generatedString,imageUrl);
+                            seeMoreButton(buttonViewToUpdate, generatedString, imageUrl);
                             addToFavorites(favouriteButton, foodName, generatedString, imageUrl);
 
                         }
@@ -149,6 +148,8 @@ public class RecipePage extends AppCompatActivity {
     public void seeMoreButton(Button seeMoreButton, String generatedString, String imageUrl) {
 
         seeMoreButton.setOnClickListener(v -> {
+            recipeDatabase(foodName, generatedString, imageUrl);
+            allRecipesDatabase(foodName, generatedString, imageUrl);
             // Start a new activity to show full details of the recipe
             Intent intent = new Intent(RecipePage.this, IndividualRecipe.class);
             // Pass any necessary data to the new activity
@@ -277,14 +278,22 @@ public class RecipePage extends AppCompatActivity {
         RecipePage.cuisine = intent.getStringExtra("cuisine");
         RecipePage.dietaryRequirements = intent.getStringExtra("dietaryRequirements");
         RecipePage.specialRequirements = intent.getStringExtra("specialRequirements");
-        String uncleanedPredictedIngredients = intent.getStringExtra("predictedIngredients");
-        RecipePage.predictedIngredients = uncleanedPredictedIngredients.replaceAll("[^a-zA-Z0-9]", " ");
+
+        String uncleanedIngredientsFromCamera = intent.getStringExtra("ingredientsFromCamera");
+        if (uncleanedIngredientsFromCamera == null) {
+            uncleanedIngredientsFromCamera = "";
+        }
+        RecipePage.ingredientsFromCamera = uncleanedIngredientsFromCamera.replaceAll("[^a-zA-Z0-9]", " ");
+
+        String uncleanedIngredientsFromPantry = intent.getStringExtra("ingredientsFromPantry");
+        RecipePage.ingredientsFromPantry = uncleanedIngredientsFromPantry.replaceAll("[^a-zA-Z0-9]", " ");
+
         RecipePage.phoneNumber = intent.getStringExtra("phoneNumber");
 
         // Generate text for recipe, and generate images for recipe
         String defaultprompt =  "I have leftover ingredients. " +
-                "These are the ingredients:" + ingredients + predictedIngredients +
-                "Give me a recipe for these ingredients" +
+                "These are the ingredients:" + ingredients + ingredientsFromCamera + ingredientsFromPantry +
+                 "Give me a recipe for these ingredients" +
                 "I want the recipe's difficulty level to be" + difficulty +
                 "I want the recipe's cooking time to be " + cookingTime +
                 "I want the cuisine of the dish to be " + cuisine +
