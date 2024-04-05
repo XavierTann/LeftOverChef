@@ -43,6 +43,7 @@ public class recipeAdapterFeatured extends RecyclerView.Adapter<recipeAdapterFea
         this.context = context;
         this.featuredRecipeItemList = featuredRecipeItemList;
     }
+
     @NonNull
     @Override
     public RecipeViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -123,5 +124,13 @@ public class recipeAdapterFeatured extends RecyclerView.Adapter<recipeAdapterFea
             likeButton = itemView.findViewById(R.id.featured_Like_Button);
 
         }
+    }
+
+    
+
+    // Method to update the adapter with new recipe data
+    public void updateRecipes(List<featuredRecipeItem> newRecipes) {
+        this.featuredRecipeItemList = newRecipes;
+        notifyDataSetChanged(); // Notify adapter of dataset change
     }
 }

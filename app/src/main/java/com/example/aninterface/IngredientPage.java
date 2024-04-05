@@ -21,9 +21,20 @@ public class IngredientPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ingredient_page);
 
-        String ingredientString = getIntent().getStringExtra("ingredientString");
+        String ingredientsFromCamera = getIntent().getStringExtra("ingredientString");
+        String ingredientsFromPantry = getIntent().getStringExtra("ingredientsFromPantry");
         TextView txt_predictedIngredients = findViewById(R.id.txt_ingredientPage_predictedIngredients);
-        txt_predictedIngredients.setText("The camera has scanned: " + ingredientString + "Enter the other ingredients it is missing, as well as select your preferences below.");
+        if (ingredientsFromCamera != null) {
+            txt_predictedIngredients.setText("The camera has scanned: " + ingredientsFromCamera + "Enter the other ingredients it is missing, as well as select your preferences below.");
+        } else {
+            txt_predictedIngredients.setText("No ingredients were scanned from the camera. Take a picture of your ingredients to get started, or just type in the search bar below");
+        }
+        if (ingredientsFromPantry != null) {
+            txt_predictedIngredients.setText("The pantry has scanned: " + ingredientsFromPantry + "Enter the other ingredients it is missing, as well as select your preferences below.");
+        } else {
+            txt_predictedIngredients.setText("No ingredients were scanned from the pantry. Take a picture of your ingredients to get started, or just type in the search bar below");
+        }
+
 
         EditText searchIngredient = findViewById(R.id.edit_ingredientPage_searchIngredient);
         Button generateRecipes = findViewById(R.id.btn_ingredientPage_generateRecipes);
@@ -52,7 +63,9 @@ public class IngredientPage extends AppCompatActivity {
                     intent.putExtra("cuisine", cuisine);
                     intent.putExtra("dietaryRequirements", dietaryRequirements);
                     intent.putExtra("specialRequirements", specialRequirements);
-                    intent.putExtra("predictedIngredients", ingredientString);
+                    intent.putExtra("ingredientsFromCamera", ingredientsFromCamera);
+                    intent.putExtra("ingredientsFromPantry", ingredientsFromPantry);
+
                     startActivity(intent);
 
 
