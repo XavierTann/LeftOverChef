@@ -11,16 +11,11 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
-import com.example.aninterface.HelperClass.HelperClass;
 import com.example.aninterface.HelperClass.SharedPreferencesUtil;
-import com.example.aninterface.Home;
-import com.example.aninterface.Login;
+import com.example.aninterface.HomePage;
+import com.example.aninterface.LoginPage;
 import com.example.aninterface.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -62,7 +57,7 @@ public class Drawer_UserSettings extends AppCompatActivity {
         back_DrawerProfile_Home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Drawer_UserSettings.this, Home.class);
+                Intent intent = new Intent(Drawer_UserSettings.this, HomePage.class);
                 startActivity(intent);
             }
         });
@@ -176,7 +171,7 @@ public class Drawer_UserSettings extends AppCompatActivity {
 //                    SharedPreferencesUtil.savePassword(Drawer_UserSettings.this,password);
                 }
 
-                Intent intent = new Intent(Drawer_UserSettings.this, Login.class);
+                Intent intent = new Intent(Drawer_UserSettings.this, LoginPage.class);
                 startActivity(intent);
                 }
             });

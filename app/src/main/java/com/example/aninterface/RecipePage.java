@@ -1,15 +1,11 @@
 package com.example.aninterface;
 
 import android.content.Intent;
-import android.media.Image;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Debug;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -30,8 +26,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
@@ -151,7 +145,7 @@ public class RecipePage extends AppCompatActivity {
             recipeDatabase(foodName, generatedString, imageUrl);
             allRecipesDatabase(foodName, generatedString, imageUrl);
             // Start a new activity to show full details of the recipe
-            Intent intent = new Intent(RecipePage.this, IndividualRecipe.class);
+            Intent intent = new Intent(RecipePage.this, SeeMorePage.class);
             // Pass any necessary data to the new activity
             intent.putExtra("recipeDescription", generatedString);
             intent.putExtra("recipeImage", imageUrl);

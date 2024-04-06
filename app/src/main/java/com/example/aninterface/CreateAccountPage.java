@@ -55,7 +55,7 @@ public class CreateAccountPage extends AppCompatActivity {
                     reference.child(phonenumber).setValue(helperClass);
 
                     Toast.makeText(CreateAccountPage.this, "Registered successfully!", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(CreateAccountPage.this, Login.class);
+                    Intent intent = new Intent(CreateAccountPage.this, LoginPage.class);
                     startActivity(intent);
                 }
             }
@@ -64,7 +64,7 @@ public class CreateAccountPage extends AppCompatActivity {
         loginRedirectText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(CreateAccountPage.this, Login.class);
+                Intent intent = new Intent(CreateAccountPage.this, LoginPage.class);
                 startActivity(intent);
             }
         });
@@ -72,7 +72,7 @@ public class CreateAccountPage extends AppCompatActivity {
         btn_backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(CreateAccountPage.this, Login.class);
+                Intent intent = new Intent(CreateAccountPage.this, LoginPage.class);
                 startActivity(intent);
             }
         });
