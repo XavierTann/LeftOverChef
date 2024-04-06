@@ -1,7 +1,6 @@
-package com.example.aninterface.Fragments;
+package com.example.aninterface.Fragments.Featured;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
-import com.example.aninterface.HelperClass.HelperClass;
 import com.example.aninterface.HelperClass.SharedPreferencesUtil;
 import com.example.aninterface.HelperClass.FirebaseFunctions;
 import com.example.aninterface.R;

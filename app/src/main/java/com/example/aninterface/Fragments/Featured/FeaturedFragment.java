@@ -1,9 +1,8 @@
-package com.example.aninterface.Fragments;
+package com.example.aninterface.Fragments.Featured;
 
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.support.annotation.NonNull;
@@ -11,7 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.aninterface.HelperClass.FirebaseFunctions;
+import com.example.aninterface.Fragments.Featured.featuredRecipeItem;
+import com.example.aninterface.Fragments.Featured.recipeAdapterFeatured;
 import com.example.aninterface.HelperClass.SharedPreferencesUtil;
 import com.example.aninterface.R;
 import com.google.android.flexbox.AlignItems;
@@ -33,7 +33,7 @@ public class FeaturedFragment extends Fragment {
 
     private List<featuredRecipeItem> featuredRecipeItemList;
     private RecyclerView featuredRecyclerView;
-    private recipeAdapterFeatured recipeAdapterFeatured;
+    private com.example.aninterface.Fragments.Featured.recipeAdapterFeatured recipeAdapterFeatured;
     private FlexboxLayoutManager layoutManager;
     private Set<String> userFavorites = new HashSet<>();
 

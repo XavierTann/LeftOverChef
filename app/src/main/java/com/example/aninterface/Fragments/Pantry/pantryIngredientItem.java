@@ -1,4 +1,4 @@
-package com.example.aninterface.Fragments;
+package com.example.aninterface.Fragments.Pantry;
 
 public class pantryIngredientItem {
 
