@@ -38,7 +38,7 @@
             android:name=".Login"
             android:exported="false" />
         <activity
-            android:name=".CreateAccount"
+            android:name=".CreateAccountPage"
             android:exported="false" />
         <activity
             android:name=".HomePage"
@@ -57,7 +57,7 @@
             android:name=".pantry_ingredient_page"
             android:exported="false" />
         <activity
-            android:name=".CameraRecognition"
+            android:name=".CameraPage"
             android:exported="false">
         </activity>
         <activity

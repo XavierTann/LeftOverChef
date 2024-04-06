@@ -106,7 +106,7 @@ public class Home extends AppCompatActivity {
         home_cameraButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Home.this, CameraRecognition.class);
+                Intent intent = new Intent(Home.this, CameraPage.class);
                 startActivity(intent);
             }
         });
