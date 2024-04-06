@@ -48,6 +48,7 @@ dependencies {
     androidTestImplementation(libs.espresso.core)
 
 
+
     // For GenAI
     implementation ("com.squareup.okhttp3:okhttp:4.10.0")
     implementation ("com.fasterxml.jackson.core:jackson-databind:2.16.1")
@@ -66,4 +67,5 @@ dependencies {
     implementation ("com.google.android.flexbox:flexbox:3.0.0")
     implementation ("com.github.bumptech.glide:glide:4.12.0")
     annotationProcessor ("com.github.bumptech.glide:compiler:4.12.0")
+    implementation ("de.hdodenhof:circleimageview:3.1.0")
 }

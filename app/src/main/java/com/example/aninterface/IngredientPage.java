@@ -15,14 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.aninterface.Fragments.PantryIngredientSuggestions.Item;
-import com.example.aninterface.Fragments.PantryIngredientSuggestions.SuggestionsAdapter;
-import com.example.aninterface.Fragments.PantryIngredientSuggestions.UnitAdapter;
-import com.example.aninterface.Fragments.pantryIngredientItem;
-import com.example.aninterface.Fragments.recipeAdapterPantry;
 import com.example.aninterface.HelperClass.FirebaseFunctions;
 import com.example.aninterface.HelperClass.SharedPreferencesUtil;
 import com.google.firebase.database.DataSnapshot;
@@ -32,7 +25,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -44,15 +36,6 @@ public class IngredientPage extends AppCompatActivity{
         setContentView(R.layout.ingredient_page);
         fetchAndUpdateSpecialRequirements();
         fetchAndUpdateDietaryRequirements();
-
-        ImageButton back_ingredientPage_Camera = findViewById(R.id.back_ingredientPage_Camera);
-        back_ingredientPage_Camera.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(IngredientPage.this, CameraRecognition.class);
-                startActivity(intent);
-            }
-        });
 
         String ingredientsFromCamera = getIntent().getStringExtra("ingredientString");
         String ingredientsFromPantry = getIntent().getStringExtra("ingredientsFromPantry");
@@ -68,16 +51,13 @@ public class IngredientPage extends AppCompatActivity{
             txt_predictedIngredients.setText("No ingredients were scanned from the pantry. Take a picture of your ingredients to get started, or just type in the search bar below");
         }
 
-
         EditText searchIngredient = findViewById(R.id.edit_ingredientPage_searchIngredient);
         Button generateRecipes = findViewById(R.id.btn_ingredientPage_generateRecipes);
         Spinner spinnerDifficulty = findViewById(R.id.spinner_difficulty);
         Spinner spinnerCookingTime = findViewById(R.id.spinner_duration);
         Spinner spinnerCuisine = findViewById(R.id.spinner_ingredientPage_cuisine);
-//        Spinner spinnerDietaryRequirements = findViewById(R.id.spinner_ingredientPage_dietaryRequirements);
         EditText editDietaryRequirements = findViewById(R.id.edit_ingredientPage_dietaryRequirements);
         EditText editSpecialRequirements =  findViewById(R.id.edit_ingredientPage_specialRequirements);
-
 
         generateRecipes.setOnClickListener(v -> {
             // Getting ingredients and filters
@@ -85,11 +65,9 @@ public class IngredientPage extends AppCompatActivity{
             String selectedDifficulty = spinnerDifficulty.getSelectedItem().toString();
             String cookingTime = spinnerCookingTime.getSelectedItem().toString();
             String cuisine = spinnerCuisine.getSelectedItem().toString();
-//                    String dietaryRequirements = spinnerDietaryRequirements.getSelectedItem().toString();
             String dietaryRequirements = editDietaryRequirements.getText().toString();
             String specialRequirements = editSpecialRequirements.getText().toString();
-
-            String phoneNumber = SharedPreferencesUtil.getPhoneNumber(this);
+            String phoneNumber = SharedPreferencesUtil.getPhoneNumber(IngredientPage.this);
             Intent intent = new Intent(IngredientPage.this, RecipePage.class);
             intent.putExtra("phoneNumber", phoneNumber);
             intent.putExtra("ingredients", ingredients);
@@ -101,6 +79,12 @@ public class IngredientPage extends AppCompatActivity{
             intent.putExtra("ingredientsFromCamera", ingredientsFromCamera);
             intent.putExtra("ingredientsFromPantry", ingredientsFromPantry);
             startActivity(intent);
+        });
+
+        ImageButton back_ingredientPage_Camera = findViewById(R.id.back_ingredientPage_Camera);
+        back_ingredientPage_Camera.setOnClickListener(v -> {
+                Intent intent2 = new Intent(IngredientPage.this, CameraRecognition.class);
+                startActivity(intent2);
         });
     }
 

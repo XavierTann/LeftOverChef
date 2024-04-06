@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.Debug;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -118,10 +119,6 @@ public class RecipePage extends AppCompatActivity {
         return generatedText;
     }
 
-
-
-
-
     public static String getFirstWords(String input) {
         if (input == null) {
             return ""; // Return an empty string if input is null
@@ -159,9 +156,6 @@ public class RecipePage extends AppCompatActivity {
         });
 
     }
-
-
-
     // FUNCTION TO SEND RECIPES TO DATABASE //
     public static void recipeDatabase(String foodName, String generatedString, String imageUrl) {
         FirebaseDatabase database;
@@ -182,8 +176,6 @@ public class RecipePage extends AppCompatActivity {
         // For example, you can set recipe details including name, instructions, ingredients, cooking time, and difficulty
         Recipe recipe = new Recipe(foodName, generatedString, RecipePage.ingredients, RecipePage.cookingTime, RecipePage.difficulty, imageUrl);
         newRecipeRef.setValue(recipe);
-
-
     }
 
     public static void allRecipesDatabase(String foodName, String generatedString, String imageUrl) {
@@ -201,8 +193,6 @@ public class RecipePage extends AppCompatActivity {
         Recipe recipe = new Recipe(foodName, generatedString, RecipePage.ingredients, RecipePage.cookingTime, RecipePage.difficulty, imageUrl);
         newRecipeRef.setValue(recipe);
     }
-
-
 
     private void addToFavorites(ImageView favouriteButton, final String foodName, final String generatedString, String imageUrl) {
         favouriteButton.setOnClickListener(v -> {
@@ -280,20 +270,25 @@ public class RecipePage extends AppCompatActivity {
         RecipePage.specialRequirements = intent.getStringExtra("specialRequirements");
 
         String uncleanedIngredientsFromCamera = intent.getStringExtra("ingredientsFromCamera");
-        if (uncleanedIngredientsFromCamera == null) {
-            uncleanedIngredientsFromCamera = "";
+        if (uncleanedIngredientsFromCamera != null) {
+            RecipePage.ingredientsFromCamera = uncleanedIngredientsFromCamera.replaceAll("[^a-zA-Z0-9]", " ");
+        } else {
+            RecipePage.ingredientsFromCamera = ""; // Or some default value
         }
-        RecipePage.ingredientsFromCamera = uncleanedIngredientsFromCamera.replaceAll("[^a-zA-Z0-9]", " ");
 
         String uncleanedIngredientsFromPantry = intent.getStringExtra("ingredientsFromPantry");
-        RecipePage.ingredientsFromPantry = uncleanedIngredientsFromPantry.replaceAll("[^a-zA-Z0-9]", " ");
+        if (uncleanedIngredientsFromPantry != null) {
+            RecipePage.ingredientsFromPantry = uncleanedIngredientsFromPantry.replaceAll("[^a-zA-Z0-9]", " ");
+        } else {
+            RecipePage.ingredientsFromPantry = ""; // Or some default value
+        }
 
         RecipePage.phoneNumber = intent.getStringExtra("phoneNumber");
 
         // Generate text for recipe, and generate images for recipe
         String defaultprompt =  "I have leftover ingredients. " +
                 "These are the ingredients:" + ingredients + ingredientsFromCamera + ingredientsFromPantry +
-                 "Give me a recipe for these ingredients" +
+                "Give me a recipe for these ingredients" +
                 "I want the recipe's difficulty level to be" + difficulty +
                 "I want the recipe's cooking time to be " + cookingTime +
                 "I want the cuisine of the dish to be " + cuisine +
@@ -336,6 +331,15 @@ public class RecipePage extends AppCompatActivity {
 
         NetworkTask task3 = new NetworkTask(textView3, imageView3, seeMore3, favourite3);
         task3.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, prompt3);
+
+
+
+        ImageButton backButton = findViewById(R.id.back_recipePage_ingredientpage);
+        backButton.setOnClickListener(v -> {
+            Intent intent2 = new Intent(this,IngredientPage.class);
+            startActivity(intent2);
+        });
+
     }
 
 

@@ -4,22 +4,37 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/border_orange_morerounded"
     tools:context=".CameraRecognition">
 
-    <ImageView
-        android:id="@+id/imageViewforcamera"
-        android:layout_width="330dp"
-        android:layout_height="351dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:background="#8BC34A"
-        android:backgroundTint="@color/orange"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
+    <ImageButton
+        android:id="@+id/btn_backButton_Home"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:background="#0000"
+        app:layout_constraintBottom_toTopOf="@+id/imageViewforcamera"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.257" />
+        app:layout_constraintVertical_bias="0.666"
+        android:backgroundTint="@color/beige_white"
+        android:src="@drawable/icons8_left_arrow_24" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/imageViewforcamera"
+        android:layout_width="match_parent"
+        android:layout_height="330dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/leftoverchef"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.102"
+        app:shapeAppearanceOverlay="@style/roundedImageView" />
 
     <Button
         android:id="@+id/predictforcamera"
@@ -27,72 +42,91 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:onClick="predict"
-        android:text="predict"
+        android:layout_marginTop="8dp"
         android:backgroundTint="@color/orange"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:onClick="predict"
+        android:text="Analyse"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.589"
-        app:layout_constraintStart_toEndOf="@+id/Cameraforcamera"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewforcamera"
-        app:layout_constraintVertical_bias="0.225" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView25" />
 
     <TextView
-        android:id="@+id/textViewforcamera"
-        android:layout_width="200dp"
+        android:id="@+id/textView25"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:text="Press Generate Recipe after taking a picture and pressing predict."
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="12dp"
+        android:gravity="center_horizontal"
+        android:text="Step 2: Analyse your picture"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Cameraforcamera"
-        app:layout_constraintVertical_bias="0.147" />
+        app:layout_constraintTop_toBottomOf="@+id/Cameraforcamera" />
 
-    <Button
+    <TextView
+
+        android:id="@+id/textView26"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="12dp"
+        android:gravity="center_horizontal"
+        android:text="Step 3: Confirm your ingredients"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/predictforcamera" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center_horizontal"
+        android:text="Step 1: Choose a photo or Take a photo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.45"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewforcamera" />
+
+    <ImageButton
         android:id="@+id/Cameraforcamera"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="24dp"
-        android:text="Camera"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="70dp"
         android:backgroundTint="@color/orange"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:src="@drawable/baseline_camera_alt_24"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/Storageforcamera"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewforcamera"
-        app:layout_constraintVertical_bias="0.225" />
+        app:layout_constraintTop_toBottomOf="@+id/textView1"
+        app:tint="@color/white" />
 
-    <Button
+    <ImageButton
         android:id="@+id/Storageforcamera"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:onClick="selectImage"
-        android:text="Gallery"
+        android:layout_marginStart="70dp"
+        android:layout_marginTop="8dp"
         android:backgroundTint="@color/orange"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.103"
+        android:onClick="selectImage"
+        android:src="@drawable/baseline_photo_library_24"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewforcamera"
-        app:layout_constraintVertical_bias="0.225" />
+        app:layout_constraintTop_toBottomOf="@+id/textView1"
+        app:tint="@color/white" />
 
     <Button
         android:id="@+id/btn_camera_next"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="116dp"
-        android:layout_marginEnd="120dp"
+        android:layout_marginTop="8dp"
         android:backgroundTint="@color/orange"
-        android:text="Generate Recipes"
+        android:text="Ingredient Page"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/predictforcamera" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView26" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

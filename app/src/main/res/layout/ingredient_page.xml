@@ -24,15 +24,15 @@
         android:id="@+id/edit_ingredientPage_searchIngredient"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
         android:hint="Input extra ingredients here"
         android:textSize="15dp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_ingredientPage_predictedIngredients"
-        app:layout_constraintVertical_bias="0.553" />
+        app:layout_constraintVertical_bias="0.261" />
 
     <TextView
         android:id="@+id/txt_ingredientPage_predictedIngredients"
@@ -65,10 +65,10 @@
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.318">
+        app:layout_constraintVertical_bias="0.364">
 
         <TextView
             android:id="@+id/textView17"

@@ -29,7 +29,6 @@
             android:name=".Drawer.Drawer_AboutUs"
             android:exported="false"
             />
-
         <activity
             android:name=".Home"
             android:exported="false"
@@ -52,9 +51,6 @@
         <activity
             android:name=".IngredientPage"
             android:windowSoftInputMode="adjustPan"
-            android:exported="false" />
-        <activity
-            android:name=".pantry_ingredient_page"
             android:exported="false" />
         <activity
             android:name=".CameraRecognition"

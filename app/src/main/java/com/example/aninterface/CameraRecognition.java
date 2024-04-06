@@ -25,11 +25,13 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.aninterface.CV.Recognition;
 import com.example.aninterface.CV.Yolov5TFLiteDetector;
+import com.google.android.material.imageview.ShapeableImageView;
 
 import java.io.File;
 import java.io.IOException;
@@ -42,14 +44,13 @@ import java.util.HashMap;
 public class CameraRecognition extends AppCompatActivity {
 
     private final int IMAGE_PICK = 100;
-    ImageView imageView;
+    ShapeableImageView imageView;
     Bitmap bitmap;
     Yolov5TFLiteDetector yolov5TFLiteDetector;
     Paint boxPaint = new Paint();
     Paint textPain = new Paint();
     TextView textview;
-    Button camera;
-    Button gallery;
+    ImageButton camera, gallery, btn_backButton_Home;
 
     StringBuilder ingredientString;
 
@@ -59,9 +60,10 @@ public class CameraRecognition extends AppCompatActivity {
         setContentView(R.layout.camera);
         requestNecessaryPermissions();
         imageView = findViewById(R.id.imageViewforcamera);
-        textview = findViewById(R.id.textViewforcamera);
+//        textview = findViewById(R.id.textViewforcamera);
         camera = findViewById(R.id.Cameraforcamera);
         gallery = findViewById(R.id.Storageforcamera);
+        btn_backButton_Home = findViewById(R.id.btn_backButton_Home);
         Button btnNext = findViewById(R.id.btn_camera_next);
         yolov5TFLiteDetector = new Yolov5TFLiteDetector();
         yolov5TFLiteDetector.setModelFile("yolov5s-fp16.tflite");
@@ -74,6 +76,14 @@ public class CameraRecognition extends AppCompatActivity {
         textPain.setTextSize(50);
         textPain.setColor(Color.GREEN);
         textPain.setStyle(Paint.Style.FILL);
+
+        btn_backButton_Home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CameraRecognition.this, Home.class);
+                startActivity(intent);
+            }
+        });
 
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -147,8 +157,6 @@ public class CameraRecognition extends AppCompatActivity {
             }
         }
     }
-
-
     public void predict(View view){
         HashMap<String, Integer> map = new HashMap<>();
         ArrayList<Recognition> recognitions = yolov5TFLiteDetector.detect(bitmap);
@@ -167,7 +175,6 @@ public class CameraRecognition extends AppCompatActivity {
                     canvas.drawText(recognition.getLabelName() + ":" + recognition.getConfidence(), location.left, location.top, textPain);
                 }
             }
-
             StringBuilder s = new StringBuilder();
             for (Recognition r : recognitions) {
                 String labelId = r.getLabelName();
@@ -177,21 +184,16 @@ public class CameraRecognition extends AppCompatActivity {
                     map.put(labelId, 1);
                 }
             }
-
             // Append information to StringBuilder for detected objects
             for (String key : map.keySet()) {
                 Integer value = map.get(key);
-                s.append(key).append(", Amount: ").append(value).append("\n");
-            }
-
+                s.append(key).append(", Amount: ").append(value).append("\n");}
             // Set the processed image and the summary of detected objects
             this.ingredientString = s;
             imageView.setImageBitmap(mutableBitmap);
             textview.setText(s.toString());
         }
     }
-
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
