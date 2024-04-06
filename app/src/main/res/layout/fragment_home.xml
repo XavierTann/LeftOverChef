@@ -61,11 +61,10 @@
             android:background="@color/black" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/pantryRecyclerView"
+            android:id="@+id/historyRecyclerView"
             android:layout_width="match_parent"
-            android:layout_height="280dp"
-            android:layout_marginTop="5dp"
-            android:padding="8dp" />
+            android:layout_height="match_parent"
+            android:padding="8dp"/>
 
         <Button
             android:id="@+id/btn_homePage_generateRecipe"

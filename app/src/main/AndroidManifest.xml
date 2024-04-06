@@ -40,9 +40,7 @@
         <activity
             android:name=".CreateAccountPage"
             android:exported="false" />
-        <activity
-            android:name=".HomePage"
-            android:exported="false" />
+
         <activity
             android:name=".RecipePage"
             android:exported="false" />
@@ -53,9 +51,7 @@
             android:name=".IngredientPage"
             android:windowSoftInputMode="adjustPan"
             android:exported="false" />
-        <activity
-            android:name=".pantry_ingredient_page"
-            android:exported="false" />
+
         <activity
             android:name=".CameraPage"
             android:exported="false">
