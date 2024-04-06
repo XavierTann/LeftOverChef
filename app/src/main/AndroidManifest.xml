@@ -51,6 +51,7 @@
             android:exported="false" />
         <activity
             android:name=".IngredientPage"
+            android:windowSoftInputMode="adjustPan"
             android:exported="false" />
         <activity
             android:name=".pantry_ingredient_page"
