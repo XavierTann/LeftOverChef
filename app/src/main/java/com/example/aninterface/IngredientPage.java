@@ -37,29 +37,22 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class IngredientPage extends AppCompatActivity implements SuggestionsAdapter.OnItemClickListener{
-    private Button addIngredientButton;
-    private ImageButton cancelButton, confirmButton;
-    private EditText ingredientNameEditText, ingredientAmtEditText, ingredientUnitEditText;
-    private LinearLayout actionButtonsContainer;
-    private List<pantryIngredientItem> ingredientPageItemList;
-    private RecyclerView pantryRecyclerView, suggestionsRecyclerView, unitRecyclerView;
-    private com.example.aninterface.IngredientPage_Adapter ingredientPageAdapter;
-    private LinearLayoutManager layoutManager;
-    private SuggestionsAdapter suggestionsAdapter;
-    private UnitAdapter unitAdapter;
-    private List<Item> allIngredients; // Your dataset
-    private static final List<String> VALID_UNITS = Arrays.asList("Piece(pc)", "Cup", "Tablespoon(Tbsp)", "Teaspoon(tsp)", "Millilitre(ML)", "Litre(L)", "Grams(g)", "Kilograms(kg)", "Ounce(oz)", "Pounds(lb)");
-
-    public IngredientPage() {
-    }
+public class IngredientPage extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ingredient_page);
-
         fetchAndUpdateSpecialRequirements();
         fetchAndUpdateDietaryRequirements();
+
+        ImageButton back_ingredientPage_Camera = findViewById(R.id.back_ingredientPage_Camera);
+        back_ingredientPage_Camera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(IngredientPage.this, CameraRecognition.class);
+                startActivity(intent);
+            }
+        });
 
         String ingredientsFromCamera = getIntent().getStringExtra("ingredientString");
         String ingredientsFromPantry = getIntent().getStringExtra("ingredientsFromPantry");
@@ -75,107 +68,8 @@ public class IngredientPage extends AppCompatActivity implements SuggestionsAdap
             txt_predictedIngredients.setText("No ingredients were scanned from the pantry. Take a picture of your ingredients to get started, or just type in the search bar below");
         }
 
-        addIngredientButton = findViewById(R.id.addIngredientButton);
-        ingredientNameEditText = findViewById(R.id.ingredientNameEditText);
-        ingredientAmtEditText = findViewById(R.id.ingredientAmtEditText);
-        ingredientUnitEditText = findViewById(R.id.ingredientUnitEditText);
-        suggestionsRecyclerView = findViewById(R.id.suggestionsRecyclerView);
-        unitRecyclerView = findViewById(R.id.UnitRecyclerView);
-        actionButtonsContainer = findViewById(R.id.actionButtonsContainer);
-        cancelButton = findViewById(R.id.cancelButton);
-        confirmButton = findViewById(R.id.confirmButton);
 
-        allIngredients = Item.getAllIngredients();
-        suggestionsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        suggestionsAdapter = new SuggestionsAdapter(new SuggestionsAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(Item item) {
-                // Update the EditText with the selected suggestion
-                ingredientNameEditText.setText(item.getName());
-                ingredientUnitEditText.setText(item.getUnit());
-                suggestionsRecyclerView.setVisibility(View.GONE); // Hide the RecyclerView
-                ingredientNameEditText.clearFocus();
-                suggestionsAdapter.updateData(new ArrayList<>());
-            }
-        });
-        suggestionsRecyclerView.setAdapter(suggestionsAdapter);
-        ingredientNameEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (hasFocus) {
-                    // EditText has gained focus, make RecyclerView visible
-                    suggestionsRecyclerView.setVisibility(View.VISIBLE);}
-                else {
-                    // EditText has lost focus, make RecyclerView gone or invisible as needed
-                    suggestionsRecyclerView.setVisibility(View.GONE);}
-            }
-        });
-        ingredientNameEditText.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                filter(s.toString());}
-            @Override
-            public void afterTextChanged(Editable s) {}
-        });
-
-        unitAdapter = new UnitAdapter(VALID_UNITS, unit -> {
-            ingredientUnitEditText.setText(unit);});
-        ingredientUnitEditText.setOnFocusChangeListener((v, hasFocus) -> {
-            if (hasFocus) {
-                unitRecyclerView.setVisibility(View.VISIBLE);
-            } else {
-                if (!isValidUnit(ingredientUnitEditText.getText().toString())) {
-                    ingredientUnitEditText.setError("Invalid unit. Please enter a valid unit.");
-                }
-                unitRecyclerView.setVisibility(View.GONE);
-            }
-        });
-        ingredientUnitEditText.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int start, int count, int after) {}
-            @Override
-            public void onTextChanged(CharSequence charSequence, int start, int before, int count) {
-                unitAdapter.filter(charSequence.toString());
-            }
-            @Override
-            public void afterTextChanged(Editable editable) {}
-        });
-        unitRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        unitRecyclerView.setAdapter(unitAdapter);
-
-        addIngredientButton.setOnClickListener(v -> toggleViewVisibility(true));
-        cancelButton.setOnClickListener(v -> toggleViewVisibility(false));
-        confirmButton.setOnClickListener(v -> {
-            // Implement the creation logic here
-            toggleViewVisibility(false);
-            String ingredientName = ingredientNameEditText.getText().toString().trim();
-            String ingredientAmount = ingredientAmtEditText.getText().toString().trim();
-            String ingredientUnit = ingredientUnitEditText.getText().toString().trim();
-            if (!ingredientName.isEmpty() && !ingredientUnit.isEmpty() && !ingredientAmount.isEmpty()) {
-                pantryIngredientItem newIngredient = new pantryIngredientItem(ingredientName,ingredientAmount,ingredientUnit,false);
-                ingredientPageAdapter.addItem(newIngredient);
-                // Reset the input fields and hide them
-                ingredientNameEditText.setText("");
-                ingredientAmtEditText.setText("");
-                ingredientUnitEditText.setText("");
-                toggleViewVisibility(false);
-            }
-            else {
-                Toast.makeText(this, "Please fill in all fields.", Toast.LENGTH_SHORT).show();}
-        });
-
-
-        pantryRecyclerView = findViewById(R.id.pantryRecyclerView);
-        layoutManager = new LinearLayoutManager(this);
-        pantryRecyclerView.setLayoutManager(layoutManager);
-//        ingredientPageAdapter = new IngredientPage_Adapter(this, ingredientPageItemList);
-//        pantryRecyclerView.setAdapter(ingredientPageAdapter);
-
-
-
-//        EditText searchIngredient = findViewById(R.id.edit_ingredientPage_searchIngredient);
+        EditText searchIngredient = findViewById(R.id.edit_ingredientPage_searchIngredient);
         Button generateRecipes = findViewById(R.id.btn_ingredientPage_generateRecipes);
         Spinner spinnerDifficulty = findViewById(R.id.spinner_difficulty);
         Spinner spinnerCookingTime = findViewById(R.id.spinner_duration);
@@ -187,7 +81,7 @@ public class IngredientPage extends AppCompatActivity implements SuggestionsAdap
 
         generateRecipes.setOnClickListener(v -> {
             // Getting ingredients and filters
-//            String ingredients = searchIngredient.getText().toString();
+            String ingredients = searchIngredient.getText().toString();
             String selectedDifficulty = spinnerDifficulty.getSelectedItem().toString();
             String cookingTime = spinnerCookingTime.getSelectedItem().toString();
             String cuisine = spinnerCuisine.getSelectedItem().toString();
@@ -198,7 +92,7 @@ public class IngredientPage extends AppCompatActivity implements SuggestionsAdap
             String phoneNumber = SharedPreferencesUtil.getPhoneNumber(this);
             Intent intent = new Intent(IngredientPage.this, RecipePage.class);
             intent.putExtra("phoneNumber", phoneNumber);
-//            intent.putExtra("ingredients", ingredients);
+            intent.putExtra("ingredients", ingredients);
             intent.putExtra("difficulty", selectedDifficulty);
             intent.putExtra("cookingTime", cookingTime);
             intent.putExtra("cuisine", cuisine);
@@ -206,40 +100,10 @@ public class IngredientPage extends AppCompatActivity implements SuggestionsAdap
             intent.putExtra("specialRequirements", specialRequirements);
             intent.putExtra("ingredientsFromCamera", ingredientsFromCamera);
             intent.putExtra("ingredientsFromPantry", ingredientsFromPantry);
-
             startActivity(intent);
         });
     }
-    @Override
-    public void onItemClick(Item item) {
-        if (ingredientNameEditText != null) {
-            ingredientNameEditText.setText(item.getName());
-        }
-    }
-    private boolean isValidUnit(String input) {
-        return VALID_UNITS.contains(input);
-    }
-    private void filter(String text) {
-        List<Item> startsWithList = new ArrayList<>();
-        List<Item> containsList = new ArrayList<>();
-        for (Item item : allIngredients) { // Assuming allIngredients is a List<Item>
-            if (item.getName().toLowerCase().startsWith(text.toLowerCase())) {
-                startsWithList.add(item);
-            } else if (item.getName().toLowerCase().contains(text.toLowerCase())) {
-                containsList.add(item);
-            }
-        }
-        List<Item> filteredList = new ArrayList<>(startsWithList);
-        filteredList.addAll(containsList);
-        suggestionsAdapter.updateData(filteredList);
-    }
-    private void toggleViewVisibility(boolean showInput) {
-        addIngredientButton.setVisibility(showInput ? View.GONE : View.VISIBLE);
-        ingredientNameEditText.setVisibility(showInput ? View.VISIBLE : View.GONE);
-        ingredientAmtEditText.setVisibility(showInput ? View.VISIBLE : View.GONE);
-        ingredientUnitEditText.setVisibility(showInput ? View.VISIBLE : View.GONE);
-        actionButtonsContainer.setVisibility(showInput ? View.VISIBLE : View.GONE);
-    }
+
     private void fetchAndUpdateSpecialRequirements() {
         String phoneNumber = SharedPreferencesUtil.getPhoneNumber(this);
         EditText editSpecialRequirementsSetText = findViewById(R.id.edit_ingredientPage_specialRequirements);
