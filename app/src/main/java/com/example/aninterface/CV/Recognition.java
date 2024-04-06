@@ -1,4 +1,4 @@
-package com.example.aninterface;
+package com.example.aninterface.CV;
 
 import android.graphics.RectF;
 

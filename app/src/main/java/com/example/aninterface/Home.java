@@ -2,12 +2,8 @@ package com.example.aninterface;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -17,20 +13,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.aninterface.Drawer.Drawer_AboutUs;
 import com.example.aninterface.Drawer.Drawer_DietarySettings;
 import com.example.aninterface.Drawer.Drawer_UserSettings;
-import com.example.aninterface.Fragments.FavouritesFragment;
-import com.example.aninterface.Fragments.FeaturedFragment;
+import com.example.aninterface.Fragments.Favourites.FavouritesFragment;
+import com.example.aninterface.Fragments.Featured.FeaturedFragment;
 import com.example.aninterface.Fragments.HomeFragment;
-import com.example.aninterface.Fragments.PantryFragment;
+import com.example.aninterface.Fragments.Pantry.PantryFragment;
 import com.example.aninterface.HelperClass.SharedPreferencesUtil;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationBarView;
-import com.example.aninterface.R;
 
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import com.google.android.material.navigation.NavigationView;
-import androidx.appcompat.widget.Toolbar;
 
 public class Home extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;

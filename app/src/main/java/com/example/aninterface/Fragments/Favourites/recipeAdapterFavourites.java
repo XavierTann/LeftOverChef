@@ -1,4 +1,4 @@
-package com.example.aninterface.Fragments;
+package com.example.aninterface.Fragments.Favourites;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -16,12 +16,8 @@ import com.example.aninterface.HelperClass.FirebaseFunctions;
 import com.example.aninterface.HelperClass.SharedPreferencesUtil;
 import com.example.aninterface.R;
 import com.google.android.material.imageview.ShapeableImageView;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-import com.squareup.picasso.Picasso;
 
 import java.util.List;
 

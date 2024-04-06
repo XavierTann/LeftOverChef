@@ -1,19 +1,15 @@
-package com.example.aninterface.Fragments;
+package com.example.aninterface.Fragments.Favourites;
 
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.support.annotation.NonNull;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
-import com.example.aninterface.HelperClass.FirebaseFunctions;
 import com.example.aninterface.HelperClass.SharedPreferencesUtil;
 import com.example.aninterface.R;
 import com.google.android.flexbox.AlignItems;
@@ -31,7 +27,7 @@ import java.util.List;
 public class FavouritesFragment extends Fragment {
     private List<favouritesRecipeItem> favouritesRecipeItemsList;
     private RecyclerView favouritesRecyclerView;
-    private recipeAdapterFavourites recipeAdapterFavourites;
+    private com.example.aninterface.Fragments.Favourites.recipeAdapterFavourites recipeAdapterFavourites;
     private FlexboxLayoutManager layoutManager;
 
     public FavouritesFragment() {
