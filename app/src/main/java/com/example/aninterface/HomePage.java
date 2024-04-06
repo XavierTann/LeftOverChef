@@ -1,105 +1,136 @@
 package com.example.aninterface;
 
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
-import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
-import com.example.aninterface.R;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.example.aninterface.Drawer.Drawer_AboutUs;
+import com.example.aninterface.Drawer.Drawer_DietarySettings;
+import com.example.aninterface.Drawer.Drawer_UserSettings;
+import com.example.aninterface.Fragments.Favourites.FavouritesFragment;
+import com.example.aninterface.Fragments.Featured.FeaturedFragment;
+import com.example.aninterface.Fragments.HomeFragment;
+import com.example.aninterface.Fragments.Pantry.PantryFragment;
+import com.example.aninterface.HelperClass.SharedPreferencesUtil;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.navigation.NavigationBarView;
 
-import java.io.IOException;
-
-import okhttp3.MediaType;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import com.google.android.material.navigation.NavigationView;
 
 public class HomePage extends AppCompatActivity {
-
-//    private static final String API_KEY = "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"; // Replace with your OpenAI API key
-//
-//    public static String generateResponse(String prompt) throws IOException {
-//        OkHttpClient client = new OkHttpClient();
-//        MediaType mediaType = MediaType.parse("application/json");
-//
-//        String requestBody = "{\"model\":\"gpt-3.5-turbo-instruct\", \"prompt\":\"" + prompt + "\", \"max_tokens\":300}";
-//        Request request = new Request.Builder()
-//                .url("https://api.openai.com/v1/completions")
-//                .post(RequestBody.create(mediaType, requestBody))
-//                .addHeader("Authorization", "Bearer " + API_KEY)
-//                .addHeader("Content-Type", "application/json")
-//                .build();
-//
-//        Response response = client.newCall(request).execute();
-//        return response.body().string();
-//    }
-//
-//    public static String extractGeneratedText(String jsonResponse) throws IOException {
-//        // Use Jackson ObjectMapper to parse JSON
-//        ObjectMapper objectMapper = new ObjectMapper();
-//        JsonNode jsonNode = objectMapper.readTree(jsonResponse);
-//
-//        // Extract text from the "choices" array
-//        JsonNode choicesArray = jsonNode.path("choices");
-//        String generatedText = choicesArray.isArray() && choicesArray.size() > 0
-//                ? choicesArray.get(0).path("text").asText()
-//                : "No text found in the response";
-//
-//        return generatedText;
-//    }
-//
-//    // HTTP Requests should be done asynchronously, which means it should be done on a separate thread, not the main thread.
-//    private class NetworkTask extends AsyncTask<String, Void, String> {
-//        @Override
-//        protected String doInBackground(String... params) {
-//            String prompt = params[0];
-//            try {
-//                return generateResponse(prompt);
-//            } catch (IOException e) {
-//                throw new RuntimeException(e);
-//            }
-//        }
-//        @Override
-//        protected void onPostExecute(String response) {
-//            try {
-//                String generatedText = extractGeneratedText(response);
-//                System.out.println(generatedText);
-//                TextView textView = findViewById(R.id.txt_homePage_generatedRecipes);
-//                textView.setText(generatedText);
-//            } catch (IOException e) {
-//                throw new RuntimeException(e);
-//            }
-//        }
-//    }
-
+    BottomNavigationView bottomNavigationView;
+    HomeFragment homeFragment = new HomeFragment();
+    PantryFragment pantryFragment = new PantryFragment();
+    FavouritesFragment favouritesFragment = new FavouritesFragment();
+    FeaturedFragment featuredFragment = new FeaturedFragment();
+    DrawerLayout drawerLayout;
+    ImageButton buttonProfileMenu;
+    NavigationView navigationView;
+    FloatingActionButton home_cameraButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.home_page);
+        setContentView(R.layout.activity_drawer);
 
-        EdgeToEdge.enable(this);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.homePage), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
+        String phoneNumber = SharedPreferencesUtil.getPhoneNumber(this);
+        String userName = SharedPreferencesUtil.getUserName(this);
+
+
+        navigationView = findViewById(R.id.NavigationMenu_Drawer);
+        View headerView = navigationView.getHeaderView(0);
+
+
+        //Setting PhoneNumber and Name in Drawer
+        TextView textViewPhoneNumber_Drawer = headerView.findViewById(R.id.profile_phonenumber);
+        TextView textViewUserName_Drawer = headerView.findViewById(R.id.profile_username);
+        if (textViewPhoneNumber_Drawer != null) {
+            textViewPhoneNumber_Drawer.setText(phoneNumber);}
+        if (textViewUserName_Drawer != null) {
+            textViewUserName_Drawer.setText(userName);}
+        TextView textViewUserName_Home = findViewById(R.id.textView_home_username);
+        if (textViewUserName_Home != null) {
+            textViewUserName_Home.setText(userName);}
+        drawerLayout = findViewById(R.id.drawer_profile_menu);
+        buttonProfileMenu = findViewById(R.id.button_profile_menu);
+
+        //Drawer Open/Close
+        buttonProfileMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                drawerLayout.open();
+            }
         });
 
-        // Execute network task in the background
+        //In Drawer, Open User Settings Page through a Button
+        navigationView.setNavigationItemSelectedListener(item -> {
+            if(item.getItemId()== R.id.profile_settings){
+                // Open the User Settings Activity
+                Intent intent = new Intent(HomePage.this, Drawer_UserSettings.class);
+                startActivity(intent);
+                // Close the drawer
+                drawerLayout.closeDrawer(GravityCompat.START);
+                return true;
+            }
+            else if(item.getItemId() == R.id.profile_dietary){
+                Intent intent = new Intent(HomePage.this, Drawer_DietarySettings.class);
+                startActivity(intent);
+                drawerLayout.closeDrawer(GravityCompat.START);
+                return true;
+            }
+            else if(item.getItemId() == R.id.profile_aboutus){
+                Intent intent = new Intent(HomePage.this, Drawer_AboutUs.class);
+                startActivity(intent);
+                drawerLayout.closeDrawer(GravityCompat.START);
+                return true;
+            }
+            else if(item.getItemId() == R.id.profile_logout){
+                Intent intent = new Intent(HomePage.this, LoginPage.class);
+                startActivity(intent);
+                drawerLayout.closeDrawer(GravityCompat.START);
+                return true;
+            }
+            return false;
+        });
 
-//        String prompt = "I have leftover ingredients. The ingredients consist of 2 apples, 2 onions and garlics, and the basic cooking ingredients. " +
-//                "Give me two recipes for these ingredients. Give me clear step by step instructions on how to prepare the dish.";
-//        new NetworkTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, prompt);
+        home_cameraButton = findViewById(R.id.fab);
+        home_cameraButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomePage.this, CameraPage.class);
+                startActivity(intent);
+            }
+        });
+
+        bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, pantryFragment).commit();
+
+        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                if (item.getItemId() == R.id.menu_home) {
+                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, homeFragment).commit();
+                        return true;}
+                else if (item.getItemId() == R.id.menu_pantry) {
+                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, pantryFragment).commit();
+                        return true;}
+                else if (item.getItemId() == R.id.menu_favourite) {
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,favouritesFragment).commit();
+                    return true;}
+                else if (item.getItemId() == R.id.menu_featured) {
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,featuredFragment).commit();
+                    return true;}
+                return false;
+            }
+        });
     }
 }

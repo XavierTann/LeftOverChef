@@ -41,7 +41,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 
-public class CameraRecognition extends AppCompatActivity {
+public class CameraPage extends AppCompatActivity {
 
     private final int IMAGE_PICK = 100;
     ShapeableImageView imageView;
@@ -89,7 +89,7 @@ public class CameraRecognition extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Start the IngredientPage activity
-                Intent intent = new Intent(CameraRecognition.this, IngredientPage.class);
+                Intent intent = new Intent(CameraPage.this, IngredientPage.class);
                 intent.putExtra("ingredientString", (CharSequence) ingredientString); // Pass the bitmap image
                 startActivity(intent);
             }
@@ -212,7 +212,7 @@ public class CameraRecognition extends AppCompatActivity {
                 try {
                     // Efficiently decode bitmap from camera capture URI
                     bitmap = decodeSampledBitmapFromUri(getContentResolver(), photoURI, 800, 600); // Example size
-                    bitmap = rotateImageIfRequired(CameraRecognition.this, bitmap, photoURI);
+                    bitmap = rotateImageIfRequired(CameraPage.this, bitmap, photoURI);
                     imageView.setImageBitmap(bitmap);
 
                 } catch (IOException e) {

@@ -2,7 +2,6 @@ package com.example.aninterface;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -23,7 +22,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
-public class Login extends AppCompatActivity {
+public class LoginPage extends AppCompatActivity {
     EditText loginphonenumber, loginpassword;
     Button loginButton;
     TextView registerRedirectText;
@@ -60,7 +59,7 @@ public class Login extends AppCompatActivity {
         registerRedirectText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Login.this, CreateAccount.class);
+                Intent intent = new Intent(LoginPage.this, CreateAccountPage.class);
                 startActivity(intent);
             }
         });
@@ -104,17 +103,17 @@ public class Login extends AppCompatActivity {
 
                     if (passwordFromDB.equals(userPassword)) {
                         loginphonenumber.setError(null);
-                        SharedPreferencesUtil.savePhoneNumber(Login.this, userPhonenumber);
+                        SharedPreferencesUtil.savePhoneNumber(LoginPage.this, userPhonenumber);
 
                         String nameFromDB = snapshot.child(userPhonenumber).child("fullname").getValue(String.class);
                         String emailFromDB = snapshot.child(userPhonenumber).child("email").getValue(String.class);
 
-                        SharedPreferencesUtil.saveUserName(Login.this, nameFromDB);
-                        SharedPreferencesUtil.saveEmail(Login.this, emailFromDB);
-                        SharedPreferencesUtil.savePassword(Login.this, passwordFromDB);
+                        SharedPreferencesUtil.saveUserName(LoginPage.this, nameFromDB);
+                        SharedPreferencesUtil.saveEmail(LoginPage.this, emailFromDB);
+                        SharedPreferencesUtil.savePassword(LoginPage.this, passwordFromDB);
 
 //                        intent.putExtra("phoneNumber", userPhonenumber);
-                        Intent intent = new Intent(Login.this, Home.class);
+                        Intent intent = new Intent(LoginPage.this, HomePage.class);
                         startActivity(intent);
                     } else {
                         loginphonenumber.setError("Invalid Phone Number/Password");

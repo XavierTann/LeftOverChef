@@ -16,7 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.aninterface.Drawer.DietaryButtonRecyclerView.ButtonAdapter;
 import com.example.aninterface.Drawer.DietaryButtonRecyclerView.ButtonItem;
 import com.example.aninterface.HelperClass.SharedPreferencesUtil;
-import com.example.aninterface.Home;
+import com.example.aninterface.HomePage;
 import com.example.aninterface.R;
 import com.google.android.flexbox.AlignItems;
 import com.google.android.flexbox.FlexboxLayoutManager;
@@ -49,7 +49,7 @@ public class Drawer_DietarySettings extends AppCompatActivity {
         back_DrawerProfile_Home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Drawer_DietarySettings.this, Home.class);
+                Intent intent = new Intent(Drawer_DietarySettings.this, HomePage.class);
                 startActivity(intent);}
         });
 

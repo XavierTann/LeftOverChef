@@ -17,7 +17,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.regex.Pattern;
 
-public class CreateAccount extends AppCompatActivity {
+public class CreateAccountPage extends AppCompatActivity {
     EditText registerfullname, registerphonenumber, registeremail, registerpassword, registerconpassword;
     TextView loginRedirectText;
     Button registerButton;
@@ -54,8 +54,8 @@ public class CreateAccount extends AppCompatActivity {
                     HelperClass helperClass = new HelperClass(fullname, phonenumber, email, password);
                     reference.child(phonenumber).setValue(helperClass);
 
-                    Toast.makeText(CreateAccount.this, "Registered successfully!", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(CreateAccount.this, Login.class);
+                    Toast.makeText(CreateAccountPage.this, "Registered successfully!", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(CreateAccountPage.this, LoginPage.class);
                     startActivity(intent);
                 }
             }
@@ -64,7 +64,7 @@ public class CreateAccount extends AppCompatActivity {
         loginRedirectText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(CreateAccount.this, Login.class);
+                Intent intent = new Intent(CreateAccountPage.this, LoginPage.class);
                 startActivity(intent);
             }
         });
@@ -72,7 +72,7 @@ public class CreateAccount extends AppCompatActivity {
         btn_backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(CreateAccount.this, Login.class);
+                Intent intent = new Intent(CreateAccountPage.this, LoginPage.class);
                 startActivity(intent);
             }
         });

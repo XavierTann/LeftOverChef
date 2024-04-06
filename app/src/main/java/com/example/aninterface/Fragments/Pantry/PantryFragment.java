@@ -26,7 +26,7 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.example.aninterface.CameraRecognition;
+import com.example.aninterface.CameraPage;
 import com.example.aninterface.Fragments.PantryIngredientSuggestions.Item;
 import com.example.aninterface.Fragments.PantryIngredientSuggestions.SuggestionsAdapter;
 import com.example.aninterface.Fragments.PantryIngredientSuggestions.UnitAdapter;
@@ -168,7 +168,7 @@ public class PantryFragment extends Fragment implements SuggestionsAdapter.OnIte
         ImageButton pantryCameraButton = rootView.findViewById(R.id.pantry_camera);
         pantryCameraButton.setOnClickListener(v -> {
             // Start the CameraRecognition activity
-            Intent intent = new Intent(getActivity(), CameraRecognition.class);
+            Intent intent = new Intent(getActivity(), CameraPage.class);
             startActivity(intent);});
 
         pantryRecyclerView = rootView.findViewById(R.id.pantryRecyclerView);
