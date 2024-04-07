@@ -40,17 +40,16 @@ public class IngredientPage extends AppCompatActivity{
         String ingredientsFromCamera = getIntent().getStringExtra("ingredientString");
         String ingredientsFromPantry = getIntent().getStringExtra("ingredientsFromPantry");
         TextView txt_predictedIngredients = findViewById(R.id.txt_ingredientPage_predictedIngredients);
-        if (ingredientsFromCamera == null && ingredientsFromPantry == null) {
-            txt_predictedIngredients.setText("You have not entered any ingredients. \nClick the back button to take a picture of your ingredients to get started, or just type in the search bar below");
+
+        if (ingredientsFromPantry != null) {
+            txt_predictedIngredients.setText("The pantry has scanned: " + ingredientsFromPantry + "\nEnter the other ingredients you are missing, as well as select your preferences below.");
         }
 
         if (ingredientsFromCamera != null) {
             txt_predictedIngredients.setText("The camera has scanned: \n" + ingredientsFromCamera + "\nEnter the other ingredients you are missing, as well as select your preferences below.");
         }
 
-        if (ingredientsFromPantry != null) {
-            txt_predictedIngredients.setText("The pantry has scanned: " + ingredientsFromPantry + "\nEnter the other ingredients you are missing, as well as select your preferences below.");
-        }
+
 
         EditText searchIngredient = findViewById(R.id.edit_ingredientPage_searchIngredient);
         Button generateRecipes = findViewById(R.id.btn_ingredientPage_generateRecipes);

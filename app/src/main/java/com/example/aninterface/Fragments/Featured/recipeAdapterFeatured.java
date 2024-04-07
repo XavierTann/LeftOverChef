@@ -71,39 +71,38 @@ public class recipeAdapterFeatured extends RecyclerView.Adapter<recipeAdapterFea
         holder.recipeName.setText(featuredRecipeItem.getRecipeName());
         holder.recipeDescription.setText(featuredRecipeItem.getRecipeDescription());
 
-        holder.likeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int adapterPosition = holder.getAdapterPosition();
-                if (adapterPosition != RecyclerView.NO_POSITION) {
-                    featuredRecipeItem item = featuredRecipeItemList.get(adapterPosition);
-                    boolean isLiked = item.isLiked(); // Assume you have a boolean field 'isLiked' in your item class
-                    // Toggle the liked state
-                    item.setLiked(!isLiked);
+        holder.likeButton.setOnClickListener(v -> {
+            int adapterPosition = holder.getAdapterPosition();
+            if (adapterPosition != RecyclerView.NO_POSITION) {
+                featuredRecipeItem item = featuredRecipeItemList.get(adapterPosition);
+                boolean isLiked = item.isLiked(); // Assume you have a boolean field 'isLiked' in your item class
+                // Toggle the liked state
+                item.setLiked(!isLiked);
 
-                // Update the button image based on the liked state
-                holder.likeButton.setImageResource(item.isLiked() ? R.drawable.baseline_favorite_24 : R.drawable.baseline_favorite_border_24);
+            // Update the button image based on the liked state
+            holder.likeButton.setImageResource(item.isLiked() ? R.drawable.baseline_favorite_24 : R.drawable.baseline_favorite_border_24);
 
-                // Update Firebase
-                String phoneNumber = SharedPreferencesUtil.getPhoneNumber(context);
-                DatabaseReference itemAllRecipeRef = FirebaseDatabase.getInstance().getReference("all_recipes").child(firebaseRecipeName);
-                DatabaseReference itemFavouritesRef = FirebaseDatabase.getInstance().getReference("users").child(phoneNumber).child("favourites").child(firebaseRecipeName);
+            // Update Firebase
+            String phoneNumber = SharedPreferencesUtil.getPhoneNumber(context);
+            DatabaseReference itemAllRecipeRef = FirebaseDatabase.getInstance().getReference("all_recipes").child(firebaseRecipeName);
+            DatabaseReference itemFavouritesRef = FirebaseDatabase.getInstance().getReference("users").child(phoneNumber).child("favourites").child(firebaseRecipeName);
 
-                if (item.isLiked()) {
-                    itemAllRecipeRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            itemFavouritesRef.setValue(snapshot.getValue());}
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {}
-                    });
-                }
-                else {
-                    // If the recipe is now unliked, remove it from the user's favorites
-                    itemFavouritesRef.removeValue();}
+            if (item.isLiked()) {
+                itemAllRecipeRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        itemFavouritesRef.setValue(snapshot.getValue());}
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {}
+                });
+            }
+            else {
+                // If the recipe is now unliked, remove it from the user's favorites
+                itemFavouritesRef.removeValue();}
 
-            }}
-        });
+        }});
+
+        
         // Set OnClickListener for the recipeName TextView
         holder.recipeName.setOnClickListener(view -> {
             // Get the position of the clicked item
