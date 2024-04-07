@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -12,10 +13,17 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.example.aninterface.Fragments.Featured.featuredRecipeItem;
+import com.example.aninterface.HelperClass.FirebaseFunctions;
 import com.example.aninterface.HelperClass.SharedPreferencesUtil;
 import com.example.aninterface.R;
 import com.example.aninterface.SeeMorePage2;
 import com.google.android.material.imageview.ShapeableImageView;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.List;
 
@@ -63,6 +71,38 @@ public class RecipeAdapterHistory extends RecyclerView.Adapter<RecipeAdapterHist
                 context.startActivity(intent);
             }
         });
+
+        holder.likeButton.setOnClickListener(v -> {
+            int adapterPosition = holder.getAdapterPosition();
+            if (adapterPosition != RecyclerView.NO_POSITION) {
+                HistoryRecipeItem item = historyRecipeItemList.get(adapterPosition);
+                boolean isLiked = item.isLiked(); // Assume you have a boolean field 'isLiked' in your item class
+                // Toggle the liked state
+                item.setLiked(!isLiked);
+
+                // Update the button image based on the liked state
+                holder.likeButton.setImageResource(item.isLiked() ? R.drawable.baseline_favorite_24 : R.drawable.baseline_favorite_border_24);
+
+                // Update Firebase
+                String phoneNumber = SharedPreferencesUtil.getPhoneNumber(context);
+                String firebaseRecipeName = FirebaseFunctions.recipeNameToFirebaseKey(historyRecipeItem.getRecipeName());
+                DatabaseReference itemAllRecipeRef = FirebaseDatabase.getInstance().getReference("all_recipes").child(firebaseRecipeName);
+                DatabaseReference itemFavouritesRef = FirebaseDatabase.getInstance().getReference("users").child(phoneNumber).child("favourites").child(firebaseRecipeName);
+
+                if (item.isLiked()) {
+                    itemAllRecipeRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            itemFavouritesRef.setValue(snapshot.getValue());}
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {}
+                    });
+                }
+                else {
+                    // If the recipe is now unliked, remove it from the user's favorites
+                    itemFavouritesRef.removeValue();}
+
+            }});
     }
 
     @Override
@@ -74,12 +114,15 @@ public class RecipeAdapterHistory extends RecyclerView.Adapter<RecipeAdapterHist
         ShapeableImageView recipeThumbnail;
         TextView recipeName;
         TextView recipeDescription;
+        ImageView likeButton;
 
         public RecipeViewHolder(@NonNull View itemView) {
             super(itemView);
             recipeThumbnail = itemView.findViewById(R.id.history_recipe_thumbnail);
             recipeName = itemView.findViewById(R.id.history_recipe_name);
             recipeDescription = itemView.findViewById(R.id.history_recipe_description);
+            likeButton = itemView.findViewById(R.id.history_Like_Button);
+
         }
     }
 
