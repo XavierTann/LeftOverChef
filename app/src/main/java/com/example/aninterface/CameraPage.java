@@ -78,8 +78,8 @@ public class CameraPage extends AppCompatActivity {
         textPain.setStyle(Paint.Style.FILL);
 
         btn_backButton_Home.setOnClickListener(v -> {
-            Intent intent = new Intent(CameraPage.this, HomePage.class);
-            startActivity(intent);
+            Intent intentHome = new Intent(CameraPage.this, HomePage.class);
+            startActivity(intentHome);
         });
 
         btnNext.setOnClickListener(v -> {
@@ -117,13 +117,13 @@ public class CameraPage extends AppCompatActivity {
         });
 
 
-//        Button predictButton = findViewById(R.id.predictforcamera); // Assuming you have a button with id predictButton in your layout XML
-//        predictButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                predict(v); // Call the predict() method when the button is clicked
-//            }
-//        });
+        Button predictButton = findViewById(R.id.predictforcamera); // Assuming you have a button with id predictButton in your layout XML
+        predictButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                predict(v); // Call the predict() method when the button is clicked
+            }
+        });
     }
 
 
@@ -301,7 +301,6 @@ public class CameraPage extends AppCompatActivity {
                 return img;
         }
     }
-
     private static Bitmap rotateImage(Bitmap img, int degree) {
         Matrix matrix = new Matrix();
         matrix.postRotate(degree);
@@ -309,7 +308,4 @@ public class CameraPage extends AppCompatActivity {
         img.recycle();
         return rotatedImg;
     }
-
-
-
 }

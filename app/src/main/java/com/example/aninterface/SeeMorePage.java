@@ -42,7 +42,6 @@ public class SeeMorePage extends AppCompatActivity {
 
         backButton.setOnClickListener(v -> {
             finish();
-
         });
 
 

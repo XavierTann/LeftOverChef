@@ -52,7 +52,7 @@
                 android:textSize="17sp"
                 android:textColor="@color/black"
                 android:textStyle="bold"
-                android:text="Savor Every Bite, Save Every Byte"
+                android:text="Savor Every Bite, Save Every Bit"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
             <TextView
@@ -309,10 +309,14 @@
                 android:layout_marginTop="16dp"
                 android:orientation="horizontal">
 
-                <ImageView
+                <de.hdodenhof.circleimageview.CircleImageView
                     android:layout_width="125dp"
                     android:layout_height="125dp"
-                    android:src="@mipmap/ic_launcher_round" />
+                    android:src="@drawable/ourteam_priyanshi"
+                    android:scaleType="centerCrop"
+                    app:civ_border_width="2dp"
+                    app:civ_border_color="@color/lavender"
+                    />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -324,7 +328,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="5dp"
-                        android:text="Priyanshi Saroagi- Co Founder"
+                        android:text="Priyanshi Saraogi- Co Founder"
                         android:textStyle="bold" />
 
                     <TextView

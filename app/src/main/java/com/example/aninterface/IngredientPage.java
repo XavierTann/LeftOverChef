@@ -84,8 +84,7 @@ public class IngredientPage extends AppCompatActivity{
 
         ImageButton back_ingredientPage_Camera = findViewById(R.id.back_ingredientPage_Camera);
         back_ingredientPage_Camera.setOnClickListener(v -> {
-                Intent intent2 = new Intent(IngredientPage.this, CameraPage.class);
-                startActivity(intent2);
+            finish();
         });
     }
 
