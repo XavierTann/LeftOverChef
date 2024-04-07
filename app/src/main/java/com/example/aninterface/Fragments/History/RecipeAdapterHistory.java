@@ -25,11 +25,19 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class RecipeAdapterHistory extends RecyclerView.Adapter<RecipeAdapterHistory.RecipeViewHolder> {
     private Context context;
     private List<HistoryRecipeItem> historyRecipeItemList;
+    private Set<String> userFavourites = new HashSet<>();
+
+    public void setUserFavourites(Set<String> favourites) {
+        this.userFavourites = favourites;
+        notifyDataSetChanged();
+    }
 
     public RecipeAdapterHistory(Context context, List<HistoryRecipeItem> historyRecipeItemList) {
         this.context = context;
@@ -46,6 +54,12 @@ public class RecipeAdapterHistory extends RecyclerView.Adapter<RecipeAdapterHist
     @Override
     public void onBindViewHolder(@NonNull RecipeViewHolder holder, int position) {
         HistoryRecipeItem historyRecipeItem = historyRecipeItemList.get(position);
+
+        String firebaseRecipeName = FirebaseFunctions.recipeNameToFirebaseKey(historyRecipeItem.getRecipeName());
+        // Set like button state based on whether the item is favourited
+        boolean isFavourited = userFavourites.contains(firebaseRecipeName);
+        historyRecipeItem.setLiked(isFavourited);
+        holder.likeButton.setImageResource(isFavourited ? R.drawable.baseline_favorite_24 : R.drawable.baseline_favorite_border_24);
 
         Glide.with(holder.itemView.getContext())
                 .load(historyRecipeItem.getRecipeThumbnail())
@@ -85,7 +99,6 @@ public class RecipeAdapterHistory extends RecyclerView.Adapter<RecipeAdapterHist
 
                 // Update Firebase
                 String phoneNumber = SharedPreferencesUtil.getPhoneNumber(context);
-                String firebaseRecipeName = FirebaseFunctions.recipeNameToFirebaseKey(historyRecipeItem.getRecipeName());
                 DatabaseReference itemAllRecipeRef = FirebaseDatabase.getInstance().getReference("all_recipes").child(firebaseRecipeName);
                 DatabaseReference itemFavouritesRef = FirebaseDatabase.getInstance().getReference("users").child(phoneNumber).child("favourites").child(firebaseRecipeName);
 

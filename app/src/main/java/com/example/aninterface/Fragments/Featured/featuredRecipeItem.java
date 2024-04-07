@@ -16,8 +16,7 @@ public class featuredRecipeItem {
         this.liked = liked;
     }
 
-    public String getRecipeThumbnail() {return recipeThumbnail;
-    }
+    public String getRecipeThumbnail() {return recipeThumbnail;}
 
     public String getRecipeName() {
         return recipeName;

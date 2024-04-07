@@ -27,13 +27,16 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class HomeFragment extends Fragment {
 
     private List<HistoryRecipeItem> historyRecipeItemList;
     private RecyclerView historyRecyclerView;
     private RecipeAdapterHistory recipeAdapterHistory;
+    private Set<String> userFavorites = new HashSet<>();
 
     public HomeFragment() {
         // Required empty public constructor
@@ -91,6 +94,35 @@ public class HomeFragment extends Fragment {
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 // Handle any errors that may occur
+            }
+        });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        fetchUserFavourites(); // Refresh favorites when fragment resumes
+    }
+
+    public void fetchUserFavourites() {
+        String phoneNumber = SharedPreferencesUtil.getPhoneNumber(getContext());
+        DatabaseReference favouritesRef = FirebaseDatabase.getInstance().getReference("users").child(phoneNumber).child("favourites");
+        favouritesRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                userFavorites.clear();
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    userFavorites.add(snapshot.getKey());
+                }
+                if (recipeAdapterHistory != null) {
+                    recipeAdapterHistory.setUserFavourites(userFavorites);
+                    recipeAdapterHistory.notifyDataSetChanged(); // Refresh the adapter
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                // Handle error
             }
         });
     }
