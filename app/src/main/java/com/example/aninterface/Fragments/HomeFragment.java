@@ -1,5 +1,6 @@
 package com.example.aninterface.Fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -10,11 +11,15 @@ import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.aninterface.Fragments.History.HistoryRecipeItem;
 import com.example.aninterface.Fragments.History.RecipeAdapterHistory;
 import com.example.aninterface.HelperClass.SharedPreferencesUtil;
 import com.example.aninterface.R;
+import com.example.aninterface.RecipePage;
+import com.example.aninterface.SeeMorePage;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -47,6 +52,9 @@ public class HomeFragment extends Fragment {
         historyRecyclerView.setAdapter(recipeAdapterHistory);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         historyRecyclerView.setLayoutManager(layoutManager);
+//        TextView history_recipe_name = findViewById(R.id.history_recipe_name);
+
+
 
         return rootView;
     }
@@ -54,10 +62,6 @@ public class HomeFragment extends Fragment {
     // Generate mock recipe items for demonstration
     private List<HistoryRecipeItem> generateRecipeItems() {
         List<HistoryRecipeItem> historyRecipeItems = new ArrayList<>();
-        // Add your items to the RecyclerView here
-//        historyRecipeItems.add(new HistoryRecipeItem("recipe_thumbnail_1", "Recipe 1", "Description 1"));
-//        historyRecipeItems.add(new HistoryRecipeItem("recipe_thumbnail_2", "Recipe 2", "Description 2"));
-//        historyRecipeItems.add(new HistoryRecipeItem("recipe_thumbnail_3", "Recipe 3", "Description 3"));
         generateRecipeItemsFromFirebase(historyRecipeItems);
         return historyRecipeItems;
     }
@@ -90,5 +94,6 @@ public class HomeFragment extends Fragment {
             }
         });
     }
+
 
 }

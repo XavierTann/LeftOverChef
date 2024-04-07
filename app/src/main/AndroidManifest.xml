@@ -47,6 +47,10 @@
             android:name=".SeeMorePage"
             android:exported="false" />
         <activity
+            android:name=".SeeMorePage2"
+            android:exported="false" />
+
+        <activity
             android:name=".IngredientPage"
             android:windowSoftInputMode="adjustPan"
             android:exported="false" />

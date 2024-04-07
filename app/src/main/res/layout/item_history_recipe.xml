@@ -31,13 +31,13 @@
             />
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:id="@+id/history_recipe_name"
-            android:textStyle="bold"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:text="Recipe Name Test Test"
             android:textColor="@color/black"
-            android:textSize="13sp"/>
+            android:textSize="13sp"
+            android:textStyle="bold" />
 
     </LinearLayout>
 
