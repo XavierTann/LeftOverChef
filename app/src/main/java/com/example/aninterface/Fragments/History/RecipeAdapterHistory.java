@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.example.aninterface.HelperClass.SharedPreferencesUtil;
 import com.example.aninterface.R;
 import com.example.aninterface.SeeMorePage2;
 import com.google.android.material.imageview.ShapeableImageView;
@@ -53,9 +54,12 @@ public class RecipeAdapterHistory extends RecyclerView.Adapter<RecipeAdapterHist
             if (position1 != RecyclerView.NO_POSITION) {
                 // Handle the click event
                 HistoryRecipeItem clickedItem = historyRecipeItemList.get(position1);
+
                 // Start the SeeMorePage2 activity and pass necessary data
+                String phoneNumber = SharedPreferencesUtil.getPhoneNumber(context);
                 Intent intent = new Intent(context, SeeMorePage2.class);
                 intent.putExtra("recipeName", clickedItem.getRecipeName());
+                intent.putExtra("path", "users/" + phoneNumber +"recipe");
                 context.startActivity(intent);
             }
         });
