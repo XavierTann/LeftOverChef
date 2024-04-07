@@ -334,7 +334,8 @@ public class RecipePage extends AppCompatActivity {
 
         ImageButton backButton = findViewById(R.id.back_recipePage_ingredientpage);
         backButton.setOnClickListener(v -> {
-            finish();
+            Intent intentCP = new Intent(this, CameraPage.class);
+            startActivity(intentCP);
         });
 
     }
