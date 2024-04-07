@@ -257,6 +257,10 @@ public class PantryFragment extends Fragment implements SuggestionsAdapter.OnIte
         // Remove selected ingredients from the database
         removeIngredientsFromDatabase(ingredientsToRemoveKeys);
 
+        if (ingredientInfoList.isEmpty()) {
+            Toast.makeText(getContext(), "Please select at least one ingredient.", Toast.LENGTH_SHORT).show();
+            return;
+        }
         String recipeDetails = TextUtils.join("\n", ingredientInfoList);
         System.out.println(recipeDetails);
 
