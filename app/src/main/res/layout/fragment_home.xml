@@ -67,11 +67,7 @@
             android:layout_marginRight="20dp"
             android:layout_marginTop="5dp">
         </TextView>
-
-
-
     </LinearLayout>
-
 
 
 
@@ -84,11 +80,23 @@
         android:orientation="vertical"
         android:padding="2dp">
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Recent Recipes"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:padding="10dp" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@color/black" />
+
+
+
+
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/historyRecyclerView"

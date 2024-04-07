@@ -22,10 +22,10 @@ import com.google.firebase.database.ValueEventListener;
 
 public class SeeMorePage2 extends AppCompatActivity {
 
-    private static String recipeDescription;
-    private static String recipeImage;
-    private static String recipeName;
-    private static String userPhoneNumber;
+    private String recipeDescription;
+    private String recipeImage;
+    private String recipeName;
+    private String userPhoneNumber;
 
 
     @Override
@@ -34,43 +34,43 @@ public class SeeMorePage2 extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.see_more2);
 
-        ImageView imageRecipeImage = findViewById(R.id.image_individualRecipe_recipeImage2);
-        TextView textRecipeDescription = findViewById(R.id.text_individualRecipe_recipeDescription2);
-        ImageButton backButton = findViewById(R.id.back_individualingredientPage_recipepage2);
-//        userPhoneNumber = SharedPreferencesUtil.getPhoneNumber(getApplicationContext());
-        userPhoneNumber = "85000421";
-//        Intent intent = getIntent();
-//        SeeMorePage2.recipeDescription = intent.getStringExtra("recipeDescription");
-//        SeeMorePage2.recipeImage = intent.getStringExtra("recipeImage");
 
-        recipeName = "Potato_Gnocchi";
+//    userPhoneNumber = SharedPreferencesUtil.getPhoneNumber(getApplicationContext());
+//    Intent intent = getIntent();
+//    SeeMorePage2.recipeDescription = intent.getStringExtra("recipeDescription");
+//    SeeMorePage2.recipeImage = intent.getStringExtra("recipeImage");
 
-        textRecipeDescription.setText(recipeDescription);
-        Picasso.get().load(recipeImage).into(imageRecipeImage);
-
-        backButton.setOnClickListener(v -> {
-            Intent intent2 = new Intent(this, HomePage.class);
-            startActivity(intent2);
-
-        });
-
+        userPhoneNumber = SharedPreferencesUtil.getPhoneNumber(getApplicationContext());
+        recipeName = getIntent().getStringExtra("recipeName");
         fetchRecipeDetails(recipeName);
 
+        ImageButton backButton = findViewById(R.id.back_individualingredientPage_recipepage2);
+        backButton.setOnClickListener(v -> {
+            finish();
+        });
     }
-
-
 
     public void fetchRecipeDetails(String recipeName) {
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
-        Query query = databaseReference.child("users").child(userPhoneNumber).child("recipes").orderByChild("recipeName").equalTo(recipeName);
+        Query query = databaseReference.child("users").child("85000421").child("recipe");
 
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // Assuming there's only one recipe with the given name
                 for (DataSnapshot recipeSnapshot : dataSnapshot.getChildren()) {
-                    recipeDescription = recipeSnapshot.child("recipeDescription").getValue(String.class);
-                    recipeImage = recipeSnapshot.child("imageUrl").getValue(String.class);
+                    if (recipeSnapshot.child("recipeName").getValue(String.class).equals(recipeName)) {
+                        recipeDescription = recipeSnapshot.child("cookingInstructions").getValue(String.class);
+                        recipeImage = recipeSnapshot.child("imageUrl").getValue(String.class);
+
+                        //Initialize the views
+                        ImageView imageRecipeImage = findViewById(R.id.image_individualRecipe_recipeImage2);
+                        TextView textRecipeDescription = findViewById(R.id.text_individualRecipe_recipeDescription2);
+
+                        // Set the text and image after fetching the recipe details
+                        textRecipeDescription.setText(recipeDescription);
+                        Picasso.get().load(recipeImage).into(imageRecipeImage);
+                    }
                 }
             }
 
@@ -80,6 +80,7 @@ public class SeeMorePage2 extends AppCompatActivity {
             }
         });
     }
+
 
 
 }
