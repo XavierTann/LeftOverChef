@@ -112,7 +112,8 @@ public class HomePage extends AppCompatActivity {
         });
 
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, pantryFragment).commit();
+        bottomNavigationView.setSelectedItemId(R.id.menu_home);
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, homeFragment).commit();
 
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override

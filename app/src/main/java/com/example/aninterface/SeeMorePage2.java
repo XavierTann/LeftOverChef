@@ -60,7 +60,7 @@ public class SeeMorePage2 extends AppCompatActivity {
 
     public void fetchRecipeDetails(String recipeName) {
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
-        Query query = databaseReference.child("users").child("85000421").child("recipe");
+        Query query = databaseReference.child("users").child(userPhoneNumber).child("recipe");
 
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override

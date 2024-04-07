@@ -52,7 +52,7 @@
                 android:textSize="17sp"
                 android:textColor="@color/black"
                 android:textStyle="bold"
-                android:text="Savor Every Bite, Save Every Byte"
+                android:text="Savor Every Bite, Save Every Bit"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
             <TextView
