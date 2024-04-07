@@ -60,7 +60,7 @@ public class CameraPage extends AppCompatActivity {
         setContentView(R.layout.camera);
         requestNecessaryPermissions();
         imageView = findViewById(R.id.imageViewforcamera);
-//        textview = findViewById(R.id.textViewforcamera);
+        textview = findViewById(R.id.textViewforcamera);
         camera = findViewById(R.id.Cameraforcamera);
         gallery = findViewById(R.id.Storageforcamera);
         btn_backButton_Home = findViewById(R.id.btn_backButton_Home);
@@ -125,9 +125,6 @@ public class CameraPage extends AppCompatActivity {
             }
         });
     }
-
-
-
     public void selectImage(View view){
         Intent intent = new Intent();
         intent.setAction(Intent.ACTION_PICK);
