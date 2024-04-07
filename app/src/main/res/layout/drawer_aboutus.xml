@@ -89,8 +89,8 @@
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/CIV_yuhueng"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
+                    android:layout_width="125dp"
+                    android:layout_height="125dp"
                     android:src="@drawable/ourteam_yuhueng"
                     android:scaleType="centerCrop"
                     app:civ_border_width="2dp"
@@ -98,20 +98,22 @@
                     />
                 <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="8dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="3dp"
                     android:orientation="vertical">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Ng Yu Hueng - Role"
+                        android:padding="5dp"
+                        android:text="Ng Yu Hueng - Co Founder"
                         android:textStyle="bold" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Short description of the member" />
+                        android:padding="5dp"
+                        android:text="With a vision rooted in a greener planet, I weave sustainability into the fabric of our culinary journey, ensuring that every dish tells a story of environmental stewardship." />
                 </LinearLayout>
 
             </LinearLayout>
@@ -124,8 +126,8 @@
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/CIV_xavier"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
+                    android:layout_width="125dp"
+                    android:layout_height="125dp"
                     android:src="@drawable/ourteam_xavier"
                     android:scaleType="centerCrop"
                     app:civ_border_width="2dp"
@@ -133,20 +135,22 @@
                     />
                 <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="8dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="3dp"
                     android:orientation="vertical">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Reivax Nat - Role"
+                        android:padding="5dp"
+                        android:text="Reivax Nat - Co Founder"
                         android:textStyle="bold" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Short description of the member" />
+                        android:padding="5dp"
+                        android:text="Embarking on a quest for culinary reinvention, I dedicate my craft to transforming everyday ingredients into sustainable gourmet experiences, leading the charge in the future of food." />
                 </LinearLayout>
 
             </LinearLayout>
@@ -158,8 +162,8 @@
                 android:orientation="horizontal">
 
                 <de.hdodenhof.circleimageview.CircleImageView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
+                    android:layout_width="125dp"
+                    android:layout_height="125dp"
                     android:src="@drawable/ourteam_jithin"
                     android:scaleType="centerCrop"
                     app:civ_border_width="2dp"
@@ -168,20 +172,22 @@
 
                 <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="8dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="3dp"
                     android:orientation="vertical">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Jithin Bathula - Role"
+                        android:padding="5dp"
+                        android:text="Jithin Bathula - Co Founder"
                         android:textStyle="bold" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Short description of the member" />
+                        android:padding="5dp"
+                        android:text="Committed to the creed 'every bite counts', I spearhead initiatives to reclaim the overlooked and underused, setting new standards in the fight against food waste" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -193,8 +199,8 @@
                 android:orientation="horizontal">
 
                 <de.hdodenhof.circleimageview.CircleImageView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
+                    android:layout_width="125dp"
+                    android:layout_height="125dp"
                     android:src="@drawable/ourteam_zen"
                     android:scaleType="centerCrop"
                     app:civ_border_width="2dp"
@@ -203,20 +209,22 @@
 
                 <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="8dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="3dp"
                     android:orientation="vertical">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Member Name - Role"
+                        android:text="Chan Wei Ping, Zen - Co Founder"
+                        android:padding="5dp"
                         android:textStyle="bold" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Short description of the member" />
+                        android:padding="5dp"
+                        android:text="In the symphony of flavors, I conduct a movement of ethical eating, harmonizing nutritional integrity with environmental consciousness, crafting menus that echo our eco-centric ethos." />
                 </LinearLayout>
 
             </LinearLayout>
@@ -228,8 +236,8 @@
                 android:orientation="horizontal">
 
                 <de.hdodenhof.circleimageview.CircleImageView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
+                    android:layout_width="125dp"
+                    android:layout_height="125dp"
                     android:src="@drawable/ourteam_augustine"
                     android:scaleType="centerCrop"
                     app:civ_border_width="2dp"
@@ -238,20 +246,22 @@
 
                 <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="8dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="3dp"
                     android:orientation="vertical">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Member Name - Role"
+                        android:padding="5dp"
+                        android:text="Augustine Lim - Co Founder"
                         android:textStyle="bold" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Short description of the member" />
+                        android:padding="5dp"
+                        android:text="At the crossroads of tradition and innovation, I explore uncharted culinary territories, blending science and artistry to revolutionize how we perceive, prepare, and preserve food." />
                 </LinearLayout>
 
             </LinearLayout>
@@ -263,8 +273,8 @@
                 android:orientation="horizontal">
 
                 <de.hdodenhof.circleimageview.CircleImageView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
+                    android:layout_width="125dp"
+                    android:layout_height="125dp"
                     android:src="@drawable/ourteam_elan"
                     android:scaleType="centerCrop"
                     app:civ_border_width="2dp"
@@ -273,20 +283,22 @@
 
                 <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="8dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="3dp"
                     android:orientation="vertical">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Member Name - Role"
+                        android:text="Elan Kumuthan - Co Founder"
+                        android:padding="5dp"
                         android:textStyle="bold" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Short description of the member" />
+                        android:padding="5dp"
+                        android:text="Merging the art of cooking with cutting-edge technology, I strive to design solutions that make sustainable eating accessible and engaging, transforming the way we interact with our food." />
                 </LinearLayout>
 
             </LinearLayout>
@@ -298,26 +310,28 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:src="@mipmap/ic_launcher_round" /> <!-- Replace with a drawable or image resource -->
+                    android:layout_width="125dp"
+                    android:layout_height="125dp"
+                    android:src="@mipmap/ic_launcher_round" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="8dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="3dp"
                     android:orientation="vertical">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Member Name - Role"
+                        android:padding="5dp"
+                        android:text="Priyanshi Saroagi- Co Founder"
                         android:textStyle="bold" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Short description of the member" />
+                        android:padding="5dp"
+                        android:text="Believing in the power of food to unite and inspire, I lead our community outreach initiatives, forging connections through shared culinary adventures. My goal is to cultivate a global community passionate about making impactful dietary choices, emphasizing that together, we can shape a future where food is thoughtfully enjoyed and responsibly consumed." />
                 </LinearLayout>
 
             </LinearLayout>
