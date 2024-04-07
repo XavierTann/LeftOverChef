@@ -26,8 +26,13 @@ public class SeeMorePage2 extends AppCompatActivity {
     private static String recipeImage;
     private static String recipeName;
     private static String userPhoneNumber;
-
-
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        if (hasFocus) {
+            // Use the same system UI visibility code as in onCreate
+        }
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

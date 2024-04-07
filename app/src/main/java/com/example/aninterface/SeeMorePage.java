@@ -16,6 +16,14 @@ public class SeeMorePage extends AppCompatActivity {
     private static String recipeDescription;
     private static String recipeImage;
     @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        if (hasFocus) {
+            // Use the same system UI visibility code as in onCreate
+        }
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);

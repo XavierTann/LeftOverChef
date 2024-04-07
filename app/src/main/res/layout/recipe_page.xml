@@ -52,85 +52,91 @@
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:background="@drawable/bg_pastelorange_lessrounded"
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
+        android:elevation="10dp"
         android:layout_height="200dp"
-        android:layout_marginTop="15dp"
         android:layout_marginStart="5dp"
+        android:layout_marginTop="15dp"
         android:layout_marginEnd="5dp"
+        android:background="@drawable/bg_pastelorange_lessrounded"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView28">
 
-        <ImageView
-            android:id="@+id/image_recipePage_searchedImage1"
-            android:layout_width="170dp"
-            android:layout_height="170dp"
-            android:scaleType="fitXY"
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/materialCardView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.95"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:srcCompat="@tools:sample/avatars" />
-
-        <ScrollView
-            android:id="@+id/scrollView1"
-            android:layout_width="200dp"
-            android:layout_height="130dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="10dp"
-            app:layout_constraintEnd_toStartOf="@+id/image_recipePage_searchedImage1"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
-                android:id="@+id/text_recipePage_generatedRecipe1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:maxLines="8"
-                android:scrollbars="vertical"
-                android:text="Recipe" />
+            <ImageView
+                android:id="@+id/image_recipePage_searchedImage1"
+                android:layout_width="170dp"
+                android:layout_height="170dp"
+                android:layout_marginEnd="5dp"
+                android:scaleType="fitXY"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:srcCompat="@tools:sample/avatars" />
+        </com.google.android.material.card.MaterialCardView>
 
-        </ScrollView>
 
-
-        <Button
-            android:id="@+id/btn_recipePage_seeMore1"
-            android:layout_width="190dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="14dp"
-            android:text="See more"
-            android:textSize="10dp"
+        <LinearLayout
+            android:id="@+id/linearLayoutRecipePage1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/image_recipePage_searchedImage1"
-            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintEnd_toStartOf="@+id/materialCardView"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/scrollView1"
-            app:layout_constraintVertical_bias="0.5" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.5">
 
-        <ImageView
-            android:id="@+id/image_recipePage_favourite1"
-            android:visibility="gone"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_marginTop="19dp"
-            android:layout_marginEnd="12dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/image_recipePage_searchedImage1"
-            app:layout_constraintTop_toBottomOf="@+id/scrollView1"
-            app:layout_constraintVertical_bias="0.5"
-            app:srcCompat="@drawable/baseline_favorite_border_24" />
+            <ScrollView
+                android:id="@+id/scrollView1"
+                android:layout_width="match_parent"
+                android:layout_height="130dp"
+                android:layout_marginStart="2dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="2dp">
+
+                <TextView
+                    android:id="@+id/text_recipePage_generatedRecipe1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="12"
+                    android:scrollbars="vertical"
+                    android:text="Recipe" />
+            </ScrollView>
+
+
+            <Button
+                android:id="@+id/btn_recipePage_seeMore1"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:backgroundTint="@color/orange"
+                android:text="See more"
+                android:textSize="10dp" />
+        </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:background="@drawable/bg_pastelorange_lessrounded"
         android:id="@+id/constraintLayout2"
+        android:elevation="10dp"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:layout_marginTop="20dp"
@@ -141,65 +147,70 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
 
-        <ImageView
-            android:id="@+id/image_recipePage_searchedImage2"
-            android:layout_width="170dp"
-            android:layout_height="170dp"
-            android:scaleType="fitXY"
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/materialCardView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.95"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:srcCompat="@tools:sample/avatars" />
-
-        <Button
-            android:id="@+id/btn_recipePage_seeMore2"
-            android:layout_width="190dp"
-            android:layout_height="40dp"
-            android:text="See more"
-            android:textSize="10dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/image_recipePage_searchedImage2"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/scrollView2"
-            app:layout_constraintVertical_bias="0.5" />
-
-        <ScrollView
-            android:id="@+id/scrollView2"
-            android:layout_width="200dp"
-            android:layout_height="130dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="10dp"
-            app:layout_constraintEnd_toStartOf="@+id/image_recipePage_searchedImage2"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
-                android:id="@+id/text_recipePage_generatedRecipe2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:maxLines="8"
-                android:scrollbars="vertical"
-                android:text="Recipe" />
+            <ImageView
+                android:id="@+id/image_recipePage_searchedImage2"
+                android:layout_width="170dp"
+                android:layout_height="170dp"
+                android:layout_marginEnd="5dp"
+                android:scaleType="fitXY"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:srcCompat="@tools:sample/avatars" />
 
-        </ScrollView>
+        </com.google.android.material.card.MaterialCardView>
 
-
-        <ImageView
-            android:visibility="gone"
-            android:id="@+id/image_recipePage_favourite2"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_marginEnd="12dp"
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/image_recipePage_searchedImage2"
-            app:layout_constraintTop_toBottomOf="@+id/scrollView2"
-            app:layout_constraintVertical_bias="0.5"
-            app:srcCompat="@drawable/baseline_favorite_border_24" />
+            app:layout_constraintEnd_toStartOf="@+id/materialCardView2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.5">
+
+            <ScrollView
+                android:id="@+id/scrollView2"
+                android:layout_width="match_parent"
+                android:layout_height="130dp"
+                android:layout_marginStart="2dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="2dp">
+
+                <TextView
+                    android:id="@+id/text_recipePage_generatedRecipe2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="12"
+                    android:scrollbars="vertical"
+                    android:text="Recipe" />
+            </ScrollView>
+
+            <Button
+                android:id="@+id/btn_recipePage_seeMore2"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:backgroundTint="@color/orange"
+                android:text="See more"
+                android:textSize="10dp" />
+        </LinearLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -207,6 +218,7 @@
         android:id="@+id/constraintLayout3"
         android:layout_width="match_parent"
         android:layout_height="200dp"
+        android:elevation="10dp"
         android:layout_marginTop="20dp"
         android:layout_marginStart="5dp"
         android:layout_marginEnd="5dp"
@@ -214,63 +226,94 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/constraintLayout2">
-        <ImageView
-            android:id="@+id/image_recipePage_searchedImage3"
-            android:layout_width="170dp"
-            android:layout_height="170dp"
-            android:scaleType="fitXY"
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/materialCardView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.95"
+            app:layout_constraintTop_toTopOf="parent">
+            <ImageView
+                android:id="@+id/image_recipePage_searchedImage3"
+                android:layout_width="170dp"
+                android:layout_height="170dp"
+                android:layout_marginEnd="5dp"
+                android:scaleType="fitXY"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:srcCompat="@tools:sample/avatars" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/materialCardView3"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:srcCompat="@tools:sample/avatars" />
+            app:layout_constraintWidth_percent="0.5">
 
-        <Button
-            android:id="@+id/btn_recipePage_seeMore3"
-            android:layout_width="190dp"
-            android:layout_height="40dp"
-            android:text="See more"
-            android:textSize="10dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/image_recipePage_searchedImage3"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/scrollView3"
-            app:layout_constraintVertical_bias="0.5" />
-        <ScrollView
-            android:id="@+id/scrollView3"
-            android:layout_width="200dp"
-            android:layout_height="130dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="10dp"
-            app:layout_constraintEnd_toStartOf="@+id/image_recipePage_searchedImage3"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <TextView
-                android:id="@+id/text_recipePage_generatedRecipe3"
+            <ScrollView
+                android:id="@+id/scrollView3"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:maxLines="8"
-                android:scrollbars="vertical"
-                android:text="Recipe" />
+                android:layout_height="130dp"
+                android:layout_marginStart="2dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="2dp">
 
-        </ScrollView>
+                <TextView
+                    android:id="@+id/text_recipePage_generatedRecipe3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="12"
+                    android:scrollbars="vertical"
+                    android:text="Recipe" />
 
-        <ImageView
-            android:visibility="gone"
-            android:id="@+id/image_recipePage_favourite3"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_marginEnd="12dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/image_recipePage_searchedImage3"
-            app:layout_constraintTop_toBottomOf="@+id/scrollView3"
-            app:layout_constraintVertical_bias="0.5"
-            app:srcCompat="@drawable/baseline_favorite_border_24" />
+            </ScrollView>
+
+            <Button
+                android:id="@+id/btn_recipePage_seeMore3"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:backgroundTint="@color/orange"
+                android:text="See more"
+                android:textSize="10dp" />
+
+        </LinearLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageView
+        android:visibility="gone"
+        android:id="@+id/image_recipePage_favourite3"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginEnd="12dp"
+        app:srcCompat="@drawable/baseline_favorite_border_24" />
+
+    <ImageView
+        android:id="@+id/image_recipePage_favourite1"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="19dp"
+        android:layout_marginEnd="12dp"
+        android:visibility="gone"
+        app:srcCompat="@drawable/baseline_favorite_border_24" />
+    <ImageView
+        android:visibility="gone"
+        android:id="@+id/image_recipePage_favourite2"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginEnd="12dp"
+        app:srcCompat="@drawable/baseline_favorite_border_24" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

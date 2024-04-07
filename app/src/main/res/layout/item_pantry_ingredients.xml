@@ -35,7 +35,7 @@
             android:gravity="center"
             android:text="Amount"
             android:fontFamily="@font/caveatbrush"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="5dp"
             android:textStyle="bold"
             android:textSize="13sp" />
         <TextView
@@ -46,7 +46,7 @@
             android:gravity="center"
             android:fontFamily="@font/caveatbrush"
             android:textStyle="bold"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="5dp"
             android:text="Units"
             android:textSize="13sp" />
 
