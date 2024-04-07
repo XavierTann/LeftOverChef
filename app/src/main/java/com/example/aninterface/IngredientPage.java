@@ -41,12 +41,12 @@ public class IngredientPage extends AppCompatActivity{
         String ingredientsFromPantry = getIntent().getStringExtra("ingredientsFromPantry");
         TextView txt_predictedIngredients = findViewById(R.id.txt_ingredientPage_predictedIngredients);
         if (ingredientsFromCamera != null) {
-            txt_predictedIngredients.setText("The camera has scanned: " + ingredientsFromCamera + "Enter the other ingredients it is missing, as well as select your preferences below.");
+            txt_predictedIngredients.setText("The camera has scanned: " + ingredientsFromCamera + "\nEnter the other ingredients it is missing, as well as select your preferences below.");
         } else {
             txt_predictedIngredients.setText("No ingredients were scanned from the camera. Take a picture of your ingredients to get started, or just type in the search bar below");
         }
         if (ingredientsFromPantry != null) {
-            txt_predictedIngredients.setText("The pantry has scanned: " + ingredientsFromPantry + "Enter the other ingredients it is missing, as well as select your preferences below.");
+            txt_predictedIngredients.setText("The pantry has scanned: " + ingredientsFromPantry + "\nEnter the other ingredients it is missing, as well as select your preferences below.");
         } else {
             txt_predictedIngredients.setText("No ingredients were scanned from the pantry. Take a picture of your ingredients to get started, or just type in the search bar below");
         }
@@ -83,7 +83,7 @@ public class IngredientPage extends AppCompatActivity{
 
         ImageButton back_ingredientPage_Camera = findViewById(R.id.back_ingredientPage_Camera);
         back_ingredientPage_Camera.setOnClickListener(v -> {
-                Intent intent2 = new Intent(IngredientPage.this, CameraRecognition.class);
+                Intent intent2 = new Intent(IngredientPage.this, CameraPage.class);
                 startActivity(intent2);
         });
     }

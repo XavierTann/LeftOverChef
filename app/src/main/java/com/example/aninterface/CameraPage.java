@@ -77,51 +77,42 @@ public class CameraPage extends AppCompatActivity {
         textPain.setColor(Color.GREEN);
         textPain.setStyle(Paint.Style.FILL);
 
-        btn_backButton_Home.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(CameraRecognition.this, Home.class);
-                startActivity(intent);
-            }
+        btn_backButton_Home.setOnClickListener(v -> {
+            Intent intent = new Intent(CameraPage.this, HomePage.class);
+            startActivity(intent);
         });
 
-        btnNext.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Start the IngredientPage activity
-                Intent intent = new Intent(CameraPage.this, IngredientPage.class);
-                intent.putExtra("ingredientString", (CharSequence) ingredientString); // Pass the bitmap image
-                startActivity(intent);
-            }
+        btnNext.setOnClickListener(v -> {
+            // Start the IngredientPage activity
+            Intent intent = new Intent(CameraPage.this, IngredientPage.class);
+            intent.putExtra("ingredientString", (CharSequence) ingredientString); // Pass the bitmap image
+            startActivity(intent);
         });
 
-        camera.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                // Ensure that there's a camera activity to handle the intent
-                if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-                    // Create the File where the photo should go
-                    Uri photoURI = null;
-                    try {
-                        photoURI = createImageFile();
-                        takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+        camera.setOnClickListener(v -> {
+            Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            // Ensure that there's a camera activity to handle the intent
+            if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+                // Create the File where the photo should go
+                Uri photoURI = null;
+                try {
+                    photoURI = createImageFile();
+                    takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
 
-                        // Explicitly check for camera availability
-                        if (takePictureIntent.resolveActivity(getPackageManager()) == null) {
-                            // No camera app available to handle the intent
-                            return; // Early return if no camera is available
-                        }
-
-                        startActivityForResult(takePictureIntent, 12);
-                    } catch (IOException ex) {
-                        // Error occurred while creating the File
-                        // Handle the error
+                    // Explicitly check for camera availability
+                    if (takePictureIntent.resolveActivity(getPackageManager()) == null) {
+                        // No camera app available to handle the intent
+                        return; // Early return if no camera is available
                     }
-                } else {
-                    // No camera app available to handle the intent
-                    // Optionally, alert the user that no camera app is available
+
+                    startActivityForResult(takePictureIntent, 12);
+                } catch (IOException ex) {
+                    // Error occurred while creating the File
+                    // Handle the error
                 }
+            } else {
+                // No camera app available to handle the intent
+                // Optionally, alert the user that no camera app is available
             }
         });
 
