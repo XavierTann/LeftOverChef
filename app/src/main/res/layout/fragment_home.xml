@@ -35,24 +35,53 @@
         </TextView>
 
 
+
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="110dp"
+        android:background="@drawable/border_orange_morerounded"
+        android:padding="10dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="15dp"
+            android:text="@string/instruction"
+            android:textColor="@color/black"
+            android:textSize="13sp"
+            android:fontFamily="@font/dm_serif_text"
+            android:gravity="center">
+        </TextView>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/instructions"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            android:fontFamily="@font/dm_serif_text"
+            android:gravity="left"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="5dp">
+        </TextView>
+
+
+
+    </LinearLayout>
+
+
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="500dp"
         android:layout_marginStart="5dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="350dp"
         android:layout_marginEnd="5dp"
         android:orientation="vertical"
         android:padding="2dp">
-
-        <SearchView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bg_pastelorange_rounded"
-            android:layout_marginTop="5dp">
-        </SearchView>
 
 
         <View

@@ -117,8 +117,16 @@ public class CameraPage extends AppCompatActivity {
         });
 
 
-
+//        Button predictButton = findViewById(R.id.predictforcamera); // Assuming you have a button with id predictButton in your layout XML
+//        predictButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                predict(v); // Call the predict() method when the button is clicked
+//            }
+//        });
     }
+
+
 
     public void selectImage(View view){
         Intent intent = new Intent();

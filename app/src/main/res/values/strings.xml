@@ -3,6 +3,7 @@
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
+
     <string name="next">Next</string>
     <string name="previous">Previous</string>
 
@@ -13,6 +14,20 @@
     <string name="duration">
         Duration
     </string>
-    <!-- TODO: Remove or change this placeholder text -->
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="instructions">
+        "You can add your ingredients in two ways.
+One, you can take a picture with the camera at the bottom of the screen and the app will recognize the item for you.
+Two, you can take a look at our pantry page and manually type in your ingredients.
+After that, press the generate recipes button and type in your preferences like cuisine, diet, and meal type.
+Press the generate button and the app will generate recipes for you.
+Enjoy your food!"
+
+    </string>
+
+    <string name="instruction">
+        <u>  Instructions  </u>
+    </string>
 </resources>
