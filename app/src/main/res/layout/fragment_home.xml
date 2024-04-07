@@ -50,6 +50,7 @@
             android:layout_height="15dp"
             android:text="@string/instruction"
             android:textColor="@color/black"
+            android:textStyle="bold"
             android:textSize="13sp"
             android:fontFamily="@font/dm_serif_text"
             android:gravity="center">

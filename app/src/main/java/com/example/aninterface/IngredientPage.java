@@ -40,15 +40,16 @@ public class IngredientPage extends AppCompatActivity{
         String ingredientsFromCamera = getIntent().getStringExtra("ingredientString");
         String ingredientsFromPantry = getIntent().getStringExtra("ingredientsFromPantry");
         TextView txt_predictedIngredients = findViewById(R.id.txt_ingredientPage_predictedIngredients);
-        if (ingredientsFromCamera != null) {
-            txt_predictedIngredients.setText("The camera has scanned: " + ingredientsFromCamera + "\nEnter the other ingredients it is missing, as well as select your preferences below.");
-        } else {
-            txt_predictedIngredients.setText("No ingredients were scanned from the camera. Take a picture of your ingredients to get started, or just type in the search bar below");
+        if (ingredientsFromCamera == null && ingredientsFromPantry == null) {
+            txt_predictedIngredients.setText("You have not entered any ingredients. \nClick the back button to take a picture of your ingredients to get started, or just type in the search bar below");
         }
+
+        if (ingredientsFromCamera != null) {
+            txt_predictedIngredients.setText("The camera has scanned: " + ingredientsFromCamera + "\nEnter the other ingredients you are missing, as well as select your preferences below.");
+        }
+
         if (ingredientsFromPantry != null) {
-            txt_predictedIngredients.setText("The pantry has scanned: " + ingredientsFromPantry + "\nEnter the other ingredients it is missing, as well as select your preferences below.");
-        } else {
-            txt_predictedIngredients.setText("No ingredients were scanned from the pantry. Take a picture of your ingredients to get started, or just type in the search bar below");
+            txt_predictedIngredients.setText("The pantry has scanned: " + ingredientsFromPantry + "\nEnter the other ingredients you are missing, as well as select your preferences below.");
         }
 
         EditText searchIngredient = findViewById(R.id.edit_ingredientPage_searchIngredient);

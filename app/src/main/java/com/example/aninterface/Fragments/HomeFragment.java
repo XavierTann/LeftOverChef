@@ -45,7 +45,7 @@ public class HomeFragment extends Fragment {
         historyRecyclerView = rootView.findViewById(R.id.historyRecyclerView);
         recipeAdapterHistory = new RecipeAdapterHistory(getContext(), historyRecipeItemList);
         historyRecyclerView.setAdapter(recipeAdapterHistory);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         historyRecyclerView.setLayoutManager(layoutManager);
 
         return rootView;
@@ -55,17 +55,17 @@ public class HomeFragment extends Fragment {
     private List<HistoryRecipeItem> generateRecipeItems() {
         List<HistoryRecipeItem> historyRecipeItems = new ArrayList<>();
         // Add your items to the RecyclerView here
-        historyRecipeItems.add(new HistoryRecipeItem("recipe_thumbnail_1", "Recipe 1", "Description 1"));
-        historyRecipeItems.add(new HistoryRecipeItem("recipe_thumbnail_2", "Recipe 2", "Description 2"));
-        historyRecipeItems.add(new HistoryRecipeItem("recipe_thumbnail_3", "Recipe 3", "Description 3"));
-//        generateRecipeItemsFromFirebase(historyRecipeItems);
+//        historyRecipeItems.add(new HistoryRecipeItem("recipe_thumbnail_1", "Recipe 1", "Description 1"));
+//        historyRecipeItems.add(new HistoryRecipeItem("recipe_thumbnail_2", "Recipe 2", "Description 2"));
+//        historyRecipeItems.add(new HistoryRecipeItem("recipe_thumbnail_3", "Recipe 3", "Description 3"));
+        generateRecipeItemsFromFirebase(historyRecipeItems);
         return historyRecipeItems;
     }
 
     private void generateRecipeItemsFromFirebase(List<HistoryRecipeItem> historyRecipeItems) {
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
         String phoneNumber = SharedPreferencesUtil.getPhoneNumber(getActivity().getApplicationContext());
-        databaseReference.child("user_history").child(phoneNumber).addListenerForSingleValueEvent(new ValueEventListener() {
+        databaseReference.child("users").child(phoneNumber).child("recipe").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 int recipeCount = 0; // Counter to limit to three recipes
