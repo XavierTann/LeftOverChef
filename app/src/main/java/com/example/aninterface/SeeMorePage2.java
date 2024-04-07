@@ -28,6 +28,14 @@ public class SeeMorePage2 extends AppCompatActivity {
     private String userPhoneNumber;
 
 
+    
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        if (hasFocus) {
+            // Use the same system UI visibility code as in onCreate
+        }
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

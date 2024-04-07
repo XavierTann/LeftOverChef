@@ -16,6 +16,14 @@ public class SeeMorePage extends AppCompatActivity {
     private static String recipeDescription;
     private static String recipeImage;
     @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        if (hasFocus) {
+            // Use the same system UI visibility code as in onCreate
+        }
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
@@ -33,8 +41,7 @@ public class SeeMorePage extends AppCompatActivity {
         Picasso.get().load(recipeImage).into(imageRecipeImage);
 
         backButton.setOnClickListener(v -> {
-            Intent intent2 = new Intent(this, RecipePage.class);
-            startActivity(intent2);
+            finish();
 
         });
 
