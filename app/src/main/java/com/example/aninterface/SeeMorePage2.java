@@ -27,6 +27,8 @@ public class SeeMorePage2 extends AppCompatActivity {
     private String recipeName;
     private String userPhoneNumber;
 
+
+    
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);

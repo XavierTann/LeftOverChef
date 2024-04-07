@@ -1,6 +1,7 @@
 package com.example.aninterface.Fragments.Featured;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,9 +13,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.example.aninterface.Fragments.Favourites.favouritesRecipeItem;
 import com.example.aninterface.HelperClass.SharedPreferencesUtil;
 import com.example.aninterface.HelperClass.FirebaseFunctions;
 import com.example.aninterface.R;
+import com.example.aninterface.SeeMorePage2;
 import com.google.android.material.imageview.ShapeableImageView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -101,6 +104,20 @@ public class recipeAdapterFeatured extends RecyclerView.Adapter<recipeAdapterFea
 
             }}
         });
+        // Set OnClickListener for the recipeName TextView
+        holder.recipeName.setOnClickListener(view -> {
+            // Get the position of the clicked item
+            int position1 = holder.getAdapterPosition();
+            if (position1 != RecyclerView.NO_POSITION) {
+                // Handle the click event
+                featuredRecipeItem clickedItem = featuredRecipeItemList.get(position1);
+                // Start the SeeMorePage2 activity and pass necessary data
+                Intent intent = new Intent(context, SeeMorePage2.class);
+                intent.putExtra("recipeName", clickedItem.getRecipeName());
+                intent.putExtra("path", "all_recipes");
+                context.startActivity(intent);
+            }
+        });
     }
     @Override
     public int getItemCount() {
@@ -122,13 +139,5 @@ public class recipeAdapterFeatured extends RecyclerView.Adapter<recipeAdapterFea
             likeButton = itemView.findViewById(R.id.featured_Like_Button);
 
         }
-    }
-
-    
-
-    // Method to update the adapter with new recipe data
-    public void updateRecipes(List<featuredRecipeItem> newRecipes) {
-        this.featuredRecipeItemList = newRecipes;
-        notifyDataSetChanged(); // Notify adapter of dataset change
     }
 }
