@@ -1,6 +1,7 @@
 package com.example.aninterface.Fragments.History;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.aninterface.R;
+import com.example.aninterface.SeeMorePage2;
 import com.google.android.material.imageview.ShapeableImageView;
 
 import java.util.List;
@@ -43,6 +45,20 @@ public class RecipeAdapterHistory extends RecyclerView.Adapter<RecipeAdapterHist
 
         holder.recipeName.setText(historyRecipeItem.getRecipeName());
         holder.recipeDescription.setText(historyRecipeItem.getRecipeDescription());
+
+        // Set OnClickListener for the recipeName TextView
+        holder.recipeName.setOnClickListener(view -> {
+            // Get the position of the clicked item
+            int position1 = holder.getAdapterPosition();
+            if (position1 != RecyclerView.NO_POSITION) {
+                // Handle the click event
+                HistoryRecipeItem clickedItem = historyRecipeItemList.get(position1);
+                // Start the SeeMorePage2 activity and pass necessary data
+                Intent intent = new Intent(context, SeeMorePage2.class);
+                intent.putExtra("recipeName", clickedItem.getRecipeName());
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
