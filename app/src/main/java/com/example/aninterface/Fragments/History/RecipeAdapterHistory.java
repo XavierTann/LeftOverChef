@@ -59,7 +59,7 @@ public class RecipeAdapterHistory extends RecyclerView.Adapter<RecipeAdapterHist
                 String phoneNumber = SharedPreferencesUtil.getPhoneNumber(context);
                 Intent intent = new Intent(context, SeeMorePage2.class);
                 intent.putExtra("recipeName", clickedItem.getRecipeName());
-                intent.putExtra("path", "users/" + phoneNumber +"recipe");
+                intent.putExtra("path", "users/" + phoneNumber +"/recipe");
                 context.startActivity(intent);
             }
         });
