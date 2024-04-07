@@ -135,6 +135,10 @@ public class RecipePage extends AppCompatActivity {
         return sb.toString().trim(); // Trim any leading/trailing spaces and return the result
     }
 
+    public static String removeLeadingWhitespace(String input) {
+        return input.replaceAll("^\\s+", "");
+    }
+
 
     public void seeMoreButton(Button seeMoreButton, String generatedString, String imageUrl) {
 
@@ -241,6 +245,7 @@ public class RecipePage extends AppCompatActivity {
                 String apiKey = "AIzaSyDbrOusjueLtlTNgSHOJcachiTW606mXsg";
                 generatedString = extractGeneratedText(response);
                 foodName = getFirstWords(generatedString);
+                generatedString = removeLeadingWhitespace(generatedString);
                 textViewToUpdate.setText(generatedString);
                 searchImage(foodName, apiKey, imageViewToUpdate, buttonViewToUpdate, favouriteButton); // Use foodName for the query
 
@@ -291,10 +296,9 @@ public class RecipePage extends AppCompatActivity {
                 "You may assume I have basic cooking ingredients like salt." +
                 "Limit to 50 words. " +
                 "Include the name of the dish in the first few words." +
-                "The first line should strictly only contain the name of the dish. DO NOT include any labels in the first line like 'Name:' " +
-                "Everything after should come in the next few lines. Do not have any special characters in the first line" +
-                "Ingredients, difficulty, and cooking time should be included below the recipe name." +
-                "Give step by step clear instructions. Try to give add ingredients that are not specified into the recipe." +
+                "For the format, the first line should strictly only contain the name of the dish. DO NOT include any labels in the first line like 'Name:' " +
+                "Third line should include ingredients, fourth line difficulty and fifth line cooking time. Sixth line onwards will have the instructions. Do not have any special characters in the first line" +
+                "Give step by step clear instructions." +
                 "Stick strictly to the ingredients provided above.";
 
         String prompt1 = defaultprompt + "Stick strictly to the ingredients provided above.";

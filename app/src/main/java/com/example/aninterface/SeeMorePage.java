@@ -33,7 +33,7 @@ public class SeeMorePage extends AppCompatActivity {
         Picasso.get().load(recipeImage).into(imageRecipeImage);
 
         backButton.setOnClickListener(v -> {
-            Intent intent2 = new Intent(this, HomePage.class);
+            Intent intent2 = new Intent(this, RecipePage.class);
             startActivity(intent2);
 
         });
