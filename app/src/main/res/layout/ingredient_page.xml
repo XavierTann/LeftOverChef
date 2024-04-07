@@ -26,25 +26,34 @@
         android:layout_height="100dp"
         android:layout_marginEnd="10dp"
         android:layout_marginStart="10dp"
+        android:padding="5dp"
+        android:background="@drawable/edittext_underline"
         android:hint="Input extra ingredients here"
         android:textSize="15dp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_ingredientPage_predictedIngredients"
-        app:layout_constraintVertical_bias="0.261" />
+        app:layout_constraintTop_toBottomOf="@+id/scrollView6"
+        app:layout_constraintVertical_bias="0.5" />
 
-    <TextView
-        android:id="@+id/txt_ingredientPage_predictedIngredients"
+    <ScrollView
+        android:id="@+id/scrollView6"
         android:layout_width="340dp"
-        android:layout_height="60dp"
+        android:layout_height="100dp"
         android:layout_marginTop="52dp"
-        android:text="TextView"
-        android:textSize="13sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/txt_ingredientPage_predictedIngredients"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="vertical"
+            android:text="TextView"
+            android:textSize="13sp" />
+    </ScrollView>
 
     <Button
         android:id="@+id/btn_ingredientPage_generateRecipes"
@@ -171,6 +180,8 @@
         android:layout_marginStart="15dp"
         android:layout_marginEnd="15dp"
         android:gravity="center_horizontal"
+        android:padding="5dp"
+        android:background="@drawable/edittext_underline"
         android:hint="Halal, Gluten-Free, etc."
         android:textSize="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -201,6 +212,8 @@
         android:layout_height="60dp"
         android:layout_marginTop="10dp"
         android:gravity="center_horizontal"
+        android:background="@drawable/edittext_underline"
+        android:padding="5dp"
         android:layout_marginStart="15dp"
         android:layout_marginEnd="15dp"
         android:hint="No Spice, Allergens, etc."
