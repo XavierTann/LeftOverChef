@@ -2,7 +2,6 @@ package com.example.aninterface;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -12,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.squareup.picasso.Picasso;
 
-public class IndividualRecipe extends AppCompatActivity {
+public class SeeMorePage extends AppCompatActivity {
 
     private static String recipeDescription;
     private static String recipeImage;
@@ -20,21 +19,21 @@ public class IndividualRecipe extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.individual_recipe);
+        setContentView(R.layout.see_more);
 
         ImageView imageRecipeImage = findViewById(R.id.image_individualRecipe_recipeImage);
         TextView textRecipeDescription = findViewById(R.id.text_individualRecipe_recipeDescription);
         ImageButton backButton = findViewById(R.id.back_individualingredientPage_recipepage);
 
         Intent intent = getIntent();
-        IndividualRecipe.recipeDescription = intent.getStringExtra("recipeDescription");
-        IndividualRecipe.recipeImage = intent.getStringExtra("recipeImage");
+        SeeMorePage.recipeDescription = intent.getStringExtra("recipeDescription");
+        SeeMorePage.recipeImage = intent.getStringExtra("recipeImage");
 
         textRecipeDescription.setText(recipeDescription);
         Picasso.get().load(recipeImage).into(imageRecipeImage);
 
         backButton.setOnClickListener(v -> {
-            Intent intent2 = new Intent(this, Home.class);
+            Intent intent2 = new Intent(this, HomePage.class);
             startActivity(intent2);
 
         });

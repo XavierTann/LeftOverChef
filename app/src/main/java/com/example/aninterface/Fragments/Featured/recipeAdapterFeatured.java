@@ -45,7 +45,7 @@ public class recipeAdapterFeatured extends RecyclerView.Adapter<recipeAdapterFea
     @NonNull
     @Override
     public RecipeViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_featured_recipe1, parent, false);
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_featured_recipe, parent, false);
         return new RecipeViewHolder(itemView);
     }
 

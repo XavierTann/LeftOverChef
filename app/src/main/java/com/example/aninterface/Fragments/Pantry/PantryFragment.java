@@ -63,6 +63,7 @@ public class PantryFragment extends Fragment implements SuggestionsAdapter.OnIte
         // Generate Button
         Button generateButton = rootView.findViewById(R.id.btn_pantryPage_generateRecipe);
         generateButton.setOnClickListener(v -> generateRecipe());
+
         addIngredientButton = rootView.findViewById(R.id.addIngredientButton);
         ingredientNameEditText = rootView.findViewById(R.id.ingredientNameEditText);
         ingredientAmtEditText = rootView.findViewById(R.id.ingredientAmtEditText);
@@ -257,6 +258,7 @@ public class PantryFragment extends Fragment implements SuggestionsAdapter.OnIte
         removeIngredientsFromDatabase(ingredientsToRemoveKeys);
 
         String recipeDetails = TextUtils.join("\n", ingredientInfoList);
+        System.out.println(recipeDetails);
 
         // Pass the data to RecipePage fragment or activity
         Intent intent = new Intent(getActivity(), IngredientPage.class);
