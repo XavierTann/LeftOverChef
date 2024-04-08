@@ -42,7 +42,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginTop="110dp"
+        android:layout_marginTop="130dp"
         android:background="@drawable/border_orange_morerounded"
         android:padding="10dp">
         <TextView
@@ -58,7 +58,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/instructions"
+            android:text="Step 1: Add ingredients to pantry using our camera function or by manually keying it in. \nStep 2: Generate your recipes! \nStep 3: Enjoy your food!"
             android:textColor="@color/black"
             android:textSize="12sp"
             android:fontFamily="@font/dm_serif_text"
@@ -75,7 +75,7 @@
         android:layout_width="match_parent"
         android:layout_height="500dp"
         android:layout_marginStart="5dp"
-        android:layout_marginTop="320dp"
+        android:layout_marginTop="270dp"
         android:layout_marginEnd="5dp"
         android:orientation="vertical"
         android:padding="2dp">

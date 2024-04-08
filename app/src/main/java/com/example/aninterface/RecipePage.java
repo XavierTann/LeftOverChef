@@ -34,11 +34,11 @@ import okhttp3.RequestBody;
 
 public class RecipePage extends AppCompatActivity {
     private String generatedString;
-    private String foodName;
+    static String foodName;
     private static String phoneNumber;
-    private static String difficulty;
-    private static String cookingTime;
-    private static String ingredients;
+    static String difficulty;
+    static String cookingTime;
+    static String ingredients;
     private static String cuisine;
     private static String dietaryRequirements;
     private static String specialRequirements;

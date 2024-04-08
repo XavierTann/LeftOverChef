@@ -121,10 +121,10 @@
 
             <Button
                 android:id="@+id/btn_recipePage_seeMore1"
-                android:layout_width="match_parent"
+                android:layout_width="130dp"
                 android:layout_height="40dp"
                 android:layout_gravity="center"
-                android:layout_marginStart="10dp"
+                android:layout_marginStart="0dp"
                 android:layout_marginEnd="10dp"
                 android:backgroundTint="@color/orange"
                 android:text="See more"
@@ -201,10 +201,10 @@
 
             <Button
                 android:id="@+id/btn_recipePage_seeMore2"
-                android:layout_width="match_parent"
+                android:layout_width="130dp"
                 android:layout_height="40dp"
                 android:layout_gravity="center"
-                android:layout_marginStart="10dp"
+                android:layout_marginStart="0dp"
                 android:layout_marginEnd="10dp"
                 android:backgroundTint="@color/orange"
                 android:text="See more"
@@ -279,10 +279,10 @@
 
             <Button
                 android:id="@+id/btn_recipePage_seeMore3"
-                android:layout_width="match_parent"
+                android:layout_width="130dp"
                 android:layout_height="40dp"
                 android:layout_gravity="center"
-                android:layout_marginStart="10dp"
+                android:layout_marginStart="0dp"
                 android:layout_marginEnd="10dp"
                 android:backgroundTint="@color/orange"
                 android:text="See more"
@@ -309,8 +309,8 @@
         android:visibility="gone"
         app:srcCompat="@drawable/baseline_favorite_border_24" />
     <ImageView
-        android:visibility="gone"
         android:id="@+id/image_recipePage_favourite2"
+        android:visibility="gone"
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:layout_marginEnd="12dp"
