@@ -47,8 +47,9 @@ public class RecipePage extends AppCompatActivity {
 
 
     // FUNCTION TO SEARCH IMAGE FROM INTERNET USING GOOGLE CUSTOM SEARCH API //
-    private void searchImage(String query, String apiKey, ImageView imageViewToUpdate, Button buttonViewToUpdate, ImageView favouriteButton) {
-        String cx = "d6406233621ac4b28"; // Replace with your Custom Search Engine ID
+    private void searchImage(String query, ImageView imageViewToUpdate, Button buttonViewToUpdate, ImageView favouriteButton) {
+        String apiKey = "AIzaSyCGR7wq-T9porStEQmCJ6e2_4UmeoG6WDk";
+        String cx = "842f5b2966c514db1"; // Replace with your Custom Search Engine ID
         String url = "https://www.googleapis.com/customsearch/v1?q=" + query + "&searchType=image&key=" + apiKey + "&cx=" + cx;
 
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
@@ -242,12 +243,11 @@ public class RecipePage extends AppCompatActivity {
         @Override
         protected void onPostExecute(String response) {
             try {
-                String apiKey = "AIzaSyDbrOusjueLtlTNgSHOJcachiTW606mXsg";
                 generatedString = extractGeneratedText(response);
                 foodName = getFirstWords(generatedString);
                 generatedString = removeLeadingWhitespace(generatedString);
                 textViewToUpdate.setText(generatedString);
-                searchImage(foodName, apiKey, imageViewToUpdate, buttonViewToUpdate, favouriteButton); // Use foodName for the query
+                searchImage(foodName, imageViewToUpdate, buttonViewToUpdate, favouriteButton); // Use foodName for the query
 
             } catch (IOException e) {
                 throw new RuntimeException(e);

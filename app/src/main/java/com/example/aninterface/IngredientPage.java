@@ -49,6 +49,10 @@ public class IngredientPage extends AppCompatActivity{
             txt_predictedIngredients.setText("The camera has scanned: \n" + ingredientsFromCamera + "\nEnter the other ingredients you are missing, as well as select your preferences below.");
         }
 
+        if (ingredientsFromCamera == null && ingredientsFromPantry == null) {
+            txt_predictedIngredients.setText("No ingredients have been scanned. Please enter the ingredients you have, as well as select your preferences below.");
+        }
+
 
 
         EditText searchIngredient = findViewById(R.id.edit_ingredientPage_searchIngredient);
