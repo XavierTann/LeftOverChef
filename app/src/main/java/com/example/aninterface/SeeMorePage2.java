@@ -50,7 +50,8 @@ public class SeeMorePage2 extends AppCompatActivity {
 
         userPhoneNumber = SharedPreferencesUtil.getPhoneNumber(getApplicationContext());
         recipeName = getIntent().getStringExtra("recipeName");
-        fetchRecipeDetails(recipeName);
+        String path = getIntent().getStringExtra("path");
+        fetchRecipeDetails(recipeName, path);
 
         ImageButton backButton = findViewById(R.id.back_individualingredientPage_recipepage2);
         backButton.setOnClickListener(v -> {
@@ -58,9 +59,9 @@ public class SeeMorePage2 extends AppCompatActivity {
         });
     }
 
-    public void fetchRecipeDetails(String recipeName) {
+    public void fetchRecipeDetails(String recipeName, String path) {
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
-        Query query = databaseReference.child("users").child(userPhoneNumber).child("recipe");
+        Query query = databaseReference.child(path);
 
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
