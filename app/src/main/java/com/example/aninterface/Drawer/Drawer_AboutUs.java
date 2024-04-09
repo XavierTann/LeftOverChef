@@ -2,6 +2,7 @@ package com.example.aninterface.Drawer;
 
 import android.graphics.Matrix;
 import android.os.Bundle;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,5 +17,10 @@ public class Drawer_AboutUs extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.drawer_aboutus);
 
+        ImageButton BackButton = findViewById(R.id.back_aboutus_home);
+        BackButton.setOnClickListener(v -> {
+            finish();
+        });
     }
+
 }
