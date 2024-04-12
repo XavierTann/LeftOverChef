@@ -21,6 +21,4 @@
     <style name="Button.Orange" parent="ThemeOverlay.AppCompat">
         <item name="colorAccent">@color/orange</item>
     </style>
-
-
 </resources>

@@ -61,13 +61,9 @@ public class FavouritesFragment extends Fragment {
         return favouritesRecipeItems;
     }
 
-
-/// XAVIER's CODEEEEEEEEEEEEEEEEE
     private void generateRecipeItemsFromFirebase(List<favouritesRecipeItem> favouritesRecipeItems) {
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
         String phoneNumber = SharedPreferencesUtil.getPhoneNumber(getActivity().getApplicationContext());
-
-
         // Assuming phoneNumber is the variable containing the specific phone number
         databaseReference.child("users").child(phoneNumber).child("favourites").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override

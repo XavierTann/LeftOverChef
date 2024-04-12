@@ -26,8 +26,4 @@
     <style name="RoundedCornersMore">
         <item name="cornerSize">25dp</item>
     </style>
-
-
-
-
 </resources>
