@@ -220,9 +220,7 @@ public class Yolov5TFLiteDetector {
     protected ArrayList<Recognition> nms(ArrayList<Recognition> allRecognitions) {
         ArrayList<Recognition> nmsRecognitions = new ArrayList<Recognition>();
 
-        // 遍历每个类别, 在每个类别下做nms
         for (int i = 0; i < OUTPUT_SIZE[2]-5; i++) {
-            // 这里为每个类别做一个队列, 把labelScore高的排前面
             PriorityQueue<Recognition> pq =
                     new PriorityQueue<Recognition>(
                             6300,
@@ -234,7 +232,6 @@ public class Yolov5TFLiteDetector {
                                 }
                             });
 
-            // 相同类别的过滤出来, 且obj要大于设定的阈值
             for (int j = 0; j < allRecognitions.size(); ++j) {
 //                if (allRecognitions.get(j).getLabelId() == i) {
                 if (allRecognitions.get(j).getLabelId() == i && allRecognitions.get(j).getConfidence() > DETECT_THRESHOLD) {

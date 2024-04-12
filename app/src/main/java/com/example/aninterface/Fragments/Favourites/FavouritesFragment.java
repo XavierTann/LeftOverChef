@@ -62,7 +62,7 @@ public class FavouritesFragment extends Fragment {
     }
 
 
-/// XAVIER's CODEEEEEEEEEEEEEEEEE
+
     private void generateRecipeItemsFromFirebase(List<favouritesRecipeItem> favouritesRecipeItems) {
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
         String phoneNumber = SharedPreferencesUtil.getPhoneNumber(getActivity().getApplicationContext());
