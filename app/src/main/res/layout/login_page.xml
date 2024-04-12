@@ -36,7 +36,7 @@
         android:id="@+id/textWelcome_to_LeftoverChef"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="600dp"
+        android:layout_marginBottom="625dp"
         android:fontFamily="@font/dm_serif_text"
         android:text="Welcome to LeftoverChef!"
         app:layout_constraintBottom_toBottomOf="parent"
