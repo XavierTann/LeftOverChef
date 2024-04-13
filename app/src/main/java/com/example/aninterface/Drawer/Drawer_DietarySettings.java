@@ -95,14 +95,14 @@ public class Drawer_DietarySettings extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (ButtonItem item : dietaryOptions) {
-                    // Determine if the item is selected based on its presence in Firebase
+                    //Determine if the item is selected based on its presence in Firebase
                     if (dataSnapshot.hasChild(item.getButtonText())) {
                         item.setSelected(true);
                     } else {
                         item.setSelected(false);
                     }
                 }
-                adapter.notifyDataSetChanged(); // Notify the adapter to refresh the UI
+                adapter.notifyDataSetChanged(); //Notify the adapter to refresh the UI
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
@@ -126,7 +126,6 @@ public class Drawer_DietarySettings extends AppCompatActivity {
                         // Update the TextView to show the new special requirements
                         specialRequirementsTV.setText("Current Special Requirements: " + specialRequirementsString);
                     } else {
-                        // Handle errors, e.g., show a toast or log
                         Log.e("Firebase Update", "Failed to update special requirements", task.getException());
                     }
                 });

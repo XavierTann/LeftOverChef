@@ -90,7 +90,7 @@ public class ButtonAdapter extends RecyclerView.Adapter<ButtonAdapter.ViewHolder
             super(itemView);
             dietaryname = itemView.findViewById(R.id.DietaryText);
             imageView = itemView.findViewById(R.id.addIcon);
-            relativeLayout = (RelativeLayout) itemView; // Assuming the root is the RelativeLayout
+            relativeLayout = (RelativeLayout) itemView;
         }
     }
 }
