@@ -3,6 +3,8 @@ package com.example.aninterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -320,15 +322,30 @@ public class RecipePage extends AppCompatActivity {
         Button seeMore3 = findViewById(R.id.btn_recipePage_seeMore3);
         ImageView favourite3 = findViewById(R.id.image_recipePage_favourite3);
 
-        // Create and execute NetworkTask instances with references to different TextViews and ImageViews
+        Handler handler = new Handler(Looper.getMainLooper());
+
+// Execute first task immediately
         NetworkTask task1 = new NetworkTask(textView1, imageView1, seeMore1, favourite1);
         task1.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, prompt1);
 
-        NetworkTask task2 = new NetworkTask(textView2, imageView2, seeMore2, favourite2);
-        task2.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, prompt2);
+// Delay second task
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                NetworkTask task2 = new NetworkTask(textView2, imageView2, seeMore2, favourite2);
+                task2.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, prompt2);
+            }
+        }, 2000); // Delay of 2000 milliseconds (2 seconds)
 
-        NetworkTask task3 = new NetworkTask(textView3, imageView3, seeMore3, favourite3);
-        task3.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, prompt3);
+// Delay third task
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                NetworkTask task3 = new NetworkTask(textView3, imageView3, seeMore3, favourite3);
+                task3.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, prompt3);
+            }
+        }, 4000); // Additional delay of 2000 milliseconds (2 seconds) after the second task
+
 
 
 
